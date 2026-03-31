@@ -1,0 +1,15 @@
+Faculties:
+weii: d096c417-e832-4d3b-a7be-b8fac1a99131
+
+Directions:
+weii-ce: c032603c-b733-4b2c-bb62-f782145cb462
+weii-ee: 067053b8-9a03-43f7-a38f-2aee3e52e3d2
+weii-et: 89f4087f-3883-4c9a-a435-2f20711fcb4b
+weii-e: 18533be4-580c-4505-9811-c4d7492b71c3
+weii-acr: de4f6f47-12c8-4027-a9cb-957b79cc2c0f
+
+Specializations:
+weii-ce-ai: ab5a7101-14e3-4d89-9d27-3a9ebec027b8
+weii-ce-aa: b7ad56f6-f72c-4449-ac9e-8db4b2c9bf22
+weii-ce-z: 3957c812-34e8-437d-8d08-00f39011c06d
+weii-ce-tt: b9774665-9b5c-4481-b795-d999f65eeb5a
