@@ -6,7 +6,7 @@ import {
   GraduationCap, LogOut, Menu, X, ChevronRight
 } from 'lucide-react';
 import { useApp } from '../context/AppContext';
-import { FACULTIES, DIRECTIONS, SPECIALIZATIONS } from '../data/mockData';
+import { FACULTIES, DIRECTIONS, SPECIALIZATIONS } from '../data/mockData2';
 
 const NAV_ITEMS = [
   { path: '/', label: 'Dashboard', icon: LayoutDashboard },
