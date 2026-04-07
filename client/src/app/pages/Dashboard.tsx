@@ -1,14 +1,26 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import {Clock, AlertTriangle, CheckCircle2, Plus, BookOpen, Zap, Trophy} from 'lucide-react'
 import {useApp} from '../context/AppContext'
 import { ProgressRing } from '../components/ProgressRing';
 import { motion, AnimatePresence} from 'motion/react'
 
-function ExamCountdown({examDate, hasExam, subjectName, color}: {examDate: string; hasExam: boolean;subjectName: string; color: string}){
+function getExamInfo(examDate: string | null | undefined, hasExam: boolean){
   const today = new Date();
   const finalExamDate = (!examDate && hasExam) ? '2026-06-12' : examDate;
+
+  if(!finalExamDate) return {examDateObj: null, daysToExam: 0};
+
   const exam = new Date(finalExamDate);
   const days = Math.ceil((exam.getTime() - today.getTime()) / (1000*60*60*24));
+
+  return {
+    examDateObj: exam,
+    daysToExam: days
+  };
+}
+
+function ExamCountdown({examDate, hasExam, subjectName, color}: {examDate: string; hasExam: boolean;subjectName: string; color: string}){
+  const {examDateObj, daysToExam: days} = getExamInfo(examDate, hasExam);
   const urgency = days <=14 ? 'text-red-500' : days <=30 ? 'text-amber-500' : 'text-[#003366]';
 
   return(
@@ -26,7 +38,7 @@ function ExamCountdown({examDate, hasExam, subjectName, color}: {examDate: strin
         <span style={{ fontSize: '0.8rem' }} className="text-gray-400">days</span>
       </div>
       <p style={{ fontSize: '0.75rem' }} className="text-gray-400 mt-1">
-        {exam.toLocaleDateString('en-US', { day: 'numeric', month: 'long' })}
+        {examDateObj?.toLocaleDateString('en-US', { day: 'numeric', month: 'long' })}
       </p>
       {/* Urgency bar */}
       <div className="mt-3 h-1 bg-gray-100 rounded-full overflow-hidden">
@@ -48,6 +60,16 @@ export function Dashboard() {
   
   const [showFAB, setShowFAB] = useState(false);
   const [quickLog, setQuickLog] = useState('');
+
+  useEffect(() => {
+    const hasSeenAlert = localStorage.getItem('examAlertShown');
+
+    if(!hasSeenAlert){
+      alert("Information: Some of your exams don't have a specific date yet. We've temporarily set them to June 12, 2026, so you can see how the countdown works!");
+    }
+
+    localStorage.setItem('examAlertShown', 'true');
+  }, [])
 
   //get upcoming exams
   const upcomingExams = subjects
@@ -79,6 +101,15 @@ const formattedDate = today.toLocaleDateString('en-US', {
   month: 'long',
   day: 'numeric'
 });
+
+let daysToFirstExam = '-';
+let weeksToExamPeriod = '-';
+if(upcomingExams.length > 0){
+  const firstExam = upcomingExams[0];
+  const {daysToExam} = getExamInfo(firstExam.exam_date, firstExam.has_exam);
+  daysToFirstExam = String(Math.max(0, daysToExam));
+  weeksToExamPeriod = String(Math.max(0, Math.ceil(daysToExam / 7)));
+}
 
   return (
     <div className='p-6 max-w-5xl mx-auto'>
@@ -121,10 +152,11 @@ const formattedDate = today.toLocaleDateString('en-US', {
         </div>
         {/* Quick stats */}
         <div className="col-span-2 grid grid-cols-3 gap-4">
-          {[
-            { label: 'Days to first exam', value: '77', icon: AlertTriangle, color: '#003366', bg: '#EEF2FF' },
+          {
+          [
+            { label: 'Days to first exam', value: daysToFirstExam, icon: AlertTriangle, color: '#003366', bg: '#EEF2FF' },
             { label: 'Points completed', value: String(totalCompleted), icon: CheckCircle2, color: '#059669', bg: '#ECFDF5' },
-            { label: 'Weeks to exam period', value: '11', icon: Clock, color: '#D97706', bg: '#FFFBEB' },
+            { label: 'Weeks to exam period', value: weeksToExamPeriod, icon: Clock, color: '#D97706', bg: '#FFFBEB' },
           ].map(stat => (
             <div key={stat.label} className="bg-white rounded-2xl p-4 border border-gray-100 shadow-sm">
               <div className="w-9 h-9 rounded-xl flex items-center justify-center mb-3" style={{ backgroundColor: stat.bg }}>
