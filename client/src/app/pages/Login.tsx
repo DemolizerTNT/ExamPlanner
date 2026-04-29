@@ -93,7 +93,7 @@ export function Login() {
 
           <h2 style={{ fontSize: '1.75rem', fontWeight: 700 }} className="text-[#003366] mb-2">Sign In</h2>
           <p style={{ fontSize: '0.9rem' }} className="text-gray-500 mb-8">
-            Use your PRz student account or click the demo button below.
+            Use your PRz student account to sign in.
           </p>
 
           <form onSubmit={handleLogin} className="space-y-5">
@@ -155,19 +155,6 @@ export function Login() {
             </button>
           </form>
 
-          <div className="mt-6 flex items-center gap-3">
-            <div className="flex-1 h-px bg-gray-200" />
-            <span style={{ fontSize: '0.75rem' }} className="text-gray-400">or</span>
-            <div className="flex-1 h-px bg-gray-200" />
-          </div>
-
-          <button
-            onClick={() => login('demo.student@stud.prz.edu.pl', 'demo')}
-            className="mt-4 w-full py-3 px-6 rounded-xl border-2 border-[#003366] text-[#003366] hover:bg-[#003366]/5 transition-colors"
-            style={{ fontSize: '0.875rem', fontWeight: 600 }}
-          >
-            Continue as Demo Student
-          </button>
 
           <div className="mt-6 flex items-center gap-3">
             <div className="flex-1 h-px bg-gray-200" />

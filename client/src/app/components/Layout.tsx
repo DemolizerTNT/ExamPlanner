@@ -6,7 +6,7 @@ import {
   GraduationCap, LogOut, Menu, X, ChevronRight
 } from 'lucide-react';
 import { useApp } from '../context/AppContext';
-import { FACULTIES, DIRECTIONS, SPECIALIZATIONS } from '../data/mockData';
+import { FACULTIES, DIRECTIONS, SPECIALIZATIONS } from '../data/mockData2';
 
 const NAV_ITEMS = [
   { path: '/', label: 'Dashboard', icon: LayoutDashboard },
@@ -22,8 +22,8 @@ export function Layout({ children }: { children: ReactNode }) {
   const location = useLocation();
   const progress = getSemesterProgress();
   const faculty   = FACULTIES.find(f => f.id === user?.faculty_id);
-  const direction = DIRECTIONS.find(d => d.id === (user as any)?.direction_id);
-  const specObj   = SPECIALIZATIONS.find(s => s.id === (user as any)?.specialization_id);
+  const direction = DIRECTIONS.find(d => d.id === user?.direction_id);
+  const specObj = SPECIALIZATIONS.find(s => s.id === user?.specialization_id);
 
   return (
     <div className="flex h-screen bg-[#F8F9FB] overflow-hidden">

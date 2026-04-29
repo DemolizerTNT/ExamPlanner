@@ -1,11 +1,14 @@
-import { createContext, useContext, useState, useEffect, useCallback } from 'react';
+/* eslint-disable react-refresh/only-export-components */
+
+import { createContext, useContext, useState, useEffect, useCallback, useMemo } from 'react';
 import {
   DEMO_USER, FACULTIES, DIRECTIONS, SPECIALIZATIONS,
   getSubjects, getKnowledgePoints, getDirections, getSpecializations,
-} from '../data/mockData';
+} from '../data/mockData2';
+import { apiClient } from '../services/api';
 import type {
   Faculty, Direction, Specialization, Subject, KnowledgePoint, UserProgress, ProgressStatus
-} from '../data/mockData';
+} from '../data/mockData2';
 
 interface AppUser {
   id: string;
@@ -30,8 +33,8 @@ interface AppContextType {
   knowledgePointsBySubject: Record<string, KnowledgePoint[]>;
   progress: Record<string, UserProgress>;
   login: (email: string, password: string) => Promise<boolean>;
-  register: (name: string, email: string, password: string) => Promise<boolean>;
-  logout: () => void;
+  register: (firstName: string, lastName: string, email: string, password: string) => Promise<boolean>;
+  logout: () => Promise<void>;
   completeOnboarding: (facultyId: string, directionId: string, specializationId: string | undefined, semester: number) => void;
   markPoint: (pointId: string, status: ProgressStatus) => void;
   getPointStatus: (pointId: string) => ProgressStatus;
@@ -103,10 +106,13 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
     currentUser.specialization_id
   );
 
-  const knowledgePointsBySubject: Record<string, KnowledgePoint[]> = {};
-  subjects.forEach(s => {
-    knowledgePointsBySubject[s.id] = getKnowledgePoints(s.id);
-  });
+  const knowledgePointsBySubject = useMemo<Record<string, KnowledgePoint[]>>(() => {
+    const map: Record<string, KnowledgePoint[]> = {};
+    subjects.forEach(s => {
+      map[s.id] = getKnowledgePoints(s.id);
+    });
+    return map;
+  }, [subjects]);
 
   // All points for the semester
   const allPoints = subjects.flatMap(s => knowledgePointsBySubject[s.id] || []);
@@ -123,13 +129,13 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
       const weeksLeft = Math.max(1, examWeek - currentWeek);
       const pointsPerWeek = Math.ceil(pendingPoints.length / weeksLeft);
       pendingPoints.forEach((p, idx) => {
-        const week = currentWeek + Math.floor(idx / Math.max(1, pointsPerWeek));
-        if (!weeklyMap[week]) weeklyMap[week] = [];
-        weeklyMap[week].push(p);
+        const targetWeek = currentWeek + Math.floor(idx / Math.max(1, pointsPerWeek));
+        if (!weeklyMap[targetWeek]) weeklyMap[targetWeek] = [];
+        weeklyMap[targetWeek].push(p);
       });
     });
     return weeklyMap;
-  }, [progress, subjects, currentWeek, weeksUntilExam]);
+  }, [progress, subjects, currentWeek, weeksUntilExam, knowledgePointsBySubject]);
 
   // Also build a full week map (including completed, for Exams page week badges)
   const buildFullPointWeekMap = useCallback(() => {
@@ -142,12 +148,11 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
       const weeksLeft = Math.max(1, examWeek - 1); // from week 1 of semester
       const pointsPerWeek = Math.ceil(points.length / weeksLeft);
       points.forEach((p, idx) => {
-        const week = 1 + Math.floor(idx / Math.max(1, pointsPerWeek));
-        map[p.id] = week;
+        map[p.id] = 1 + Math.floor(idx / Math.max(1, pointsPerWeek));
       });
     });
     return map;
-  }, [subjects, currentWeek, weeksUntilExam]);
+  }, [subjects, currentWeek, weeksUntilExam, knowledgePointsBySubject]);
 
   const weeklyMap = assignPointsToWeeks();
   const pointWeekMap = buildFullPointWeekMap();
@@ -158,46 +163,80 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
     ...(weeklyMap[currentWeek + 1] || []).filter(p => progress[p.id]?.status !== 'completed'),
   ].slice(0, 8);
 
-  useEffect(() => {
-    localStorage.setItem(STORAGE_KEYS.PROGRESS, JSON.stringify(progress));
-  }, [progress]);
-
-  const login = async (email: string, _password: string): Promise<boolean> => {
-    const name = email.split('.')[0];
-    const u: AppUser = {
-      id: 'user-1',
-      name: name.charAt(0).toUpperCase() + name.slice(1),
-      email,
-      faculty_id: 'weii',
-      direction_id: 'weii-cs',
-      specialization_id: undefined,
-      semester: 3,
-    };
-    setUser(u);
-    localStorage.setItem(STORAGE_KEYS.USER, JSON.stringify(u));
-    return true;
-  };
-
-  const register = async (name: string, email: string, _password: string): Promise<boolean> => {
-    const u: AppUser = {
-      id: 'user-1',
-      name: name.charAt(0).toUpperCase() + name.slice(1),
-      email,
-      faculty_id: '',
-      direction_id: undefined,
-      specialization_id: undefined,
-      semester: 0,
-    };
-    setUser(u);
-    localStorage.setItem(STORAGE_KEYS.USER, JSON.stringify(u));
-    return true;
-  };
-
-  const logout = () => {
+  const clearAuthState = useCallback(() => {
     setUser(null);
     setIsOnboarded(false);
     localStorage.removeItem(STORAGE_KEYS.USER);
     localStorage.removeItem(STORAGE_KEYS.ONBOARDED);
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem(STORAGE_KEYS.PROGRESS, JSON.stringify(progress));
+  }, [progress]);
+
+  useEffect(() => {
+    const handleAuthExpired = () => {
+      clearAuthState();
+    };
+
+    window.addEventListener('authExpired', handleAuthExpired);
+
+    return () => {
+      window.removeEventListener('authExpired', handleAuthExpired);
+    };
+  }, [clearAuthState]);
+
+  const login = async (email: string, password: string): Promise<boolean> => {
+    try {
+      const response = await apiClient.login(email, password);
+      const name = response.user.email.split('.')[0];
+      const u: AppUser = {
+        id: response.user.id,
+        name: name.charAt(0).toUpperCase() + name.slice(1),
+        email: response.user.email,
+        faculty_id: 'weii', // To będzie ustawiane podczas onboardingu
+        direction_id: 'weii-cs',
+        specialization_id: undefined,
+        semester: 3,
+      };
+      setUser(u);
+      localStorage.setItem(STORAGE_KEYS.USER, JSON.stringify(u));
+      return true;
+    } catch (error) {
+      console.error('Login failed:', error);
+      return false;
+    }
+  };
+
+  const register = async (firstName: string, lastName: string, email: string, password: string): Promise<boolean> => {
+    try {
+      const response = await apiClient.register(firstName, lastName, email, password);
+      const u: AppUser = {
+        id: response.user.id,
+        name: `${firstName.trim()} ${lastName.trim()}`.trim(),
+        email: response.user.email,
+        faculty_id: '',
+        direction_id: undefined,
+        specialization_id: undefined,
+        semester: 0,
+      };
+      setUser(u);
+      localStorage.setItem(STORAGE_KEYS.USER, JSON.stringify(u));
+      return true;
+    } catch (error) {
+      console.error('Register failed:', error);
+      return false;
+    }
+  };
+
+  const logout = async () => {
+    try {
+      await apiClient.logout();
+    } catch (error) {
+      console.error('Logout error:', error);
+    } finally {
+      clearAuthState();
+    }
   };
 
   const completeOnboarding = (
