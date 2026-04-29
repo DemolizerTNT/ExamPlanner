@@ -5,23 +5,23 @@ const authRoutes = require('./routes/auth.routes');
 const profileRoutes = require('./routes/profile.routes');
 const errorHandler = require('./middleware/errorHandler');
 
-// Główny punkt wejścia backendu Express.
+// Main entry point for the Express backend.
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// Middleware globalne dla całej aplikacji.
-app.use(cors()); // Pozwala na zapytania z innych adresów (np. z telefonu)
-app.use(express.json({ limit: '15mb' })); // Pozwala serwerowi rozumiec JSON i przyjac avatar w base64
+// Global middleware for the entire application.
+app.use(cors()); // Allows requests from other origins (e.g. mobile devices)
+app.use(express.json({ limit: '15mb' })); // Allows the server to parse JSON and accept base64 avatars
 
-// Prosta trasa testowa
+// Simple health/test route
 app.get('/', (req, res) => {
-    res.send('Serwer Express działa.');
+    res.send('Express server is running.');
 });
 
 
 app.use('/api/auth', authRoutes);
 app.use('/api/profile', profileRoutes);
-// Centralna obsługa błędów powinna być podpięta na końcu.
+// Central error handler should be attached last.
 app.use(errorHandler);
 
 app.listen(PORT, () => {

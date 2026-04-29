@@ -10,6 +10,7 @@ const avatarBucket = process.env.PROFILE_AVATAR_BUCKET || 'avatars';
 const avatarSignedUrlTtl = Number(process.env.PROFILE_AVATAR_SIGNED_URL_TTL || 3600);
 const isAvatarBucketPublic = String(process.env.PROFILE_AVATAR_BUCKET_PUBLIC || 'false').toLowerCase() === 'true';
 
+// Parse access token from Authorization header or request body.
 const parseAccessToken = (req) => {
   const header = req.headers.authorization;
 
@@ -46,14 +47,14 @@ const resolveAuthenticatedUser = async (req, res) => {
   const accessToken = parseAccessToken(req);
 
   if (!accessToken) {
-    res.status(401).json({ message: 'Brak access tokena' });
+    res.status(401).json({ message: 'Missing access token' });
     return null;
   }
 
   const { data, error } = await supabaseAuthClient.auth.getUser(accessToken);
 
   if (error || !data?.user?.id) {
-    res.status(401).json({ message: 'Niepoprawny lub wygasly access token' });
+    res.status(401).json({ message: 'Invalid or expired access token' });
     return null;
   }
 
@@ -136,14 +137,14 @@ const getMyProfile = async (req, res, next) => {
 
     const { data, error } = await getUserProfileById(user.id);
 
-    if (error) {
-      return res.status(500).json({
-        message: `Nie udalo sie odczytac profilu z ${profileSchema}.${profileTable}`,
-      });
-    }
+        if (error) {
+          return res.status(500).json({
+            message: `Failed to read profile from ${profileSchema}.${profileTable}`,
+          });
+        }
 
     return res.status(200).json({
-      message: 'Profil pobrany poprawnie.',
+      message: 'Profile retrieved successfully.',
       profile: await normalizeProfileResponse(data, user),
     });
   } catch (err) {
@@ -179,7 +180,7 @@ const updateMyProfile = async (req, res, next) => {
 
     if (upsertError) {
       return res.status(500).json({
-        message: `Nie udalo sie zapisac profilu w ${profileSchema}.${profileTable}`,
+        message: `Failed to save profile in ${profileSchema}.${profileTable}`,
       });
     }
 
@@ -187,12 +188,12 @@ const updateMyProfile = async (req, res, next) => {
 
     if (profileError) {
       return res.status(500).json({
-        message: `Nie udalo sie odczytac profilu z ${profileSchema}.${profileTable}`,
+        message: `Failed to read profile from ${profileSchema}.${profileTable}`,
       });
     }
 
     return res.status(200).json({
-      message: 'Profil zapisany poprawnie.',
+      message: 'Profile saved successfully.',
       profile: await normalizeProfileResponse(profileData, user),
     });
   } catch (err) {
@@ -215,7 +216,7 @@ const uploadMyAvatar = async (req, res, next) => {
 
     if (!base64Data || !extension) {
       return res.status(400).json({
-        message: 'Niepoprawne dane avatara. Dozwolone formaty: jpeg, png, webp.',
+        message: 'Invalid avatar data. Allowed formats: jpeg, png, webp.',
       });
     }
 
@@ -223,7 +224,7 @@ const uploadMyAvatar = async (req, res, next) => {
 
     if (!rawBase64) {
       return res.status(400).json({
-        message: 'Brak danych obrazu do zapisu.',
+        message: 'No image data provided.',
       });
     }
 
@@ -231,7 +232,7 @@ const uploadMyAvatar = async (req, res, next) => {
 
     if (fileBuffer.byteLength === 0) {
       return res.status(400).json({
-        message: 'Nie udalo sie odczytac danych obrazu.',
+        message: 'Failed to read image data.',
       });
     }
 
@@ -250,7 +251,7 @@ const uploadMyAvatar = async (req, res, next) => {
 
     if (uploadError) {
       return res.status(500).json({
-        message: `Nie udalo sie zapisac avatara w bucket ${avatarBucket}`,
+        message: `Failed to save avatar in bucket ${avatarBucket}`,
       });
     }
 
@@ -262,7 +263,7 @@ const uploadMyAvatar = async (req, res, next) => {
 
     if (upsertError) {
       return res.status(500).json({
-        message: `Avatar zapisany, ale nie udalo sie zapisac URL w ${profileSchema}.${profileTable}`,
+        message: `Avatar uploaded, but failed to save URL in ${profileSchema}.${profileTable}`,
       });
     }
 
@@ -270,7 +271,7 @@ const uploadMyAvatar = async (req, res, next) => {
 
     if (profileError) {
       return res.status(500).json({
-        message: `Nie udalo sie odczytac profilu z ${profileSchema}.${profileTable}`,
+        message: `Failed to read profile from ${profileSchema}.${profileTable}`,
       });
     }
 
@@ -279,7 +280,7 @@ const uploadMyAvatar = async (req, res, next) => {
     }
 
     return res.status(200).json({
-      message: 'Avatar zapisany poprawnie.',
+      message: 'Avatar saved successfully.',
       profile: await normalizeProfileResponse(profileData, user),
     });
   } catch (err) {

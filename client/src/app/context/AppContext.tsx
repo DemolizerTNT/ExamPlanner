@@ -33,7 +33,7 @@ interface AppContextType {
   knowledgePointsBySubject: Record<string, KnowledgePoint[]>;
   progress: Record<string, UserProgress>;
   login: (email: string, password: string) => Promise<boolean>;
-  register: (firstName: string, lastName: string, email: string, password: string) => Promise<boolean>;
+  register: (firstName: string, lastName: string, email: string, password: string) => Promise<{ ok: boolean; message?: string }>;
   logout: () => Promise<void>;
   completeOnboarding: (facultyId: string, directionId: string, specializationId: string | undefined, semester: number) => void;
   markPoint: (pointId: string, status: ProgressStatus) => void;
@@ -208,7 +208,7 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
     }
   };
 
-  const register = async (firstName: string, lastName: string, email: string, password: string): Promise<boolean> => {
+  const register = async (firstName: string, lastName: string, email: string, password: string): Promise<{ ok: boolean; message?: string }> => {
     try {
       const response = await apiClient.register(firstName, lastName, email, password);
       const u: AppUser = {
@@ -222,10 +222,12 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
       };
       setUser(u);
       localStorage.setItem(STORAGE_KEYS.USER, JSON.stringify(u));
-      return true;
-    } catch (error) {
-      console.error('Register failed:', error);
-      return false;
+      return { ok: true };
+    } catch (err: any) {
+      console.error('Register failed:', err);
+      // Try to get a useful message from the server
+      const serverMessage = err?.response?.data?.message || err?.message || 'Registration failed';
+      return { ok: false, message: serverMessage };
     }
   };
 

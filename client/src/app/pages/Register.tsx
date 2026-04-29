@@ -25,6 +25,7 @@ export function Register() {
   const [showConfirm, setShowConfirm] = useState(false);
   const [loading, setLoading] = useState(false);
   const [errors, setErrors] = useState<Record<string, string>>({});
+  const [submitError, setSubmitError] = useState<string | null>(null);
 
   const validate = () => {
     const e: Record<string, string> = {};
@@ -42,9 +43,21 @@ export function Register() {
     if (Object.keys(errs).length > 0) { setErrors(errs); return; }
     setErrors({});
     setLoading(true);
-    const ok = await register(firstName.trim(), lastName.trim(), email, password);
-    setLoading(false);
-    if (ok) navigate('/');
+    setSubmitError(null);
+    try {
+      const res = await register(firstName.trim(), lastName.trim(), email, password);
+      setLoading(false);
+      if (res.ok) {
+        navigate('/');
+        return;
+      }
+      // Show server-provided message or a generic one
+      setSubmitError(res.message || 'Nie udało się utworzyć konta.');
+    } catch (err) {
+      setLoading(false);
+      setSubmitError('Błąd połączenia z serwerem. Spróbuj ponownie później.');
+      console.error('Register error', err);
+    }
   };
 
   return (
@@ -288,6 +301,11 @@ export function Register() {
               {loading ? 'Creating account…' : 'Create Account'}
               {!loading && <ArrowRight size={16} />}
             </button>
+            {submitError && (
+              <p className="text-red-600 bg-red-50 px-3 py-2 rounded-lg mt-3" style={{ fontSize: '0.9rem' }}>
+                {submitError}
+              </p>
+            )}
           </form>
 
           <div className="mt-6 flex items-center gap-3">

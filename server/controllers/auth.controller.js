@@ -17,7 +17,7 @@ const ensureProfile = async ({ userId, firstName, lastName, email }) => {
       ok: false,
       statusCode: 500,
       body: {
-        message: `Konto utworzone, ale nie udało się zapisać profilu w ${profileSchema}.${profileTable}`,
+        message: `Account created, but failed to save profile in ${profileSchema}.${profileTable}`,
         reason: profileError.message,
       },
     };
@@ -33,34 +33,34 @@ const mapSupabaseError = (error) => {
   if (/already registered|user already registered/i.test(message)) {
     return {
       statusCode: 409,
-      message: 'Ten adres e-mail jest już zarejestrowany',
+      message: 'This email address is already registered',
     };
   }
 
   if (/invalid login credentials|invalid email|password/i.test(message)) {
     return {
       statusCode: 401,
-      message: 'Niepoprawny e-mail lub hasło',
+      message: 'Invalid email or password',
     };
   }
 
   if (/refresh token|jwt|token is invalid|invalid token|session not found/i.test(message)) {
     return {
       statusCode: 401,
-      message: 'Sesja wygasła. Zaloguj się ponownie.',
+      message: 'Session expired. Please log in again.',
     };
   }
 
   if (/rate limit|over_email_send_rate_limit|too many requests/i.test(message)) {
     return {
       statusCode: 429,
-      message: 'Za dużo prób w krótkim czasie. Spróbuj ponownie za chwilę.',
+      message: 'Too many attempts in a short time. Please try again later.',
     };
   }
 
   return {
     statusCode: 500,
-    message: 'Błąd komunikacji z Supabase',
+    message: 'Supabase communication error',
   };
 };
 
@@ -108,7 +108,7 @@ const register = async (req, res, next) => {
     }
 
     return res.status(201).json({
-      message: 'Konto utworzone poprawnie.',
+      message: 'Account created successfully.',
       user: {
         id: data?.user?.id || null,
         email: data?.user?.email || email,
@@ -135,7 +135,7 @@ const login = async (req, res, next) => {
     }
 
     return res.status(200).json({
-      message: 'Logowanie zakończone poprawnie.',
+      message: 'Login successful.',
       ...formatAuthResponse(data, email),
     });
   } catch (err) {
@@ -158,7 +158,7 @@ const refreshSession = async (req, res, next) => {
     }
 
     return res.status(200).json({
-      message: 'Sesja odświeżona poprawnie.',
+      message: 'Session refreshed successfully.',
       ...formatAuthResponse(data),
     });
   } catch (err) {
@@ -186,7 +186,7 @@ const logout = async (req, res, next) => {
     }
 
     return res.status(200).json({
-      message: 'Wylogowano poprawnie.',
+      message: 'Logged out successfully.',
     });
   } catch (err) {
     return next(err);
