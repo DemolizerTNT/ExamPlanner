@@ -1,5 +1,5 @@
 // Globalny handler błędów zwraca spójny format odpowiedzi JSON.
-function errorHandler(err, req, res, next) {
+function errorHandler(err, req, res, _next) {
   const statusCode = err.statusCode || 500;
 
   if (statusCode >= 500) {
