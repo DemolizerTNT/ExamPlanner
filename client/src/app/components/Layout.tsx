@@ -3,9 +3,10 @@ import type { ReactNode } from 'react';
 import { NavLink, useLocation } from 'react-router';
 import {
   LayoutDashboard, Calendar, BookOpen, ListChecks, BarChart3,
-  GraduationCap, LogOut, Menu, X, ChevronRight
+  GraduationCap, LogOut, Menu, X, ChevronRight, Loader2
 } from 'lucide-react';
 import { useApp } from '../context/AppContext';
+import { ProfileEditDialog } from './ProfileEditDialog';
 import { FACULTIES, DIRECTIONS, SPECIALIZATIONS } from '../data/mockData2';
 
 const NAV_ITEMS = [
@@ -17,10 +18,11 @@ const NAV_ITEMS = [
 ];
 
 export function Layout({ children }: { children: ReactNode }) {
-  const { user, logout, getSemesterProgress } = useApp();
+  const { user, logout, getSemesterProgress, isLoggingOut } = useApp();
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const location = useLocation();
   const progress = getSemesterProgress();
+  const fullName = [user?.firstName, user?.lastName].filter(Boolean).join(' ');
   const faculty   = FACULTIES.find(f => f.id === user?.faculty_id);
   const direction = DIRECTIONS.find(d => d.id === user?.direction_id);
   const specObj = SPECIALIZATIONS.find(s => s.id === user?.specialization_id);
@@ -63,14 +65,10 @@ export function Layout({ children }: { children: ReactNode }) {
         {/* User info */}
         <div className="px-6 py-4 border-b border-white/10">
           <div className="flex items-center gap-3">
-            <div className="w-9 h-9 rounded-full bg-[#F4C430] flex items-center justify-center flex-shrink-0">
-              <span style={{ fontSize: '0.9rem', fontWeight: 700 }} className="text-[#003366]">
-                {user?.name?.charAt(0) || 'A'}
-              </span>
-            </div>
+            <ProfileEditDialog />
             <div className="min-w-0">
               <p style={{ fontSize: '0.85rem', fontWeight: 600 }} className="text-white truncate">
-                {user?.name}
+                {fullName || 'Student'}
               </p>
               <p style={{ fontSize: '0.7rem' }} className="text-white/50 truncate">
                 {faculty?.shortName}{direction ? ` · ${direction.name}` : ''} · Sem. {user?.semester}
@@ -126,12 +124,14 @@ export function Layout({ children }: { children: ReactNode }) {
 
         {/* Logout */}
         <div className="px-3 py-4 border-t border-white/10">
+          <ProfileEditDialog variant="text" />
           <button
             onClick={logout}
-            className="flex items-center gap-3 w-full px-3 py-2.5 rounded-lg text-white/60 hover:text-white hover:bg-white/10 transition-all"
+            disabled={isLoggingOut}
+            className="flex items-center gap-3 w-full px-3 py-2.5 rounded-lg text-white/60 hover:text-white hover:bg-white/10 transition-all disabled:opacity-70 disabled:cursor-not-allowed"
           >
-            <LogOut size={18} />
-            <span style={{ fontSize: '0.875rem' }}>Log Out</span>
+            {isLoggingOut ? <Loader2 size={18} className="animate-spin" /> : <LogOut size={18} />}
+            <span style={{ fontSize: '0.875rem' }}>{isLoggingOut ? 'Logging out...' : 'Log Out'}</span>
           </button>
         </div>
       </aside>

@@ -151,7 +151,7 @@ export function Register() {
                     type="text"
                     value={firstName}
                     onChange={e => setFirstName(e.target.value)}
-                    placeholder="Jan"
+                    placeholder="First name"
                     className="w-full pl-10 pr-4 py-3 rounded-xl border border-gray-200 bg-white text-gray-900 focus:outline-none focus:ring-2 focus:ring-[#003366]/30 focus:border-[#003366] transition-all"
                     style={{ fontSize: '0.875rem' }}
                   />
@@ -170,7 +170,7 @@ export function Register() {
                     type="text"
                     value={lastName}
                     onChange={e => setLastName(e.target.value)}
-                    placeholder="Kowalski"
+                    placeholder="Last name"
                     className="w-full pl-10 pr-4 py-3 rounded-xl border border-gray-200 bg-white text-gray-900 focus:outline-none focus:ring-2 focus:ring-[#003366]/30 focus:border-[#003366] transition-all"
                     style={{ fontSize: '0.875rem' }}
                   />
@@ -192,7 +192,7 @@ export function Register() {
                   type="email"
                   value={email}
                   onChange={e => setEmail(e.target.value)}
-                  placeholder="firstname.lastname@stud.prz.edu.pl"
+                  placeholder="E-mail"
                   className="w-full pl-10 pr-4 py-3 rounded-xl border border-gray-200 bg-white text-gray-900 focus:outline-none focus:ring-2 focus:ring-[#003366]/30 focus:border-[#003366] transition-all"
                   style={{ fontSize: '0.875rem' }}
                 />
@@ -213,7 +213,7 @@ export function Register() {
                   type={showPass ? 'text' : 'password'}
                   value={password}
                   onChange={e => setPassword(e.target.value)}
-                  placeholder="Min. 8 characters"
+                  placeholder="Password"
                   className="w-full pl-10 pr-10 py-3 rounded-xl border border-gray-200 bg-white text-gray-900 focus:outline-none focus:ring-2 focus:ring-[#003366]/30 focus:border-[#003366] transition-all"
                   style={{ fontSize: '0.875rem' }}
                 />
@@ -266,7 +266,7 @@ export function Register() {
                   type={showConfirm ? 'text' : 'password'}
                   value={confirmPassword}
                   onChange={e => setConfirmPassword(e.target.value)}
-                  placeholder="Repeat your password"
+                  placeholder="Confirm password"
                   className={`w-full pl-10 pr-10 py-3 rounded-xl border bg-white text-gray-900 focus:outline-none focus:ring-2 focus:ring-[#003366]/30 focus:border-[#003366] transition-all ${
                     confirmPassword && confirmPassword !== password
                       ? 'border-red-300'

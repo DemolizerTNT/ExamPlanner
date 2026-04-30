@@ -137,11 +137,11 @@ const getMyProfile = async (req, res, next) => {
 
     const { data, error } = await getUserProfileById(user.id);
 
-        if (error) {
-          return res.status(500).json({
-            message: `Failed to read profile from ${profileSchema}.${profileTable}`,
-          });
-        }
+    if (error) {
+      return res.status(500).json({
+        message: `Failed to read profile from ${profileSchema}.${profileTable}`,
+      });
+    }
 
     return res.status(200).json({
       message: 'Profile retrieved successfully.',

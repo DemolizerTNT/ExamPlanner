@@ -20,6 +20,10 @@ interface RegisterResponse {
     id: string;
     email: string;
   };
+  session: {
+    access_token: string;
+    refresh_token: string;
+  } | null;
 }
 
 interface UserProfile {
@@ -137,6 +141,14 @@ class ApiClient {
       email,
       password,
     });
+
+    if (response.data.session) {
+      this.setTokens(
+        response.data.session.access_token,
+        response.data.session.refresh_token
+      );
+    }
+
     return response.data;
   }
 
@@ -184,6 +196,7 @@ class ApiClient {
     const response = await this.client.post<ProfileResponse>('/profile/avatar', {
       base64Data,
       mimeType,
+      accessToken: this.accessToken, // Fallback: wysyłamy token w body, jeśli interceptor go nie dodał
     });
     return response.data;
   }

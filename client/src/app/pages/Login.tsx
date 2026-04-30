@@ -7,8 +7,8 @@ import { motion } from 'motion/react';
 
 export function Login() {
   const { login } = useApp();
-  const [email, setEmail] = useState('alex.johnson@stud.prz.edu.pl');
-  const [password, setPassword] = useState('password123');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const [showPass, setShowPass] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
@@ -107,7 +107,7 @@ export function Login() {
                   type="email"
                   value={email}
                   onChange={e => setEmail(e.target.value)}
-                  placeholder="firstname.lastname@stud.prz.edu.pl"
+                    placeholder="E-mail"
                   className="w-full pl-10 pr-4 py-3 rounded-xl border border-gray-200 bg-white text-gray-900 focus:outline-none focus:ring-2 focus:ring-[#003366]/30 focus:border-[#003366] transition-all"
                   style={{ fontSize: '0.875rem' }}
                 />
@@ -124,7 +124,7 @@ export function Login() {
                   type={showPass ? 'text' : 'password'}
                   value={password}
                   onChange={e => setPassword(e.target.value)}
-                  placeholder="••••••••"
+                  placeholder="Password"
                   className="w-full pl-10 pr-10 py-3 rounded-xl border border-gray-200 bg-white text-gray-900 focus:outline-none focus:ring-2 focus:ring-[#003366]/30 focus:border-[#003366] transition-all"
                   style={{ fontSize: '0.875rem' }}
                 />

@@ -46,6 +46,7 @@ export function Dashboard() {
   const progress = getSemesterProgress();
   const [showFAB, setShowFAB] = useState(false);
   const [quickLog, setQuickLog] = useState('');
+  const fullName = [user?.firstName, user?.lastName].filter(Boolean).join(' ');
 
   // Get upcoming exams
   const upcomingExams = subjects
@@ -74,7 +75,7 @@ export function Dashboard() {
       {/* Header */}
       <div className="mb-8">
         <h1 style={{ fontSize: '1.5rem', fontWeight: 700 }} className="text-[#003366]">
-          Hello, {user?.name}! 👋
+          Hello, {fullName || 'Student'}! 👋
         </h1>
         <p style={{ fontSize: '0.9rem' }} className="text-gray-500 mt-1">
           Today is Friday, March 27, 2026 · Week 5 of semester

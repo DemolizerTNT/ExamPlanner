@@ -113,6 +113,7 @@ const register = async (req, res, next) => {
         id: data?.user?.id || null,
         email: data?.user?.email || email,
       },
+      session: data?.session || null,
     });
   } catch (err) {
     return next(err);
