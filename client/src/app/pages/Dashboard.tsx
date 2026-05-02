@@ -72,15 +72,11 @@ export function Dashboard() {
     localStorage.setItem('examAlertShown', 'true');
   }, [])
 
-  // Get upcoming exams
+  //get upcoming exams
   const upcomingExams = subjects
-    .filter(s => s.has_exam)
-    .sort((a, b) => {
-      const dateA = a.exam_date ? new Date(a.exam_date).getTime() : new Date('2026-06-12').getTime();
-      const dateB = b.exam_date ? new Date(b.exam_date).getTime() : new Date('2026-06-12').getTime();
-      return dateA - dateB;
-    })
-    .slice(0, 2);
+  .filter(s => s.has_exam)
+  .sort((a,b) => new Date(a.exam_date!).getTime() - new Date(b.exam_date!).getTime())
+  .slice(0,2);
 
   // Today's 3 most urgent points (pending, earliest scheduled)
   const todaysFocus = weeklyPoints
