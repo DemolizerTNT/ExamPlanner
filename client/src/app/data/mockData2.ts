@@ -15328,7 +15328,8 @@ export function getAllKnowledgePointsForSemester(
 // Demo user
 export const DEMO_USER = {
   id: 'user-1',
-  name: 'Alex',
+  firstName: 'Alex',
+  lastName: 'Johnson',
   email: 'alex.johnson@stud.prz.edu.pl',
   faculty_id: 'weii',
   direction_id: 'weii-ce',

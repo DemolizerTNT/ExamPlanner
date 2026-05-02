@@ -27,6 +27,7 @@ export function Onboarding() {
   const directions = selectedFaculty ? getDirectionsFor(selectedFaculty) : [];
   const direction  = directions.find(d => d.id === selectedDirection);
   const specializations = selectedDirection ? getSpecializationsFor(selectedDirection) : [];
+  const fullName = [user?.firstName, user?.lastName].filter(Boolean).join(' ');
 
   const goBack = () => setStep(s => Math.max(1, s - 1));
 
@@ -55,7 +56,7 @@ export function Onboarding() {
             <GraduationCap size={28} className="text-[#F4C430]" />
           </div>
           <h1 style={{ fontSize: '1.6rem', fontWeight: 700 }} className="text-[#003366] mb-1">
-            Welcome, {user?.name}! 👋
+            Welcome, {fullName || 'Student'}! 👋
           </h1>
           <p style={{ fontSize: '0.9rem' }} className="text-gray-500">
             Let's set up your profile — it only takes 4 quick steps.

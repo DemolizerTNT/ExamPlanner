@@ -7,8 +7,8 @@ import { motion } from 'motion/react';
 
 export function Login() {
   const { login } = useApp();
-  const [email, setEmail] = useState('alex.johnson@stud.prz.edu.pl');
-  const [password, setPassword] = useState('password123');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const [showPass, setShowPass] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
@@ -93,7 +93,7 @@ export function Login() {
 
           <h2 style={{ fontSize: '1.75rem', fontWeight: 700 }} className="text-[#003366] mb-2">Sign In</h2>
           <p style={{ fontSize: '0.9rem' }} className="text-gray-500 mb-8">
-            Use your PRz student account or click the demo button below.
+            Use your PRz student account to sign in.
           </p>
 
           <form onSubmit={handleLogin} className="space-y-5">
@@ -107,7 +107,7 @@ export function Login() {
                   type="email"
                   value={email}
                   onChange={e => setEmail(e.target.value)}
-                  placeholder="firstname.lastname@stud.prz.edu.pl"
+                    placeholder="E-mail"
                   className="w-full pl-10 pr-4 py-3 rounded-xl border border-gray-200 bg-white text-gray-900 focus:outline-none focus:ring-2 focus:ring-[#003366]/30 focus:border-[#003366] transition-all"
                   style={{ fontSize: '0.875rem' }}
                 />
@@ -124,7 +124,7 @@ export function Login() {
                   type={showPass ? 'text' : 'password'}
                   value={password}
                   onChange={e => setPassword(e.target.value)}
-                  placeholder="••••••••"
+                  placeholder="Password"
                   className="w-full pl-10 pr-10 py-3 rounded-xl border border-gray-200 bg-white text-gray-900 focus:outline-none focus:ring-2 focus:ring-[#003366]/30 focus:border-[#003366] transition-all"
                   style={{ fontSize: '0.875rem' }}
                 />
@@ -155,19 +155,6 @@ export function Login() {
             </button>
           </form>
 
-          <div className="mt-6 flex items-center gap-3">
-            <div className="flex-1 h-px bg-gray-200" />
-            <span style={{ fontSize: '0.75rem' }} className="text-gray-400">or</span>
-            <div className="flex-1 h-px bg-gray-200" />
-          </div>
-
-          <button
-            onClick={() => login('demo.student@stud.prz.edu.pl', 'demo')}
-            className="mt-4 w-full py-3 px-6 rounded-xl border-2 border-[#003366] text-[#003366] hover:bg-[#003366]/5 transition-colors"
-            style={{ fontSize: '0.875rem', fontWeight: 600 }}
-          >
-            Continue as Demo Student
-          </button>
 
           <div className="mt-6 flex items-center gap-3">
             <div className="flex-1 h-px bg-gray-200" />

@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react'
+import {useState, useEffect} from 'react'
 import {Clock, AlertTriangle, CheckCircle2, Plus, BookOpen, Zap, Trophy} from 'lucide-react'
 import {useApp} from '../context/AppContext'
 import { ProgressRing } from '../components/ProgressRing';
@@ -57,6 +57,7 @@ function ExamCountdown({examDate, hasExam, subjectName, color}: {examDate: strin
 export function Dashboard() {
   const { user, subjects, getSemesterProgress, weeklyPoints, getPointStatus, markPoint, knowledgePointsBySubject } = useApp();
   const progress = getSemesterProgress();
+  const fullName = [user?.firstName, user?.lastName].filter(Boolean).join(' ');
   
   const [showFAB, setShowFAB] = useState(false);
   const [quickLog, setQuickLog] = useState('');
@@ -79,47 +80,46 @@ export function Dashboard() {
 
   // Today's 3 most urgent points (pending, earliest scheduled)
   const todaysFocus = weeklyPoints
-  .filter(p => getPointStatus(p.id) === 'pending')
-  .slice(0,3);
+    .filter(p => getPointStatus(p.id) === 'pending')
+    .slice(0, 3);
 
   // Total completed across all subjects
   const allPoints = subjects.flatMap(s => knowledgePointsBySubject[s.id] || []);
   const totalCompleted = allPoints.filter(p => getPointStatus(p.id) === 'completed').length;
   const totalSkipped = allPoints.filter(p => getPointStatus(p.id) === 'skipped').length;
-  
-  
-  const subjectStats = subjects.slice(0,3).map(s => {
+
+  const subjectStats = subjects.slice(0, 3).map(s => {
     const pts = knowledgePointsBySubject[s.id] || [];
     const done = pts.filter(p => getPointStatus(p.id) === 'completed').length;
-    return {...s, done, total: pts.length};
+    return { ...s, done, total: pts.length };
   });
 
-const today = new Date();
-const formattedDate = today.toLocaleDateString('en-US', {
-  weekday: 'long',
-  year: 'numeric',
-  month: 'long',
-  day: 'numeric'
-});
+  const today = new Date();
+  const formattedDate = today.toLocaleDateString('en-US', {
+    weekday: 'long',
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric'
+  });
 
-let daysToFirstExam = '-';
-let weeksToExamPeriod = '-';
-if(upcomingExams.length > 0){
-  const firstExam = upcomingExams[0];
-  const {daysToExam} = getExamInfo(firstExam.exam_date, firstExam.has_exam);
-  daysToFirstExam = String(Math.max(0, daysToExam));
-  weeksToExamPeriod = String(Math.max(0, Math.ceil(daysToExam / 7)));
-}
+  let daysToFirstExam = '-';
+  let weeksToExamPeriod = '-';
+  if(upcomingExams.length > 0){
+    const firstExam = upcomingExams[0];
+    const {daysToExam} = getExamInfo(firstExam.exam_date, firstExam.has_exam);
+    daysToFirstExam = String(Math.max(0, daysToExam));
+    weeksToExamPeriod = String(Math.max(0, Math.ceil(daysToExam / 7)));
+  }
 
   return (
-    <div className='p-6 max-w-5xl mx-auto'>
-      {/* HEADER */}
+    <div className="p-6 max-w-5xl mx-auto">
+      {/* Header */}
       <div className="mb-8">
-        <h1 style={{fontSize: '1.5rem', fontWeight: 700}} className='text-[#003366]'>
-          Hello, {user?.name}! 👋
+        <h1 style={{ fontSize: '1.5rem', fontWeight: 700 }} className="text-[#003366]">
+          Hello, {fullName || 'Student'}! 👋
         </h1>
-        <p style={{fontSize: '0.9rem'}} className="text-gray-500 mt-1">
-          Today is {formattedDate} 
+        <p style={{ fontSize: '0.9rem' }} className="text-gray-500 mt-1">
+          Today is {formattedDate}
         </p>
       </div>
 
@@ -129,8 +129,8 @@ if(upcomingExams.length > 0){
         <div className="bg-[#003366] rounded-2xl p-6 flex items-center gap-5 col-span-1">
           <ProgressRing progress={progress} size={100} strokeWidth={9}>
             <div className="text-center">
-              <p style={{fontSize: '1.4rem', fontWeight: 800}} className='text-white'>{progress}%</p>
-              <p style={{fontSize: '0.6rem'}} className='text-white/50 uppercase tracking-wider'>completed</p>
+              <p style={{ fontSize: '1.4rem', fontWeight: 800 }} className="text-white">{progress}%</p>
+              <p style={{ fontSize: '0.6rem' }} className="text-white/50 uppercase tracking-wider">completed</p>
             </div>
           </ProgressRing>
           <div>
@@ -148,12 +148,12 @@ if(upcomingExams.length > 0){
                 <span style={{ fontSize: '0.72rem' }} className="text-white/60">{totalSkipped} deferred</span>
               </div>
             </div>
-          </div> 
+          </div>
         </div>
+
         {/* Quick stats */}
         <div className="col-span-2 grid grid-cols-3 gap-4">
-          {
-          [
+          {[
             { label: 'Days to first exam', value: daysToFirstExam, icon: AlertTriangle, color: '#003366', bg: '#EEF2FF' },
             { label: 'Points completed', value: String(totalCompleted), icon: CheckCircle2, color: '#059669', bg: '#ECFDF5' },
             { label: 'Weeks to exam period', value: weeksToExamPeriod, icon: Clock, color: '#D97706', bg: '#FFFBEB' },
@@ -221,6 +221,7 @@ if(upcomingExams.length > 0){
             </div>
           )}
         </div>
+
         {/* Subject progress */}
         <div className="bg-white rounded-2xl p-5 border border-gray-100 shadow-sm">
           <div className="flex items-center gap-2 mb-4">
@@ -255,6 +256,7 @@ if(upcomingExams.length > 0){
           </div>
         </div>
       </div>
+
       {/* Exam Countdown */}
       <div className="mb-6">
         <h2 style={{ fontSize: '1rem', fontWeight: 700 }} className="text-[#003366] mb-3 flex items-center gap-2">
@@ -314,4 +316,3 @@ if(upcomingExams.length > 0){
     </div>
   );
 }
-
