@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { ChevronDown, ChevronUp, Clock, CheckCircle2, Circle, SkipForward, Award, BookOpen, Calendar } from 'lucide-react';
 import { useApp } from '../context/AppContext';
 import { FACULTIES } from '../data/mockData2';
