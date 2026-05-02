@@ -146,11 +146,11 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
     // Seed some demo progress
     const initial: Record<string, UserProgress> = {};
     const demoPoints = [
-      'weii-3-1-kp-1','weii-3-1-kp-2','weii-3-1-kp-3',
-      'weii-3-2-kp-1','weii-3-2-kp-2','weii-3-3-kp-1','weii-3-3-kp-2','weii-3-3-kp-3',
-      'weii-3-4-kp-1','weii-3-5-kp-1','weii-3-5-kp-2',
+      '8f551a1b-a995-451d-b10e-1726d460f047','a11c617e-6395-437b-a589-7665d51a3d30','42aca409-c723-4c51-8c9e-f825f6dd379c',
+      'b0772d41-1ff2-43e1-9991-bfcf43d0ee56','3af429e1-fa4c-4a56-abf1-27cd8677a662','29857906-bda8-44ad-b7f0-3c0270130b80','d86eca9e-995a-4de6-8016-581fb380bc09','22bf41d7-f48a-4987-a71c-757a40787284',
+      'b3620c2b-f3c7-450b-9c8a-273f018e4991','07806c10-8c24-48f6-aab0-fc538d11a878','c7b4e199-4ba7-49c2-b064-33ab73015588',
     ];
-    const skippedPoints = ['weii-3-1-kp-4', 'weii-3-2-kp-3'];
+    const skippedPoints = ['d86eca9e-995a-4de6-8016-581fb380bc09', 'a11c617e-6395-437b-a589-7665d51a3d30'];
     demoPoints.forEach(id => {
       initial[id] = { user_id: 'user-1', point_id: id, status: 'completed', completion_date: '2026-03-20' };
     });

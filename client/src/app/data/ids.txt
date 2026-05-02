@@ -13,3 +13,12 @@ weii-ce-ai: ab5a7101-14e3-4d89-9d27-3a9ebec027b8
 weii-ce-aa: b7ad56f6-f72c-4449-ac9e-8db4b2c9bf22
 weii-ce-z: 3957c812-34e8-437d-8d08-00f39011c06d
 weii-ce-tt: b9774665-9b5c-4481-b795-d999f65eeb5a
+weii-acr-Automation of manufacturing and intralogistics systems: ceca64e1-bcc2-4e29-b88b-23e20c139f4a,
+weii-acr-Computer control systems: 12521aa2-265a-4afc-aa8a-95351c9c3555,
+weii-e-Electromobility: 25ed19ce-0981-4663-bbd3-9a32a7065ff9,
+weii-et-s: b17d7e64-e82e-44b6-a931-83fd0849835b,
+weii-et-t: 81bc8f1d-e6f0-40d8-9ce4-a5993e211b11,
+weii-et-u: bc0a2ceb-0024-4ebd-99c7-78ebe54a03a6,
+weii-ee-Electric Drive Systems in Power Engineering, Motorization and Aviation: 1d8dfd4d-6a16-4084-920f-a0f8fc87d1cf,
+weii-ee-Electric power engineering: dc99756a-6d7a-41c0-a19a-2d349fbf6640,
+weii-ee-Odnawialne źródła energii i technika świetlna: a3da333a-04a0-48ed-a593-8314203b455d,

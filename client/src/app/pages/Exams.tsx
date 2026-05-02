@@ -1,10 +1,10 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { ChevronDown, ChevronUp, Clock, CheckCircle2, Circle, SkipForward, Award, BookOpen, Calendar } from 'lucide-react';
 import { useApp } from '../context/AppContext';
 import { FACULTIES } from '../data/mockData2';
 import { motion, AnimatePresence } from 'motion/react';
 
-const TODAY = new Date('2026-03-27');
+const TODAY = new Date();
 
 function daysUntil(dateStr: string) {
   return Math.ceil((new Date(dateStr).getTime() - TODAY.getTime()) / (1000 * 60 * 60 * 24));
@@ -177,7 +177,7 @@ export function Exams() {
                       <div className="flex items-center gap-2 py-3 mb-2">
                         <BookOpen size={14} className="text-gray-400" />
                         <span style={{ fontSize: '0.78rem', fontWeight: 600 }} className="text-gray-500 uppercase tracking-wide">
-                          15 Knowledge Points — 1 per week
+                          {points.length} Knowledge Points
                         </span>
                         <div className="flex-1" />
                         {subj.exam_date && (

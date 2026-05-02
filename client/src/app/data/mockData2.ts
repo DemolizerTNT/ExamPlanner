@@ -49,7 +49,7 @@ export interface UserProgress {
 
 // --- FACULTIES ---
 export const FACULTIES: Faculty[] = [
-  { id: 'd096c417-e832-4d3b-a7be-b8fac1a99131', name: 'Faculty of Electrical & Computer Engineering', shortName: 'weii' },
+  { id: 'd096c417-e832-4d3b-a7be-b8fac1a99131', name: 'Faculty of Electrical & Computer Engineering', shortName: 'WEII' },
 ];
 
 // --- DIRECTIONS ---
@@ -69,6 +69,9 @@ export const SPECIALIZATIONS: Specialization[] = [
   { id: 'b7ad56f6-f72c-4449-ac9e-8db4b2c9bf22', direction_id: 'c032603c-b733-4b2c-bb62-f782145cb462', name: 'Engineering of Information Systems',       min_semester: 5 },
   { id: '3957c812-34e8-437d-8d08-00f39011c06d', direction_id: 'c032603c-b733-4b2c-bb62-f782145cb462', name: 'Complex systems engineering',              min_semester: 5 },
   { id: 'b9774665-9b5c-4481-b795-d999f65eeb5a', direction_id: 'c032603c-b733-4b2c-bb62-f782145cb462', name: 'Information technology in enterprise',              min_semester: 5 },
+  // WEiI - ACR (Automatic Control and Robotics)
+  { id: 'ceca64e1-bcc2-4e29-b88b-23e20c139f4a', direction_id: 'de4f6f47-12c8-4027-a9cb-957b79cc2c0f', name: 'Automation of manufacturing and intralogistics systems', min_semester: 5 },
+  { id: '12521aa2-265a-4afc-aa8a-95351c9c3555', direction_id: 'de4f6f47-12c8-4027-a9cb-957b79cc2c0f', name: 'Computer control systems',min_semester: 5 },
 ];
 
 // --- SUBJECTS ---
@@ -1562,7 +1565,890 @@ export const SUBJECTS: Subject[] = [
         "has_exam": false,
         "exam_date": null,
         "color": "#1e293b"
-    }
+    },
+    //WEiI - ACR - BASE
+    {
+        "id": "ab6a2c4a-2f15-4ee4-8776-3c213f9440b9",
+        "faculty_id": "d096c417-e832-4d3b-a7be-b8fac1a99131",
+        "direction_id": "de4f6f47-12c8-4027-a9cb-957b79cc2c0f",
+        "specialization_id": null,
+        "semester": 1,
+        "name": "Mathematical analisis and linear algebra",
+        "has_exam": true,
+        "exam_date": null,
+        "color": "#003366"
+    },
+    {
+        "id": "7e9d45d8-c18f-4b1c-a4a5-757d8d70a717",
+        "faculty_id": "d096c417-e832-4d3b-a7be-b8fac1a99131",
+        "direction_id": "de4f6f47-12c8-4027-a9cb-957b79cc2c0f",
+        "specialization_id": null,
+        "semester": 1,
+        "name": "Physics",
+        "has_exam": true,
+        "exam_date": null,
+        "color": "#1a6b3a"
+    },
+    {
+        "id": "69c9d3a5-71bb-4c8b-9850-dc9523135925",
+        "faculty_id": "d096c417-e832-4d3b-a7be-b8fac1a99131",
+        "direction_id": "de4f6f47-12c8-4027-a9cb-957b79cc2c0f",
+        "specialization_id": null,
+        "semester": 1,
+        "name": "Computer engineering",
+        "has_exam": true,
+        "exam_date": null,
+        "color": "#7c3aed"
+    },
+    {
+        "id": "4aa12f06-e2d9-4414-9256-ee3edcabc4a1",
+        "faculty_id": "d096c417-e832-4d3b-a7be-b8fac1a99131",
+        "direction_id": "de4f6f47-12c8-4027-a9cb-957b79cc2c0f",
+        "specialization_id": null,
+        "semester": 1,
+        "name": "Metrology",
+        "has_exam": false,
+        "exam_date": null,
+        "color": "#b45309"
+    },
+    {
+        "id": "b650b9c4-fb7e-4bde-99e0-33b134e06b6e",
+        "faculty_id": "d096c417-e832-4d3b-a7be-b8fac1a99131",
+        "direction_id": "de4f6f47-12c8-4027-a9cb-957b79cc2c0f",
+        "specialization_id": null,
+        "semester": 1,
+        "name": "Intellectual property protection",
+        "has_exam": false,
+        "exam_date": null,
+        "color": "#0369a1"
+    },
+    {
+        "id": "237f68e8-5c50-43c5-9196-4cb32127b5b9",
+        "faculty_id": "d096c417-e832-4d3b-a7be-b8fac1a99131",
+        "direction_id": "de4f6f47-12c8-4027-a9cb-957b79cc2c0f",
+        "specialization_id": null,
+        "semester": 1,
+        "name": "Przedmiot humanistyczny",
+        "has_exam": false,
+        "exam_date": null,
+        "color": "#be123c"
+    },
+    {
+        "id": "c16a925f-a8c3-47bb-afe1-58b8fa98afb8",
+        "faculty_id": "d096c417-e832-4d3b-a7be-b8fac1a99131",
+        "direction_id": "de4f6f47-12c8-4027-a9cb-957b79cc2c0f",
+        "specialization_id": null,
+        "semester": 1,
+        "name": "Information technologies",
+        "has_exam": false,
+        "exam_date": null,
+        "color": "#1e293b"
+    },
+    {
+        "id": "0d8315fc-3df8-42b1-9f39-79fdae11f55b",
+        "faculty_id": "d096c417-e832-4d3b-a7be-b8fac1a99131",
+        "direction_id": "de4f6f47-12c8-4027-a9cb-957b79cc2c0f",
+        "specialization_id": null,
+        "semester": 1,
+        "name": "Physical education",
+        "has_exam": false,
+        "exam_date": null,
+        "color": "#065f46"
+    },
+    {
+        "id": "5a8ca606-eb86-4d26-828e-36730600e3da",
+        "faculty_id": "d096c417-e832-4d3b-a7be-b8fac1a99131",
+        "direction_id": "de4f6f47-12c8-4027-a9cb-957b79cc2c0f",
+        "specialization_id": null,
+        "semester": 2,
+        "name": "Digital signal processing",
+        "has_exam": false,
+        "exam_date": null,
+        "color": "#003366"
+    },
+    {
+        "id": "9351deff-dc96-44c1-92f7-a2c9dfc27640",
+        "faculty_id": "d096c417-e832-4d3b-a7be-b8fac1a99131",
+        "direction_id": "de4f6f47-12c8-4027-a9cb-957b79cc2c0f",
+        "specialization_id": null,
+        "semester": 2,
+        "name": "Economics",
+        "has_exam": false,
+        "exam_date": null,
+        "color": "#1a6b3a"
+    },
+    {
+        "id": "2a9e6461-ef26-4421-9284-eb377d685d9f",
+        "faculty_id": "d096c417-e832-4d3b-a7be-b8fac1a99131",
+        "direction_id": "de4f6f47-12c8-4027-a9cb-957b79cc2c0f",
+        "specialization_id": null,
+        "semester": 2,
+        "name": "Electrotechnics",
+        "has_exam": true,
+        "exam_date": null,
+        "color": "#7c3aed"
+    },
+    {
+        "id": "ea1862ea-4b00-4790-9ced-bb854ef5228b",
+        "faculty_id": "d096c417-e832-4d3b-a7be-b8fac1a99131",
+        "direction_id": "de4f6f47-12c8-4027-a9cb-957b79cc2c0f",
+        "specialization_id": null,
+        "semester": 2,
+        "name": "Discrete Mathematics and Numerical Methods",
+        "has_exam": true,
+        "exam_date": null,
+        "color": "#b45309"
+    },
+    {
+        "id": "9f30b25a-9e72-4dd2-92c9-5c29ea5ad354",
+        "faculty_id": "d096c417-e832-4d3b-a7be-b8fac1a99131",
+        "direction_id": "de4f6f47-12c8-4027-a9cb-957b79cc2c0f",
+        "specialization_id": null,
+        "semester": 2,
+        "name": "Mechanics and strength of materials in robotics",
+        "has_exam": false,
+        "exam_date": null,
+        "color": "#0369a1"
+    },
+    {
+        "id": "e0dfedff-b313-48f6-b3fc-86733290f6b4",
+        "faculty_id": "d096c417-e832-4d3b-a7be-b8fac1a99131",
+        "direction_id": "de4f6f47-12c8-4027-a9cb-957b79cc2c0f",
+        "specialization_id": null,
+        "semester": 2,
+        "name": "C language and object-oriented programming",
+        "has_exam": true,
+        "exam_date": null,
+        "color": "#be123c"
+    },
+    {
+        "id": "3f39124c-2a1c-4bcd-9bf1-4371df938e73",
+        "faculty_id": "d096c417-e832-4d3b-a7be-b8fac1a99131",
+        "direction_id": "de4f6f47-12c8-4027-a9cb-957b79cc2c0f",
+        "specialization_id": null,
+        "semester": 2,
+        "name": "Przedmiot nauki społeczne",
+        "has_exam": false,
+        "exam_date": null,
+        "color": "#1e293b"
+    },
+    {
+        "id": "f3ba96e1-4bc1-45e9-a116-f2f08cb2c51e",
+        "faculty_id": "d096c417-e832-4d3b-a7be-b8fac1a99131",
+        "direction_id": "de4f6f47-12c8-4027-a9cb-957b79cc2c0f",
+        "specialization_id": null,
+        "semester": 2,
+        "name": "Probability theory and mathematical statistics",
+        "has_exam": false,
+        "exam_date": null,
+        "color": "#065f46"
+    },
+    {
+        "id": "78744625-c290-4253-b502-c55236e9bd8a",
+        "faculty_id": "d096c417-e832-4d3b-a7be-b8fac1a99131",
+        "direction_id": "de4f6f47-12c8-4027-a9cb-957b79cc2c0f",
+        "specialization_id": null,
+        "semester": 2,
+        "name": "Physical education",
+        "has_exam": false,
+        "exam_date": null,
+        "color": "#991b1b"
+    },
+    {
+        "id": "3dfb0cb7-85c4-4e7e-b73e-ed0975030499",
+        "faculty_id": "d096c417-e832-4d3b-a7be-b8fac1a99131",
+        "direction_id": "de4f6f47-12c8-4027-a9cb-957b79cc2c0f",
+        "specialization_id": null,
+        "semester": 3,
+        "name": "Automation and Automatic Control",
+        "has_exam": true,
+        "exam_date": null,
+        "color": "#003366"
+    },
+    {
+        "id": "e5d1d507-0ae3-4846-8b36-647ef2f7d4b3",
+        "faculty_id": "d096c417-e832-4d3b-a7be-b8fac1a99131",
+        "direction_id": "de4f6f47-12c8-4027-a9cb-957b79cc2c0f",
+        "specialization_id": null,
+        "semester": 3,
+        "name": "Electronic elements and systems",
+        "has_exam": true,
+        "exam_date": null,
+        "color": "#1a6b3a"
+    },
+    {
+        "id": "29533e0d-aba8-4cb6-a781-9c4f1f4d946d",
+        "faculty_id": "d096c417-e832-4d3b-a7be-b8fac1a99131",
+        "direction_id": "de4f6f47-12c8-4027-a9cb-957b79cc2c0f",
+        "specialization_id": null,
+        "semester": 3,
+        "name": "Power electronics elements of automation and robotics",
+        "has_exam": false,
+        "exam_date": null,
+        "color": "#7c3aed"
+    },
+    {
+        "id": "51513500-b7ce-4a8a-b48f-46e25b62bc26",
+        "faculty_id": "d096c417-e832-4d3b-a7be-b8fac1a99131",
+        "direction_id": "de4f6f47-12c8-4027-a9cb-957b79cc2c0f",
+        "specialization_id": null,
+        "semester": 3,
+        "name": "Foreign language",
+        "has_exam": false,
+        "exam_date": null,
+        "color": "#7c3aed"
+    },
+    {
+        "id": "6dee5825-e531-4aa7-91ee-2dbbcc2aa820",
+        "faculty_id": "d096c417-e832-4d3b-a7be-b8fac1a99131",
+        "direction_id": "de4f6f47-12c8-4027-a9cb-957b79cc2c0f",
+        "specialization_id": null,
+        "semester": 3,
+        "name": "Electric drives",
+        "has_exam": false,
+        "exam_date": null,
+        "color": "#b45309"
+    },
+    {
+        "id": "6725d2dc-e325-4525-b467-9e137bccc8dd",
+        "faculty_id": "d096c417-e832-4d3b-a7be-b8fac1a99131",
+        "direction_id": "de4f6f47-12c8-4027-a9cb-957b79cc2c0f",
+        "specialization_id": null,
+        "semester": 3,
+        "name": "Introduction to robotics",
+        "has_exam": true,
+        "exam_date": null,
+        "color": "#0369a1"
+    },
+    {
+        "id": "012c2926-2e2f-4ac3-b019-78db10271012",
+        "faculty_id": "d096c417-e832-4d3b-a7be-b8fac1a99131",
+        "direction_id": "de4f6f47-12c8-4027-a9cb-957b79cc2c0f",
+        "specialization_id": null,
+        "semester": 3,
+        "name": "Microprocessor controllers",
+        "has_exam": true,
+        "exam_date": null,
+        "color": "#be123c"
+    },
+    {
+        "id": "70597255-87d6-40c2-b05a-92f689229c81",
+        "faculty_id": "d096c417-e832-4d3b-a7be-b8fac1a99131",
+        "direction_id": "de4f6f47-12c8-4027-a9cb-957b79cc2c0f",
+        "specialization_id": null,
+        "semester": 4,
+        "name": "Automatic control of electric drive",
+        "has_exam": false,
+        "exam_date": null,
+        "color": "#003366"
+    },
+    {
+        "id": "d7e5e8e9-367f-4f88-80e0-2ebeebee6f77",
+        "faculty_id": "d096c417-e832-4d3b-a7be-b8fac1a99131",
+        "direction_id": "de4f6f47-12c8-4027-a9cb-957b79cc2c0f",
+        "specialization_id": null,
+        "semester": 4,
+        "name": "Foreign language",
+        "has_exam": false,
+        "exam_date": null,
+        "color": "#7c3aed"
+    },
+    {
+        "id": "7c2cb60e-8a5e-4da6-9689-44391786b37a",
+        "faculty_id": "d096c417-e832-4d3b-a7be-b8fac1a99131",
+        "direction_id": "de4f6f47-12c8-4027-a9cb-957b79cc2c0f",
+        "specialization_id": null,
+        "semester": 4,
+        "name": "Computational methods for optimization",
+        "has_exam": false,
+        "exam_date": null,
+        "color": "#1a6b3a"
+    },
+    {
+        "id": "28be2e1b-58bd-4781-8928-05099bf6aaf0",
+        "faculty_id": "d096c417-e832-4d3b-a7be-b8fac1a99131",
+        "direction_id": "de4f6f47-12c8-4027-a9cb-957b79cc2c0f",
+        "specialization_id": null,
+        "semester": 4,
+        "name": "Distributed control systems",
+        "has_exam": true,
+        "exam_date": null,
+        "color": "#7c3aed"
+    },
+    {
+        "id": "4d4b9302-60d8-4027-91e1-f71deea92322",
+        "faculty_id": "d096c417-e832-4d3b-a7be-b8fac1a99131",
+        "direction_id": "de4f6f47-12c8-4027-a9cb-957b79cc2c0f",
+        "specialization_id": null,
+        "semester": 4,
+        "name": "Industrial networks",
+        "has_exam": false,
+        "exam_date": null,
+        "color": "#b45309"
+    },
+    {
+        "id": "f94c0b73-19d3-4e57-860e-2174e663f907",
+        "faculty_id": "d096c417-e832-4d3b-a7be-b8fac1a99131",
+        "direction_id": "de4f6f47-12c8-4027-a9cb-957b79cc2c0f",
+        "specialization_id": null,
+        "semester": 4,
+        "name": "Control of continuous processes",
+        "has_exam": true,
+        "exam_date": null,
+        "color": "#0369a1"
+    },
+    {
+        "id": "6bfa0093-ade6-44fd-bf89-3701f8868d2f",
+        "faculty_id": "d096c417-e832-4d3b-a7be-b8fac1a99131",
+        "direction_id": "de4f6f47-12c8-4027-a9cb-957b79cc2c0f",
+        "specialization_id": null,
+        "semester": 4,
+        "name": "Control of discrete processes",
+        "has_exam": true,
+        "exam_date": null,
+        "color": "#be123c"
+    },
+    {
+        "id": "c8683c1d-ac34-4f20-ba89-4ecca6564b52",
+        "faculty_id": "d096c417-e832-4d3b-a7be-b8fac1a99131",
+        "direction_id": "de4f6f47-12c8-4027-a9cb-957b79cc2c0f",
+        "specialization_id": null,
+        "semester": 4,
+        "name": "Decision support systems",
+        "has_exam": false,
+        "exam_date": null,
+        "color": "#1e293b"
+    },
+    //WEiI - ACR - SPEC - Automation of manufacturing ...
+    {
+        "id": "4344af37-5068-41bb-bcda-f959ceaa4961",
+        "faculty_id": "d096c417-e832-4d3b-a7be-b8fac1a99131",
+        "direction_id": "de4f6f47-12c8-4027-a9cb-957b79cc2c0f",
+        "specialization_id": "ceca64e1-bcc2-4e29-b88b-23e20c139f4a",
+        "semester": 5,
+        "name": "Construction and control of CNC machines in manufacturing and intralogistics",
+        "has_exam": true,
+        "exam_date": null,
+        "color": "#6b21a8"
+    },
+    {
+        "id": "149206c7-5c49-493a-928e-4d9ca381f467",
+        "faculty_id": "d096c417-e832-4d3b-a7be-b8fac1a99131",
+        "direction_id": "de4f6f47-12c8-4027-a9cb-957b79cc2c0f",
+        "specialization_id": "ceca64e1-bcc2-4e29-b88b-23e20c139f4a",
+        "semester": 5,
+        "name": "Foreign language",
+        "has_exam": true,
+        "exam_date": null,
+        "color": "#0e7490"
+    },
+    {
+        "id": "c2d8a15a-e59d-4aff-915f-bbc61ac9a901",
+        "faculty_id": "d096c417-e832-4d3b-a7be-b8fac1a99131",
+        "direction_id": "de4f6f47-12c8-4027-a9cb-957b79cc2c0f",
+        "specialization_id": "ceca64e1-bcc2-4e29-b88b-23e20c139f4a",
+        "semester": 5,
+        "name": "Artificial intelligence methods in manufacturing systems and intralogistics",
+        "has_exam": true,
+        "exam_date": null,
+        "color": "#003366"
+    },
+    {
+        "id": "ebc5c81b-5bb5-4635-a8e9-5c1f6a41937e",
+        "faculty_id": "d096c417-e832-4d3b-a7be-b8fac1a99131",
+        "direction_id": "de4f6f47-12c8-4027-a9cb-957b79cc2c0f",
+        "specialization_id": "ceca64e1-bcc2-4e29-b88b-23e20c139f4a",
+        "semester": 5,
+        "name": "Modern IT system architectures and programming technologies",
+        "has_exam": true,
+        "exam_date": null,
+        "color": "#525252"
+    },
+    {
+        "id": "cae14b91-6b27-4b1a-bcf3-a3638d06ba48",
+        "faculty_id": "d096c417-e832-4d3b-a7be-b8fac1a99131",
+        "direction_id": "de4f6f47-12c8-4027-a9cb-957b79cc2c0f",
+        "specialization_id": "ceca64e1-bcc2-4e29-b88b-23e20c139f4a",
+        "semester": 5,
+        "name": "Basis of the manufacturing techniques",
+        "has_exam": true,
+        "exam_date": null,
+        "color": "#1a6b3a"
+    },
+    {
+        "id": "20a82486-15f8-4a8e-a00c-b06d7da9f3a8",
+        "faculty_id": "d096c417-e832-4d3b-a7be-b8fac1a99131",
+        "direction_id": "de4f6f47-12c8-4027-a9cb-957b79cc2c0f",
+        "specialization_id": "ceca64e1-bcc2-4e29-b88b-23e20c139f4a",
+        "semester": 5,
+        "name": "Practice",
+        "has_exam": false,
+        "exam_date": null,
+        "color": "#7c3aed"
+    },
+    {
+        "id": "5e0c9b53-f217-4b23-85aa-041b673ea954",
+        "faculty_id": "d096c417-e832-4d3b-a7be-b8fac1a99131",
+        "direction_id": "de4f6f47-12c8-4027-a9cb-957b79cc2c0f",
+        "specialization_id": "ceca64e1-bcc2-4e29-b88b-23e20c139f4a",
+        "semester": 5,
+        "name": "Industrial databases",
+        "has_exam": true,
+        "exam_date": null,
+        "color": "#b45309"
+    },
+    {
+        "id": "e14ce13f-10d6-4f3a-9866-29c113924bcf",
+        "faculty_id": "d096c417-e832-4d3b-a7be-b8fac1a99131",
+        "direction_id": "de4f6f47-12c8-4027-a9cb-957b79cc2c0f",
+        "specialization_id": "ceca64e1-bcc2-4e29-b88b-23e20c139f4a",
+        "semester": 5,
+        "name": "Manufacturing systems and intralogistics in industry",
+        "has_exam": false,
+        "exam_date": null,
+        "color": "#0369a1"
+    },
+    {
+        "id": "c939e0c4-b26a-4841-bc1c-5ad0c2ed1406",
+        "faculty_id": "d096c417-e832-4d3b-a7be-b8fac1a99131",
+        "direction_id": "de4f6f47-12c8-4027-a9cb-957b79cc2c0f",
+        "specialization_id": "ceca64e1-bcc2-4e29-b88b-23e20c139f4a",
+        "semester": 6,
+        "name": "Automation and robotization of manufacturing and intralogistics systems",
+        "has_exam": true,
+        "exam_date": null,
+        "color": "#003366"
+    },
+    {
+        "id": "b587cbb9-7c08-4f4b-b7b0-71126d6d4011",
+        "faculty_id": "d096c417-e832-4d3b-a7be-b8fac1a99131",
+        "direction_id": "de4f6f47-12c8-4027-a9cb-957b79cc2c0f",
+        "specialization_id": "ceca64e1-bcc2-4e29-b88b-23e20c139f4a",
+        "semester": 6,
+        "name": "Diagnostics and supervision of machines and processes",
+        "has_exam": false,
+        "exam_date": null,
+        "color": "#1a6b3a"
+    },
+    {
+        "id": "5dc54d04-7307-4a5d-afff-5c278887bdc1",
+        "faculty_id": "d096c417-e832-4d3b-a7be-b8fac1a99131",
+        "direction_id": "de4f6f47-12c8-4027-a9cb-957b79cc2c0f",
+        "specialization_id": "ceca64e1-bcc2-4e29-b88b-23e20c139f4a",
+        "semester": 6,
+        "name": "Moduł wybierany w zakresie inżynierii produkcji",
+        "has_exam": false,
+        "exam_date": null,
+        "color": "#7c3aed"
+    },
+    {
+        "id": "e163b9de-d84a-4e20-9f26-10ab46be532f",
+        "faculty_id": "d096c417-e832-4d3b-a7be-b8fac1a99131",
+        "direction_id": "de4f6f47-12c8-4027-a9cb-957b79cc2c0f",
+        "specialization_id": "ceca64e1-bcc2-4e29-b88b-23e20c139f4a",
+        "semester": 6,
+        "name": "PLC control software and HMI for intralogistics",
+        "has_exam": false,
+        "exam_date": null,
+        "color": "#b45309"
+    },
+    {
+        "id": "5b2dfb27-3399-4623-94a0-332377151e2f",
+        "faculty_id": "d096c417-e832-4d3b-a7be-b8fac1a99131",
+        "direction_id": "de4f6f47-12c8-4027-a9cb-957b79cc2c0f",
+        "specialization_id": "ceca64e1-bcc2-4e29-b88b-23e20c139f4a",
+        "semester": 6,
+        "name": "Designing the hardware layer of control systems for intralogistics",
+        "has_exam": false,
+        "exam_date": null,
+        "color": "#0369a1"
+    },
+    {
+        "id": "9d5d3b4c-636e-413d-82aa-809f32147c56",
+        "faculty_id": "d096c417-e832-4d3b-a7be-b8fac1a99131",
+        "direction_id": "de4f6f47-12c8-4027-a9cb-957b79cc2c0f",
+        "specialization_id": "ceca64e1-bcc2-4e29-b88b-23e20c139f4a",
+        "semester": 6,
+        "name": "Project management and soft skills in engineering practice",
+        "has_exam": false,
+        "exam_date": null,
+        "color": "#be123c"
+    },
+    {
+        "id": "21c8add5-5a50-4f0b-8fa4-fa6e6927ead3",
+        "faculty_id": "d096c417-e832-4d3b-a7be-b8fac1a99131",
+        "direction_id": "de4f6f47-12c8-4027-a9cb-957b79cc2c0f",
+        "specialization_id": "ceca64e1-bcc2-4e29-b88b-23e20c139f4a",
+        "semester": 6,
+        "name": "Diploma seminar",
+        "has_exam": false,
+        "exam_date": null,
+        "color": "#1e293b"
+    },
+    {
+        "id": "1f3ee25c-dff5-4fec-851f-f95e9c35673e",
+        "faculty_id": "d096c417-e832-4d3b-a7be-b8fac1a99131",
+        "direction_id": "de4f6f47-12c8-4027-a9cb-957b79cc2c0f",
+        "specialization_id": "ceca64e1-bcc2-4e29-b88b-23e20c139f4a",
+        "semester": 6,
+        "name": "Wireless technologies in automation and intralogistics",
+        "has_exam": false,
+        "exam_date": null,
+        "color": "#065f46"
+    },
+    {
+        "id": "83094699-d34c-4943-98d2-056ac97bcded",
+        "faculty_id": "d096c417-e832-4d3b-a7be-b8fac1a99131",
+        "direction_id": "de4f6f47-12c8-4027-a9cb-957b79cc2c0f",
+        "specialization_id": "ceca64e1-bcc2-4e29-b88b-23e20c139f4a",
+        "semester": 7,
+        "name": "Digital twin and intelligent diagnostic systems",
+        "has_exam": false,
+        "exam_date": null,
+        "color": "#003366"
+    },
+    {
+        "id": "efc6580d-e422-4475-86e7-717b159e36dc",
+        "faculty_id": "d096c417-e832-4d3b-a7be-b8fac1a99131",
+        "direction_id": "de4f6f47-12c8-4027-a9cb-957b79cc2c0f",
+        "specialization_id": "ceca64e1-bcc2-4e29-b88b-23e20c139f4a",
+        "semester": 7,
+        "name": "Moduł wybierany w zakresie zastosowań systemów CAD/CAM",
+        "has_exam": false,
+        "exam_date": null,
+        "color": "#1a6b3a"
+    },
+    {
+        "id": "a0161636-a395-4d37-95e1-e22385befafb",
+        "faculty_id": "d096c417-e832-4d3b-a7be-b8fac1a99131",
+        "direction_id": "de4f6f47-12c8-4027-a9cb-957b79cc2c0f",
+        "specialization_id": "ceca64e1-bcc2-4e29-b88b-23e20c139f4a",
+        "semester": 7,
+        "name": "Fundamentals of systems engineering and industrial cybersecurity",
+        "has_exam": false,
+        "exam_date": null,
+        "color": "#7c3aed"
+    },
+    {
+        "id": "734eac67-4cf0-4eea-9949-b6f98b1af633",
+        "faculty_id": "d096c417-e832-4d3b-a7be-b8fac1a99131",
+        "direction_id": "de4f6f47-12c8-4027-a9cb-957b79cc2c0f",
+        "specialization_id": "ceca64e1-bcc2-4e29-b88b-23e20c139f4a",
+        "semester": 7,
+        "name": "Diploma thesis",
+        "has_exam": false,
+        "exam_date": null,
+        "color": "#b45309"
+    },
+    {
+        "id": "b69b24cb-5bf1-421e-a21f-14449a3e86ee",
+        "faculty_id": "d096c417-e832-4d3b-a7be-b8fac1a99131",
+        "direction_id": "de4f6f47-12c8-4027-a9cb-957b79cc2c0f",
+        "specialization_id": "ceca64e1-bcc2-4e29-b88b-23e20c139f4a",
+        "semester": 7,
+        "name": "Industrial Internet of Things",
+        "has_exam": false,
+        "exam_date": null,
+        "color": "#0369a1"
+    },
+    {
+        "id": "5794c2c6-9073-4e9b-a0d3-251a1fe9e32a",
+        "faculty_id": "d096c417-e832-4d3b-a7be-b8fac1a99131",
+        "direction_id": "de4f6f47-12c8-4027-a9cb-957b79cc2c0f",
+        "specialization_id": "ceca64e1-bcc2-4e29-b88b-23e20c139f4a",
+        "semester": 7,
+        "name": "Diploma seminar",
+        "has_exam": false,
+        "exam_date": null,
+        "color": "#be123c"
+    },
+    {
+        "id": "e1d8ac75-409e-43a0-901a-2d8941b4137f",
+        "faculty_id": "d096c417-e832-4d3b-a7be-b8fac1a99131",
+        "direction_id": "de4f6f47-12c8-4027-a9cb-957b79cc2c0f",
+        "specialization_id": "ceca64e1-bcc2-4e29-b88b-23e20c139f4a",
+        "semester": 7,
+        "name": "Monographic lecture",
+        "has_exam": false,
+        "exam_date": null,
+        "color": "#1e293b"
+    },
+    {
+        "id": "efc5bf1f-f3c9-4e3e-b8ca-0526a6b7056c",
+        "faculty_id": "d096c417-e832-4d3b-a7be-b8fac1a99131",
+        "direction_id": "de4f6f47-12c8-4027-a9cb-957b79cc2c0f",
+        "specialization_id": "ceca64e1-bcc2-4e29-b88b-23e20c139f4a",
+        "semester": 7,
+        "name": "Automated measuring systems for geometric quantities",
+        "has_exam": false,
+        "exam_date": null,
+        "color": "#065f46"
+    },
+    //WEiI - ACR - SPEC - Computer control system
+    {
+        "id": "91f85c19-d24c-4e52-92ec-58790a340b04",
+        "faculty_id": "d096c417-e832-4d3b-a7be-b8fac1a99131",
+        "direction_id": "de4f6f47-12c8-4027-a9cb-957b79cc2c0f",
+        "specialization_id": "12521aa2-265a-4afc-aa8a-95351c9c3555",
+        "semester": 5,
+        "name": "Artificial intelligence methods in control",
+        "has_exam": true,
+        "exam_date": null,
+        "color": "#003366"
+    },
+    {
+        "id": "fe30213f-c6bf-43bb-ace3-6c5357bac031",
+        "faculty_id": "d096c417-e832-4d3b-a7be-b8fac1a99131",
+        "direction_id": "de4f6f47-12c8-4027-a9cb-957b79cc2c0f",
+        "specialization_id": "12521aa2-265a-4afc-aa8a-95351c9c3555",
+        "semester": 5,
+        "name": "Modern programming technologies",
+        "has_exam": false,
+        "exam_date": null,
+        "color": "#1a6b3a"
+    },
+    {
+        "id": "a05502a6-a6d2-4502-8bb4-98eabf965185",
+        "faculty_id": "d096c417-e832-4d3b-a7be-b8fac1a99131",
+        "direction_id": "de4f6f47-12c8-4027-a9cb-957b79cc2c0f",
+        "specialization_id": "12521aa2-265a-4afc-aa8a-95351c9c3555",
+        "semester": 5,
+        "name": "Practice",
+        "has_exam": false,
+        "exam_date": null,
+        "color": "#7c3aed"
+    },
+    {
+        "id": "ec7d5240-7ef7-4397-8c9e-03e15d5f49ed",
+        "faculty_id": "d096c417-e832-4d3b-a7be-b8fac1a99131",
+        "direction_id": "de4f6f47-12c8-4027-a9cb-957b79cc2c0f",
+        "specialization_id": "12521aa2-265a-4afc-aa8a-95351c9c3555",
+        "semester": 5,
+        "name": "Programming and design of real-time systems",
+        "has_exam": false,
+        "exam_date": null,
+        "color": "#b45309"
+    },
+    {
+        "id": "2a9f8192-de59-4686-bf70-ff6e44b3005d",
+        "faculty_id": "d096c417-e832-4d3b-a7be-b8fac1a99131",
+        "direction_id": "de4f6f47-12c8-4027-a9cb-957b79cc2c0f",
+        "specialization_id": "12521aa2-265a-4afc-aa8a-95351c9c3555",
+        "semester": 5,
+        "name": "PLC and PAC programming",
+        "has_exam": false,
+        "exam_date": null,
+        "color": "#0369a1"
+    },
+    {
+        "id": "863a6542-7094-437c-8fb5-06f85ef59fbe",
+        "faculty_id": "d096c417-e832-4d3b-a7be-b8fac1a99131",
+        "direction_id": "de4f6f47-12c8-4027-a9cb-957b79cc2c0f",
+        "specialization_id": "12521aa2-265a-4afc-aa8a-95351c9c3555",
+        "semester": 5,
+        "name": "Industrial databases",
+        "has_exam": true,
+        "exam_date": null,
+        "color": "#be123c"
+    },
+    {
+        "id": "3277898e-3125-456e-b0be-310f2fb8f73d",
+        "faculty_id": "d096c417-e832-4d3b-a7be-b8fac1a99131",
+        "direction_id": "de4f6f47-12c8-4027-a9cb-957b79cc2c0f",
+        "specialization_id": "12521aa2-265a-4afc-aa8a-95351c9c3555",
+        "semester": 5,
+        "name": "Computer networks",
+        "has_exam": false,
+        "exam_date": null,
+        "color": "#1e293b"
+    },
+    {
+        "id": "14782710-d330-4b0d-af1e-ede284228c00",
+        "faculty_id": "d096c417-e832-4d3b-a7be-b8fac1a99131",
+        "direction_id": "de4f6f47-12c8-4027-a9cb-957b79cc2c0f",
+        "specialization_id": "12521aa2-265a-4afc-aa8a-95351c9c3555",
+        "semester": 5,
+        "name": "Digital electronics",
+        "has_exam": false,
+        "exam_date": null,
+        "color": "#065f46"
+    },
+    {
+        "id": "e3300d3c-866e-4224-8f68-4b124af05e48",
+        "faculty_id": "d096c417-e832-4d3b-a7be-b8fac1a99131",
+        "direction_id": "de4f6f47-12c8-4027-a9cb-957b79cc2c0f",
+        "specialization_id": "12521aa2-265a-4afc-aa8a-95351c9c3555",
+        "semester": 6,
+        "name": "Mechatronics and Rapid Control Prototyping",
+        "has_exam": false,
+        "exam_date": null,
+        "color": "#003366"
+    },
+    {
+        "id": "ad2fad00-b038-4f30-8827-5551463f06c8",
+        "faculty_id": "d096c417-e832-4d3b-a7be-b8fac1a99131",
+        "direction_id": "de4f6f47-12c8-4027-a9cb-957b79cc2c0f",
+        "specialization_id": "12521aa2-265a-4afc-aa8a-95351c9c3555",
+        "semester": 6,
+        "name": "FEM methods in robotics",
+        "has_exam": false,
+        "exam_date": null,
+        "color": "#1a6b3a"
+    },
+    {
+        "id": "0e4b1203-c86a-40eb-9d83-76a9d4b94ba5",
+        "faculty_id": "d096c417-e832-4d3b-a7be-b8fac1a99131",
+        "direction_id": "de4f6f47-12c8-4027-a9cb-957b79cc2c0f",
+        "specialization_id": "12521aa2-265a-4afc-aa8a-95351c9c3555",
+        "semester": 6,
+        "name": "Organization and management of a small IT company",
+        "has_exam": false,
+        "exam_date": null,
+        "color": "#7c3aed"
+    },
+    {
+        "id": "d5dfd946-19ab-42af-b9ca-c7f93fa2bf96",
+        "faculty_id": "d096c417-e832-4d3b-a7be-b8fac1a99131",
+        "direction_id": "de4f6f47-12c8-4027-a9cb-957b79cc2c0f",
+        "specialization_id": "12521aa2-265a-4afc-aa8a-95351c9c3555",
+        "semester": 6,
+        "name": "Design of microprocessors and reconfigurable control application",
+        "has_exam": true,
+        "exam_date": null,
+        "color": "#b45309"
+    },
+    {
+        "id": "edaf238d-a700-4fd8-bb62-59d3529046c5",
+        "faculty_id": "d096c417-e832-4d3b-a7be-b8fac1a99131",
+        "direction_id": "de4f6f47-12c8-4027-a9cb-957b79cc2c0f",
+        "specialization_id": "12521aa2-265a-4afc-aa8a-95351c9c3555",
+        "semester": 6,
+        "name": "Mobile robots",
+        "has_exam": false,
+        "exam_date": null,
+        "color": "#0369a1"
+    },
+    {
+        "id": "b00ce108-7f42-4374-9b60-90c346f6e244",
+        "faculty_id": "d096c417-e832-4d3b-a7be-b8fac1a99131",
+        "direction_id": "de4f6f47-12c8-4027-a9cb-957b79cc2c0f",
+        "specialization_id": "12521aa2-265a-4afc-aa8a-95351c9c3555",
+        "semester": 6,
+        "name": "Diploma seminar",
+        "has_exam": false,
+        "exam_date": null,
+        "color": "#be123c"
+    },
+    {
+        "id": "50f7bee4-bafb-45b9-9fc9-1ef2ddc72753",
+        "faculty_id": "d096c417-e832-4d3b-a7be-b8fac1a99131",
+        "direction_id": "de4f6f47-12c8-4027-a9cb-957b79cc2c0f",
+        "specialization_id": "12521aa2-265a-4afc-aa8a-95351c9c3555",
+        "semester": 6,
+        "name": "Wireless Technologies in Automation and Robotics",
+        "has_exam": false,
+        "exam_date": null,
+        "color": "#1e293b"
+    },
+    {
+        "id": "e8376373-27a7-46a4-852b-135f1bf051e8",
+        "faculty_id": "d096c417-e832-4d3b-a7be-b8fac1a99131",
+        "direction_id": "de4f6f47-12c8-4027-a9cb-957b79cc2c0f",
+        "specialization_id": "12521aa2-265a-4afc-aa8a-95351c9c3555",
+        "semester": 6,
+        "name": "Information technologies in classical and intelligent production control",
+        "has_exam": false,
+        "exam_date": null,
+        "color": "#065f46"
+    },
+    {
+        "id": "462376ec-0ce8-4d67-92b8-00cc2a1c94d1",
+        "faculty_id": "d096c417-e832-4d3b-a7be-b8fac1a99131",
+        "direction_id": "de4f6f47-12c8-4027-a9cb-957b79cc2c0f",
+        "specialization_id": "12521aa2-265a-4afc-aa8a-95351c9c3555",
+        "semester": 7,
+        "name": "Exploitation and security of systems",
+        "has_exam": false,
+        "exam_date": null,
+        "color": "#003366"
+    },
+    {
+        "id": "5b141423-db6b-476e-afc3-2b789206bea4",
+        "faculty_id": "d096c417-e832-4d3b-a7be-b8fac1a99131",
+        "direction_id": "de4f6f47-12c8-4027-a9cb-957b79cc2c0f",
+        "specialization_id": "12521aa2-265a-4afc-aa8a-95351c9c3555",
+        "semester": 7,
+        "name": "Chosen module I",
+        "has_exam": false,
+        "exam_date": null,
+        "color": "#1a6b3a"
+    },
+    {
+        "id": "9f95c295-0608-4129-822c-9d8382f956c7",
+        "faculty_id": "d096c417-e832-4d3b-a7be-b8fac1a99131",
+        "direction_id": "de4f6f47-12c8-4027-a9cb-957b79cc2c0f",
+        "specialization_id": "12521aa2-265a-4afc-aa8a-95351c9c3555",
+        "semester": 7,
+        "name": "Chosen module II",
+        "has_exam": false,
+        "exam_date": null,
+        "color": "#7c3aed"
+    },
+    {
+        "id": "b67799cb-69c7-4772-8b48-c159801c00ea",
+        "faculty_id": "d096c417-e832-4d3b-a7be-b8fac1a99131",
+        "direction_id": "de4f6f47-12c8-4027-a9cb-957b79cc2c0f",
+        "specialization_id": "12521aa2-265a-4afc-aa8a-95351c9c3555",
+        "semester": 7,
+        "name": "Chosen module III",
+        "has_exam": false,
+        "exam_date": null,
+        "color": "#b45309"
+    },
+    {
+        "id": "e32903df-d747-45a7-839e-6fa6f81b175c",
+        "faculty_id": "d096c417-e832-4d3b-a7be-b8fac1a99131",
+        "direction_id": "de4f6f47-12c8-4027-a9cb-957b79cc2c0f",
+        "specialization_id": "12521aa2-265a-4afc-aa8a-95351c9c3555",
+        "semester": 7,
+        "name": "Diploma thesis",
+        "has_exam": false,
+        "exam_date": null,
+        "color": "#0369a1"
+    },
+    {
+        "id": "360cd30a-7fc5-4fe7-987a-311a44ca3945",
+        "faculty_id": "d096c417-e832-4d3b-a7be-b8fac1a99131",
+        "direction_id": "de4f6f47-12c8-4027-a9cb-957b79cc2c0f",
+        "specialization_id": "12521aa2-265a-4afc-aa8a-95351c9c3555",
+        "semester": 7,
+        "name": "Diploma seminar",
+        "has_exam": false,
+        "exam_date": null,
+        "color": "#be123c"
+    },
+    {
+        "id": "1069d26c-572e-4af3-8a0b-56380a63c9f6",
+        "faculty_id": "d096c417-e832-4d3b-a7be-b8fac1a99131",
+        "direction_id": "de4f6f47-12c8-4027-a9cb-957b79cc2c0f",
+        "specialization_id": "12521aa2-265a-4afc-aa8a-95351c9c3555",
+        "semester": 7,
+        "name": "Computer graphics and vision in automatics and robotics",
+        "has_exam": false,
+        "exam_date": null,
+        "color": "#1e293b"
+    },
+    {
+        "id": "f8d86439-3b8a-4aa4-9a6e-73ba22d9406b",
+        "faculty_id": "d096c417-e832-4d3b-a7be-b8fac1a99131",
+        "direction_id": "de4f6f47-12c8-4027-a9cb-957b79cc2c0f",
+        "specialization_id": "12521aa2-265a-4afc-aa8a-95351c9c3555",
+        "semester": 7,
+        "name": "Monographic lecture",
+        "has_exam": false,
+        "exam_date": null,
+        "color": "#065f46"
+    },
 ]
 
 //Knowledge-points
@@ -10540,6 +11426,3860 @@ export const KNOWLEDGE_POINTS: KnowledgePoint[] = [
         "description": "Project on the topic of threats associated with artificial intelligence.",
         "estimated_minutes": 60
     },
+    //WEiI - ACR - BASE
+    {
+        "id": "799844fd-5a29-44f2-8eff-489c5afdfae6",
+        "subject_id": "ab6a2c4a-2f15-4ee4-8776-3c213f9440b9",
+        "order": 1,
+        "description": "Sequences of numbers - the limit of a sequence, series of numbers - tests for convergence of series, limit and continuity of functions of real variable",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "14385401-3b30-4b6f-9560-0a31177b3054",
+        "subject_id": "ab6a2c4a-2f15-4ee4-8776-3c213f9440b9",
+        "order": 2,
+        "description": "The derivatives of functions of one real variable and theorems and methods of differential calculus of functions of one real variable used to search for local extrema and sketch graphs of functions",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "5662d21e-21eb-48c7-a461-dd00f699b202",
+        "subject_id": "ab6a2c4a-2f15-4ee4-8776-3c213f9440b9",
+        "order": 3,
+        "description": "Written test",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "6aa11d8c-2081-4126-b88e-8e063a2bf14c",
+        "subject_id": "ab6a2c4a-2f15-4ee4-8776-3c213f9440b9",
+        "order": 4,
+        "description": "Indefinite integral of a function of one real variable, integration by parts and by substitution, integrals of simple rational functions, the notion of definite integral",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "37d07192-c51f-402b-88fb-f9cd41436e51",
+        "subject_id": "ab6a2c4a-2f15-4ee4-8776-3c213f9440b9",
+        "order": 5,
+        "description": "Determinants and ranks of matrices, systems of linear equations, complex numbers",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "7454d07d-2cb9-4c07-97fd-5be5119f2fc9",
+        "subject_id": "ab6a2c4a-2f15-4ee4-8776-3c213f9440b9",
+        "order": 6,
+        "description": "The derivatives of functions of several variables, theorems and methods of differential calculus of functions of several variables used to search for local extrema of functions",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "6704b0ff-2db9-41f7-aa82-786ff5466879",
+        "subject_id": "7e9d45d8-c18f-4b1c-a4a5-757d8d70a717",
+        "order": 1,
+        "description": "Physical quantities. Vectors and scalars",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "3f63425e-3dfe-4138-afd5-45f43450024d",
+        "subject_id": "7e9d45d8-c18f-4b1c-a4a5-757d8d70a717",
+        "order": 2,
+        "description": "Kinematics and dynamics of a material point, including curvilinear motion and inertial forces.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "e7517db5-cdb9-479b-b10d-b9a01efe87c6",
+        "subject_id": "7e9d45d8-c18f-4b1c-a4a5-757d8d70a717",
+        "order": 3,
+        "description": "Conservation laws in physics. Elastic and inelastic collisions",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "f08868ea-547f-4afc-8f10-44a1ea1b2bfd",
+        "subject_id": "7e9d45d8-c18f-4b1c-a4a5-757d8d70a717",
+        "order": 4,
+        "description": "Dynamics of a material point. Dynamics of a rigid body. Moment of inertia",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "b5aebeb0-f08a-4b3b-9cfa-2a6c0ac0b922",
+        "subject_id": "7e9d45d8-c18f-4b1c-a4a5-757d8d70a717",
+        "order": 5,
+        "description": "Harmonic oscillations. Simple, damped and forced oscillator. Resonance phenomenon",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "027df52e-a32b-4f2b-b06d-e454bcedbd4e",
+        "subject_id": "7e9d45d8-c18f-4b1c-a4a5-757d8d70a717",
+        "order": 6,
+        "description": "Direct current electricity - basic concepts.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "519b6dbe-8bcc-4757-bd3c-198d99001c51",
+        "subject_id": "7e9d45d8-c18f-4b1c-a4a5-757d8d70a717",
+        "order": 7,
+        "description": "Direct and alternating current magnetic fields - basic concepts, including Maxwell's equations.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "0a559c85-650c-4d54-b7cb-a4a9806688f6",
+        "subject_id": "69c9d3a5-71bb-4c8b-9850-dc9523135925",
+        "order": 1,
+        "description": "Introduction to Computer Engineering. Algorithms.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "40d49635-4776-42ba-b122-2723047a75e0",
+        "subject_id": "69c9d3a5-71bb-4c8b-9850-dc9523135925",
+        "order": 2,
+        "description": "Structural programming. C programming language.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "0b634436-4428-4ac5-ac22-d97427c05026",
+        "subject_id": "69c9d3a5-71bb-4c8b-9850-dc9523135925",
+        "order": 3,
+        "description": "Object-oriented programming. C++ and Java programming languages.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "1cbedcee-1ae2-4f9d-8ee5-0944e8a8d512",
+        "subject_id": "69c9d3a5-71bb-4c8b-9850-dc9523135925",
+        "order": 4,
+        "description": "Introduction to computer networks.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "0c5adfb3-3ec5-43b7-bd92-6d22f76a53da",
+        "subject_id": "69c9d3a5-71bb-4c8b-9850-dc9523135925",
+        "order": 5,
+        "description": "Operating Systems.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "7e6007a0-fb27-4385-9cab-7209eac4fe39",
+        "subject_id": "69c9d3a5-71bb-4c8b-9850-dc9523135925",
+        "order": 6,
+        "description": "Relational databases",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "d7dea8e0-6abe-47bc-99c2-b46d4446be4e",
+        "subject_id": "69c9d3a5-71bb-4c8b-9850-dc9523135925",
+        "order": 7,
+        "description": "Artificial Intelligence",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "dc51c6d3-2b02-4838-a49a-43daac8d7bf8",
+        "subject_id": "4aa12f06-e2d9-4414-9256-ee3edcabc4a1",
+        "order": 1,
+        "description": "Basic measuring instruments laboratory:oscilloscop, multimetr, generator",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "6dde26b1-0893-41fe-a8fc-1477909113ef",
+        "subject_id": "4aa12f06-e2d9-4414-9256-ee3edcabc4a1",
+        "order": 2,
+        "description": "The measurement methods typical of electrical quantities",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "379fa4b4-5d53-4704-b399-8ded37f80ac0",
+        "subject_id": "4aa12f06-e2d9-4414-9256-ee3edcabc4a1",
+        "order": 3,
+        "description": "The measurement methods typical of non-electrical quantities",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "9323160b-e7ab-43a7-b284-dc80945dba8b",
+        "subject_id": "4aa12f06-e2d9-4414-9256-ee3edcabc4a1",
+        "order": 4,
+        "description": "Processing and/C and C/and in measuring technique",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "a9658d9b-22cf-42fb-a15c-3e89def15851",
+        "subject_id": "4aa12f06-e2d9-4414-9256-ee3edcabc4a1",
+        "order": 5,
+        "description": "systems for control and measuring",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "3f9fd1cb-d96d-4969-ba2a-050b62d3abec",
+        "subject_id": "b650b9c4-fb7e-4bde-99e0-33b134e06b6e",
+        "order": 1,
+        "description": "Introduction to intellectual property protection - the concept of intellectual property protection system of intellectual property rights, the protection of intellectual origin, the source of intellectual property rights.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "9b12b297-ce27-44cc-8229-650dedae17ac",
+        "subject_id": "b650b9c4-fb7e-4bde-99e0-33b134e06b6e",
+        "order": 2,
+        "description": "The song and its protection - the concept of work in copyright law, the author as the subject of copyright, moral rights and property, fair use in copyright law.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "29f1e1ba-fc86-492b-8915-a7d6a72bf673",
+        "subject_id": "b650b9c4-fb7e-4bde-99e0-33b134e06b6e",
+        "order": 3,
+        "description": "Special rules for the legal protection - protection of computer programs, the protection of the image, the recipient of correspondence and secret sources of information, database protection, civil liability and criminal liability for copyright infringement.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "e7a18586-78b5-4e41-8922-cb65f636289a",
+        "subject_id": "b650b9c4-fb7e-4bde-99e0-33b134e06b6e",
+        "order": 4,
+        "description": "Protection of inventive projects - the concept and the principle of the protection of inventions, utility models, industrial designs, topographies of integrated circuits, rationalization, the exclusive rights and their scope - a patent right protection, the right of registration",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "35b72773-ee5c-4cc0-a09f-70a8fa2d9bb6",
+        "subject_id": "b650b9c4-fb7e-4bde-99e0-33b134e06b6e",
+        "order": 5,
+        "description": "Protection of other goods - the concept and the principle of protection of trademarks, geographical indications, regional products, new plant varieties and new breeds of animals",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "acbbdbce-e2d7-4b72-bb21-14e12eb3e853",
+        "subject_id": "b650b9c4-fb7e-4bde-99e0-33b134e06b6e",
+        "order": 6,
+        "description": "Claims for breach of industrial property rights - violation of industrial property, civil liability, criminal liability, administrative liability.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "b4e1b5ff-296e-4ffd-8fd1-b85b138b2ef4",
+        "subject_id": "b650b9c4-fb7e-4bde-99e0-33b134e06b6e",
+        "order": 7,
+        "description": "Rotation of intellectual property - the contract for the transfer of exclusive rights, licensing agreement, the licensee rights, royalties, license types, the agreement now-how.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "0fefc1f6-ff42-4c3a-9a5a-9b01d6ba71ca",
+        "subject_id": "b650b9c4-fb7e-4bde-99e0-33b134e06b6e",
+        "order": 8,
+        "description": "Final test",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "fd79051e-3e97-47e4-8879-70170b581a48",
+        "subject_id": "c16a925f-a8c3-47bb-afe1-58b8fa98afb8",
+        "order": 1,
+        "description": "The role of the subject \"Information Technology\" as a preparation for the practical use of information and the overall look of the terminology. Basic concepts, history, utility computing, information technology base. System components and their functions. Safety rules with operated your computer.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "a60579c9-d9fc-44e2-8486-69435403f4dc",
+        "subject_id": "c16a925f-a8c3-47bb-afe1-58b8fa98afb8",
+        "order": 2,
+        "description": "Operating systems Windows and Linux. Setting up systems. Graphical user interfaces, user applications, the console commands to create files and directories. The remote system.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "79f62d6e-c6bf-4ef2-8720-8a97de8208ec",
+        "subject_id": "c16a925f-a8c3-47bb-afe1-58b8fa98afb8",
+        "order": 3,
+        "description": "Mathematical modeling and computer simulation using utility programs. Examples of applications Matlab, Octave packages, MathCad.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "a7f2a40a-eb98-47d5-80cf-a4afd73ba660",
+        "subject_id": "c16a925f-a8c3-47bb-afe1-58b8fa98afb8",
+        "order": 4,
+        "description": "Application software. The editor and word processing, spreadsheet, multimedia, presentation, database. The types of packages, options, examples of applications.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "ecfbd9b7-9ccf-40e3-86b8-5768de0c18fa",
+        "subject_id": "c16a925f-a8c3-47bb-afe1-58b8fa98afb8",
+        "order": 5,
+        "description": "Local and wide area network, wired and wireless networks. The structure and types of network communication protocols. Search, acquisition, processing and transfer of information on the web.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "aac73aa9-aef9-4deb-99ef-c75552ecd3fa",
+        "subject_id": "c16a925f-a8c3-47bb-afe1-58b8fa98afb8",
+        "order": 6,
+        "description": "Wireless networks. Types of standards to radio communications. Security and data encryption. Fiber optic networks. WiMAX network and mobile networks.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "5070b034-d209-4e3e-96a8-9d7c0385bced",
+        "subject_id": "c16a925f-a8c3-47bb-afe1-58b8fa98afb8",
+        "order": 7,
+        "description": "Services in computer networks. Mail, messaging, audio-video communications, IP monitoring, control over the network. Security of data transmission in computer networks. Data protection, encryption and information security, computer viruses. New generation firewalls NGFW.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "977250cc-6146-4072-9418-379e1e85a15e",
+        "subject_id": "c16a925f-a8c3-47bb-afe1-58b8fa98afb8",
+        "order": 8,
+        "description": "The structure of the local network, the Internet, getting information about computers on the network, email, IM and Web browsers, transmission of information.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "69e5608c-8b19-42fa-8e2b-5e98c7c3baca",
+        "subject_id": "c16a925f-a8c3-47bb-afe1-58b8fa98afb8",
+        "order": 9,
+        "description": "Files and folders in Windows system. The graphical environment and console commands. Utility applications, the console commands to create files and directories.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "c32ea3aa-b0e8-4bfc-8c9d-8b2145f979c5",
+        "subject_id": "c16a925f-a8c3-47bb-afe1-58b8fa98afb8",
+        "order": 10,
+        "description": "Files and folders in Linux. Graphical environment, the console commands. Utility applications, the console commands to create files and directories. The remote system.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "036687c9-abea-4389-8e4f-41f437ceb2e8",
+        "subject_id": "c16a925f-a8c3-47bb-afe1-58b8fa98afb8",
+        "order": 11,
+        "description": "The use of software tools for mathematical modeling and simulation. Perform simple simulations using Matlab, Octave and MathCad programs.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "91be6436-e8df-4d96-9673-13cc6ac51051",
+        "subject_id": "c16a925f-a8c3-47bb-afe1-58b8fa98afb8",
+        "order": 12,
+        "description": "Word processor, spreadsheet. Create documents containing text, tables, formulas, spreadsheet with formulas.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "c78c1ecb-d10d-4298-b06d-08f612a48ff1",
+        "subject_id": "c16a925f-a8c3-47bb-afe1-58b8fa98afb8",
+        "order": 13,
+        "description": "Managerial and presentation graphics, database. Create a multimedia presentation, create a simple database.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "e00f439d-9f03-410c-a666-d61bacd9be60",
+        "subject_id": "0d8315fc-3df8-42b1-9f39-79fdae11f55b",
+        "order": 1,
+        "description": "Acquainting with the rules of participation in classes and the conditions for obtaining a pass. Discussion of the principles of safe use of sports facilities and equipment and safety rules in force during the course.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "bd1a5f89-fb8c-4d29-ab9b-678309a15d72",
+        "subject_id": "0d8315fc-3df8-42b1-9f39-79fdae11f55b",
+        "order": 2,
+        "description": "Implementation of various sets of warm-up exercises and exercises focused on developing the student's basic motor skills.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "50a46de1-c1c3-4019-b097-0c17917f3289",
+        "subject_id": "0d8315fc-3df8-42b1-9f39-79fdae11f55b",
+        "order": 3,
+        "description": "Shaping general physical fitness, motor coordination, endurance, flexibility, speed through individual selection of sports activities (eg: football, volleyball, basketball, table tennis) or recreational physical activity (eg: badminton, gym exercises).",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "bbb2827d-eb9f-4719-80c0-aa62b30d0945",
+        "subject_id": "0d8315fc-3df8-42b1-9f39-79fdae11f55b",
+        "order": 4,
+        "description": "Physical fitness test: Multistage 20 m Shuttle Run (Beep test).",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "98b4d21d-ea6e-4b13-8a3e-a238bfb6ade6",
+        "subject_id": "0d8315fc-3df8-42b1-9f39-79fdae11f55b",
+        "order": 1,
+        "description": "Acquainting with the rules of participation in classes and credit conditions. Discussion of swimming pool conditions and safety rules applicable during exercise in the aquatic environment.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "89e6cebf-5bab-4bd3-b465-48a0d5fe7ebd",
+        "subject_id": "0d8315fc-3df8-42b1-9f39-79fdae11f55b",
+        "order": 2,
+        "description": "Initial adaptation to the aquatic environment: - face dipping, eye opening and orientation under the surface of the water, - mastery of breathing in the aquatic environment, familiarization with the buoyancy of water, - control of lying on the breast and back, - plays and games in water. Warm-up exercises, preparing for exercises in water. Learning how to behave in water in difficult and unusual situations: choking, shrinkage, sinking, etc.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "d3beacc5-02e9-4f7d-86b8-914c33e2c613",
+        "subject_id": "0d8315fc-3df8-42b1-9f39-79fdae11f55b",
+        "order": 3,
+        "description": "Learning backstroke style: lying on the back, slipping, correct leg work with a board on the hips and without a board, proper work of the arms. Improvement of proper coordination of lower and upper limbs. Learning free style: slipping on the chest, proper leg work combined with breathing, exercise with a board and without a board. Learning the proper work of the arms (swimming with a proper body with a proper breath and exhalation). Learning how to coordinate the work of lower and upper limbs with the determination of proper breathing. Learning breaststroke style: proper work of legs with a board and without boards on the chest and on the back, correct work of arms in a classic style. Coordination of lower and upper limbs and breathing in a classic style. Learning to jump on the legs and on the head.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "3081879d-87f4-4c7d-a61c-1ea2ba303e1a",
+        "subject_id": "0d8315fc-3df8-42b1-9f39-79fdae11f55b",
+        "order": 4,
+        "description": "Fitness test: a 25-meter swimming trial chosen by the student.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "e67f6c94-f40a-4209-b97c-2117803eb8ec",
+        "subject_id": "5a8ca606-eb86-4d26-828e-36730600e3da",
+        "order": 1,
+        "description": "Introduction to digital signal processing (DSP). Introduction to DASYLab software. Signal classification and parameters. A/C conversion, sampling, quantization. Spectral analysis based on DFT/FFT. Determination of parameters of random signals. Correlation analysis. Averaging of signals. Introduction to digital filtering (FIR and IIR filters). Selected applications of DSP in measurement technique.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "48951e18-4484-4325-81fa-913bf01dda46",
+        "subject_id": "9351deff-dc96-44c1-92f7-a2c9dfc27640",
+        "order": 1,
+        "description": "Introduction to economics (outline of economic thought, the basic concepts, principles and assumptions of the microeconomic analysis of the place of Economics in social sciences system and links with other disciplines of science). Introduction to economics.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "da4f3c7c-3b2f-484a-a4cc-9cbcd1c61997",
+        "subject_id": "9351deff-dc96-44c1-92f7-a2c9dfc27640",
+        "order": 2,
+        "description": "The Model of market economy (institutions, productivity, efficiency, actors, resources and streams in economic system; the market-classifications and operating principles).",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "178d0d1a-a697-4858-a8f0-f5182b8a4e24",
+        "subject_id": "9351deff-dc96-44c1-92f7-a2c9dfc27640",
+        "order": 3,
+        "description": "Demand (law of demand, exceptions, determinants, elasticity of demand), supply (law of supply, exceptions, determinants, flexibility of supply), market equilibrium in the short, medium and long term, the impact of regulated prices on the market, web model.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "59545a3d-caea-49a1-87b3-fb1b5e2908d2",
+        "subject_id": "9351deff-dc96-44c1-92f7-a2c9dfc27640",
+        "order": 4,
+        "description": "The theory of consumer choice, (the functioning of the household, utility, Gossen's laws, Marshall's consumers rent, the consumers balance)",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "6dc00226-ce90-49bf-adda-feccde6fb490",
+        "subject_id": "9351deff-dc96-44c1-92f7-a2c9dfc27640",
+        "order": 5,
+        "description": "The operating principles of the company (an introduction to the theory of firm, basic definitions, classifications and processes).",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "3dfcf55e-8aa9-4470-a016-4c22c9c5fb11",
+        "subject_id": "9351deff-dc96-44c1-92f7-a2c9dfc27640",
+        "order": 6,
+        "description": "Production function in the short and long term effects of scale, choice of the optimal technology.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "009b607b-001d-4fa0-888e-52476d5eff49",
+        "subject_id": "9351deff-dc96-44c1-92f7-a2c9dfc27640",
+        "order": 7,
+        "description": "Instruments of cost management in the enterprise, the cost function in the long and the short term, the issue of costs and cash flow.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "60aa64ca-40a2-4d4c-ab28-a0b5c53444ba",
+        "subject_id": "9351deff-dc96-44c1-92f7-a2c9dfc27640",
+        "order": 8,
+        "description": "Perfect competition and monopolistic competition.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "6760e3b4-d1f5-41be-bd53-0e2ae1ef00cc",
+        "subject_id": "9351deff-dc96-44c1-92f7-a2c9dfc27640",
+        "order": 9,
+        "description": "Limited competition - monopoly and oligopoly.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "bfc95120-97a2-4859-8ee4-790d13a8bf77",
+        "subject_id": "9351deff-dc96-44c1-92f7-a2c9dfc27640",
+        "order": 10,
+        "description": "Introduction to macroeconomics, basic phenomena and macro-economic problems.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "e9b014d0-03ff-4f71-b05b-862517372549",
+        "subject_id": "9351deff-dc96-44c1-92f7-a2c9dfc27640",
+        "order": 11,
+        "description": "The development of economic systems, economic growth-measurement and determinants of product and national income and its determinants, economic downturn (cycles) and the role of investment in the economy, an analysis of the situation in Europe and in the world.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "3ac1098d-e626-45d7-a679-8fdc9b3beb7a",
+        "subject_id": "9351deff-dc96-44c1-92f7-a2c9dfc27640",
+        "order": 12,
+        "description": "The importance of the public finance sector, organisation of PFS (subsectors), the impact of fiscal policy on the national income, the role of the State in the economy the budget as a tool to impact on the economy, the issue of the budget deficit and public debt, the impact of public support (including from EU funds) on the development of the national economy, the analysis of the situation in Europe.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "1dda41ca-5576-475b-852b-6605e0a8b918",
+        "subject_id": "9351deff-dc96-44c1-92f7-a2c9dfc27640",
+        "order": 13,
+        "description": "Monetary system development, the role of money in the economy, money purely and sense of largo, the demand for money, money supply and the mechanisms of its creations, a quantitative theory of money, monetary aggregates.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "34749aa6-ee66-42c5-bcfe-a36420eb5c7b",
+        "subject_id": "9351deff-dc96-44c1-92f7-a2c9dfc27640",
+        "order": 14,
+        "description": "The National Banking System, the role of the Central Bank and monetary policy, the monetary policy tools, the interbank market and the activities of commercial banks",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "5f7c93f5-fc62-4aea-b72f-2808d52b4ae0",
+        "subject_id": "9351deff-dc96-44c1-92f7-a2c9dfc27640",
+        "order": 15,
+        "description": "The phenomenon of inflation and its social and economic effects, demand, and shortage of supply causes inflation, inflationary phenomena measurement- inflation, analysis of the situation in Europe, politics antyinflacyjna.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "2b94cc2e-6b44-4d82-a3d5-049fb169ac3d",
+        "subject_id": "9351deff-dc96-44c1-92f7-a2c9dfc27640",
+        "order": 16,
+        "description": "The labour market, employment policy, the importance of competence and demographic processes, flexibility in the labour market, unemployment as economic and social problem.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "49004cdd-f613-4988-b3f3-52ad27ea8a5b",
+        "subject_id": "9351deff-dc96-44c1-92f7-a2c9dfc27640",
+        "order": 17,
+        "description": "International economic relations, the foreign exchange market, balance of payments, the single market of the European Union and its importance for the development of the Member States,The role of the European Union in the global economy.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "1f542ba4-f0ce-4e08-8ff5-251739298043",
+        "subject_id": "2a9e6461-ef26-4421-9284-eb377d685d9f",
+        "order": 1,
+        "description": "Analysis of DC circuits. Methods of analysis, transformations of circuits.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "0d6edbb4-f1d0-4771-8179-6159b4926bab",
+        "subject_id": "2a9e6461-ef26-4421-9284-eb377d685d9f",
+        "order": 2,
+        "description": "Analysis of sinusoidal current circuits. Vector charts, active, reactive and apparent powers. 3-phase circuits.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "10af23ce-1a0d-4991-ada7-4bb5a9acc4e9",
+        "subject_id": "2a9e6461-ef26-4421-9284-eb377d685d9f",
+        "order": 3,
+        "description": "Analysis of non-sinusoidal periodic current circuits.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "cd3eb7ec-839c-4c1a-a9aa-6e1ebf5a25ee",
+        "subject_id": "2a9e6461-ef26-4421-9284-eb377d685d9f",
+        "order": 4,
+        "description": "Equations and properties of quadruples in steady states with harmonic excitation. Passive filters.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "582dbdb9-954a-4b77-ae30-f9eb3c2bea56",
+        "subject_id": "2a9e6461-ef26-4421-9284-eb377d685d9f",
+        "order": 5,
+        "description": "Transients in linear circuits. Characteristics of the problem, classical and operator methods, simple and inverse Laplace transform, transfer function, step and impulse responses.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "7e17b781-300a-40a8-b8f4-04f41f4fa802",
+        "subject_id": "ea1862ea-4b00-4790-9ced-bb854ef5228b",
+        "order": 1,
+        "description": "First and second order recursive equations, homogeneous and heterogeneous. Initial conditions of a recursive equation. Application of the characteristic equation to solve homogeneous linear equations with constant coefficients. Examples of discrete mathematics problems that can be solved by formulating an appropriate recursive equation. Prediction method for heterogeneous equations. General and specific solution. The principle of predicting a special solution for the heterogeneity function given in the form of a product of a polynomial and a power function.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "d73196f6-f40b-4780-920f-8ab2740c9604",
+        "subject_id": "ea1862ea-4b00-4790-9ced-bb854ef5228b",
+        "order": 2,
+        "description": "Definition of an ordinary generating function. Deriving it for example strings. Table of composing functions for popular strings. Generating function theorems. A function that creates the convolution of two strings. Application of the generating function to counting problems. Counting combinations without repetitions and with repetitions, variations, divisions, words with restrictions on the number of letters, etc.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "f21f8e85-6bca-458a-89b3-84a96eec6afb",
+        "subject_id": "ea1862ea-4b00-4790-9ced-bb854ef5228b",
+        "order": 3,
+        "description": "Definition of an exponential generating function. Exponential constructive function for selected strings. Theorems about the exponential generating function. The binomial convolution. Applications of exponential generating function to solve nonlinear recursive equations and to counting problems.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "acb13976-1da5-4f17-941f-1ff6dd0cc998",
+        "subject_id": "ea1862ea-4b00-4790-9ced-bb854ef5228b",
+        "order": 4,
+        "description": "Discrete derivative. Difference of functions of one variable. Higher order differences. Differentiation theorems. Exponential diminishing function. Discrete integral. Stirling formulas. antidifference. Sum by parts. Summation by perturbation.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "bec39612-6901-4767-b21e-ef8b9ef5a8fa",
+        "subject_id": "ea1862ea-4b00-4790-9ced-bb854ef5228b",
+        "order": 5,
+        "description": "Numerical methods of solving systems of algebraic equations.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "f71dc8c6-a382-4766-91e7-24be7c61ac1b",
+        "subject_id": "ea1862ea-4b00-4790-9ced-bb854ef5228b",
+        "order": 6,
+        "description": "Methods of numerical integration. Method of rectangles, trapezoid, parabola.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "7539e6ba-e7b5-4b5f-bd63-21d77a51202f",
+        "subject_id": "ea1862ea-4b00-4790-9ced-bb854ef5228b",
+        "order": 7,
+        "description": "Polynomial interpolation methods.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "a9373a80-9019-4245-b40f-beb7c671f236",
+        "subject_id": "9f30b25a-9e72-4dd2-92c9-5c29ea5ad354",
+        "order": 1,
+        "description": "Principles of statics; forces sets and their reduction, the balance of power equations on the plane and in the space.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "e60e74cc-c801-420b-81f2-4ac16ae4b582",
+        "subject_id": "9f30b25a-9e72-4dd2-92c9-5c29ea5ad354",
+        "order": 2,
+        "description": "Kinematics of the point: straight line motion, velocity, acceleration, harmonic motion; curvilinear motion, velocity, acceleration normal and tangential; motion on circle; horizontal and sloping motion.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "2d75069c-fed6-428c-a9b3-171e6db36dae",
+        "subject_id": "9f30b25a-9e72-4dd2-92c9-5c29ea5ad354",
+        "order": 3,
+        "description": "Kinematics of the body: translate motion, rotational motion, velocity and acceleration; plane motion, conditions, methods of calculating of the velocity and acceleration, complex motion, velocity and acceleration, Coriolis acceleration.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "5350687e-f637-478f-8fe2-8b6642046d8a",
+        "subject_id": "9f30b25a-9e72-4dd2-92c9-5c29ea5ad354",
+        "order": 4,
+        "description": "Dynamic: rules of the dynamics, Newton’s laws, differential equations of the motion, work, power, kinematics and potential energy, energetic rules.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "57f6a697-f12c-41c4-ae8d-2849adad8cf6",
+        "subject_id": "9f30b25a-9e72-4dd2-92c9-5c29ea5ad354",
+        "order": 5,
+        "description": "Dynamics of the point: straight line vibration, scud, scud maintenance, momentum of the scud, momentum of the scud maintenance, applied of the energetic rules, differential equations of the motion.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "4d30c23d-7489-4c2a-a2e9-7d59002535f2",
+        "subject_id": "9f30b25a-9e72-4dd2-92c9-5c29ea5ad354",
+        "order": 6,
+        "description": "Dynamics of the body: straight line vibration, scud, momentum of the scud, applied of the energetic rules, differential equations of the motion.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "46feae4f-136e-4d8a-8b56-d52c58d64058",
+        "subject_id": "9f30b25a-9e72-4dd2-92c9-5c29ea5ad354",
+        "order": 7,
+        "description": "One dimensional strenth and press, Hooke law, analysis of the tension and strain state.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "97c6933b-b00f-42c8-8bbb-f36a02584b59",
+        "subject_id": "9f30b25a-9e72-4dd2-92c9-5c29ea5ad354",
+        "order": 8,
+        "description": "Plane and spatial tension and strain state.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "7609d620-9d56-4841-8038-210c5339414d",
+        "subject_id": "9f30b25a-9e72-4dd2-92c9-5c29ea5ad354",
+        "order": 9,
+        "description": "Technical cut.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "420adf4f-fd18-4ecf-a48e-9a3ce15d5519",
+        "subject_id": "9f30b25a-9e72-4dd2-92c9-5c29ea5ad354",
+        "order": 10,
+        "description": "Twisting; the graphs of the twisting moments and shearing forces",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "30be2450-8977-4c75-8ce7-548b930fb516",
+        "subject_id": "9f30b25a-9e72-4dd2-92c9-5c29ea5ad354",
+        "order": 11,
+        "description": "Bending; the graphs of the bending moments and shearing forces",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "2a171d9c-2e02-427f-8393-6a09b0b28f11",
+        "subject_id": "9f30b25a-9e72-4dd2-92c9-5c29ea5ad354",
+        "order": 12,
+        "description": "Compound strength, strength hypothesis.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "d2844ba7-f21c-4e3b-8d48-85eefa9a1657",
+        "subject_id": "e0dfedff-b313-48f6-b3fc-86733290f6b4",
+        "order": 1,
+        "description": "Basic elements of C language",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "5fcf718a-cd96-422d-b087-b0c15c767950",
+        "subject_id": "e0dfedff-b313-48f6-b3fc-86733290f6b4",
+        "order": 2,
+        "description": "Input output operations",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "9f5ecfcc-44b7-44e2-a2f7-252f0d3b58ad",
+        "subject_id": "e0dfedff-b313-48f6-b3fc-86733290f6b4",
+        "order": 3,
+        "description": "Operators",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "ba1609a8-8220-4982-a3d4-85da382d130f",
+        "subject_id": "e0dfedff-b313-48f6-b3fc-86733290f6b4",
+        "order": 4,
+        "description": "Instructions",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "4c32a08a-7329-4c70-a968-b99bf65ed231",
+        "subject_id": "e0dfedff-b313-48f6-b3fc-86733290f6b4",
+        "order": 5,
+        "description": "Functions",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "9a687484-b73f-4786-8f2f-a01150411477",
+        "subject_id": "e0dfedff-b313-48f6-b3fc-86733290f6b4",
+        "order": 6,
+        "description": "Tables",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "ca7d62c3-e92e-4a52-b223-ea6f5ebf915f",
+        "subject_id": "e0dfedff-b313-48f6-b3fc-86733290f6b4",
+        "order": 7,
+        "description": "Pointers",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "9965fabd-35eb-45ac-8887-83e4fc869d4a",
+        "subject_id": "e0dfedff-b313-48f6-b3fc-86733290f6b4",
+        "order": 8,
+        "description": "Structures",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "829655d1-5bf4-4065-b480-107a01d92c1d",
+        "subject_id": "e0dfedff-b313-48f6-b3fc-86733290f6b4",
+        "order": 9,
+        "description": "Files",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "8c8fd0c3-2ccf-4a28-aa40-56eb4ca8fccc",
+        "subject_id": "e0dfedff-b313-48f6-b3fc-86733290f6b4",
+        "order": 10,
+        "description": "I/O stream operations",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "757d203b-f97a-49e0-a0fa-b02ec09c3767",
+        "subject_id": "e0dfedff-b313-48f6-b3fc-86733290f6b4",
+        "order": 11,
+        "description": "Classes",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "d8e65818-2ea4-4b4f-bd7b-e0d40cac9de5",
+        "subject_id": "e0dfedff-b313-48f6-b3fc-86733290f6b4",
+        "order": 12,
+        "description": "Dynamic memory allocation",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "4667c682-befb-433a-9aa1-123ab2c1b041",
+        "subject_id": "e0dfedff-b313-48f6-b3fc-86733290f6b4",
+        "order": 13,
+        "description": "Constructor, destructor",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "cbcad012-2358-44a1-a017-3750f169c47c",
+        "subject_id": "e0dfedff-b313-48f6-b3fc-86733290f6b4",
+        "order": 14,
+        "description": "Static class element",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "65588025-059b-4b12-a800-73843cf0068b",
+        "subject_id": "e0dfedff-b313-48f6-b3fc-86733290f6b4",
+        "order": 15,
+        "description": "Copy constructor",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "60eb8c6b-c366-4952-ba81-9979aaca9bf4",
+        "subject_id": "e0dfedff-b313-48f6-b3fc-86733290f6b4",
+        "order": 16,
+        "description": "Operator overloading",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "02158306-8add-46dd-b4ae-0889e55c0625",
+        "subject_id": "e0dfedff-b313-48f6-b3fc-86733290f6b4",
+        "order": 17,
+        "description": "Initializer list",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "ec2348d8-3f84-47a0-8a26-19b7fa705ff1",
+        "subject_id": "e0dfedff-b313-48f6-b3fc-86733290f6b4",
+        "order": 18,
+        "description": "Inheritance",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "876ffb81-b7d3-430a-bfcf-0b43029d85ff",
+        "subject_id": "e0dfedff-b313-48f6-b3fc-86733290f6b4",
+        "order": 19,
+        "description": "Encapsulation",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "af7fa0bc-1756-4c25-8276-954a51952a0a",
+        "subject_id": "f3ba96e1-4bc1-45e9-a116-f2f08cb2c51e",
+        "order": 1,
+        "description": "An introduction to probability theory",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "6c862778-bd0f-4ce4-8b78-9770e08b267b",
+        "subject_id": "f3ba96e1-4bc1-45e9-a116-f2f08cb2c51e",
+        "order": 2,
+        "description": "Elements of combinatorics. Events and the probability of random events. Probability space. Definitions and properties of probability. The classical definition of probability. Conditional probability and independence of of events. Probability of total and Bayes theorem.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "6b75915f-a53c-4f11-95ef-c9322220eedd",
+        "subject_id": "f3ba96e1-4bc1-45e9-a116-f2f08cb2c51e",
+        "order": 3,
+        "description": "One-dimensional random variables and their distributions. The distribution of a random variable. Discrete random variables (displacements). Distributions of discrete random variable. Examples of discrete distributions: zero-one distribution, binomial distribution (Bernoulli), the Poisson distribution., A continuous random variables. Examples of continuous distributions: uniform distribution, normal distribution, exponential distribution. Functions of random variables. Numerical characteristics of random variables. Moments (expected value, variance).",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "e965e870-ccc5-4b6e-b41b-5764fb64ebee",
+        "subject_id": "f3ba96e1-4bc1-45e9-a116-f2f08cb2c51e",
+        "order": 4,
+        "description": "Basic issues of descriptive statistics. Population, an attempt. Types of statistical characteristics and their measurement scales. The distribution and characteristics of the population in the sample. Statistical series. The number of ordinary and cumulative. Graphical representation of data: histograms, line charts, pie, etc. The statistical parameters: measures of location, variability, asymmetry, concentration.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "485870b2-ad6c-41fb-a0f5-e23f8f286c6b",
+        "subject_id": "f3ba96e1-4bc1-45e9-a116-f2f08cb2c51e",
+        "order": 5,
+        "description": "Definition and basic properties of the estimators. Point estimation and the estimation of confidence intervals. Confidence intervals. Issues minimum size of the sample",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "4aa2edba-abf6-4985-95e5-6dc7ec96468e",
+        "subject_id": "f3ba96e1-4bc1-45e9-a116-f2f08cb2c51e",
+        "order": 6,
+        "description": "Verification of statistical hypotheses (parametric and nonparametric tests of significance tests of significance)",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "eff74b15-e780-4d59-b485-90bf70dcf688",
+        "subject_id": "f3ba96e1-4bc1-45e9-a116-f2f08cb2c51e",
+        "order": 7,
+        "description": "Methods of correlation and regression analysis (analysis of selected aspects of the interdependence of mass)",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "ed6e5e72-2bb0-4bb1-b1e1-2c142a0c57d1",
+        "subject_id": "f3ba96e1-4bc1-45e9-a116-f2f08cb2c51e",
+        "order": 8,
+        "description": "Methods of analysis of the dynamics of mass phenomena (Types of time series, methods of testing a series of changes the dynamic extraction method development trend (trend), fluctuations.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "f2f558a4-fcde-4728-a4a2-737295de2290",
+        "subject_id": "f3ba96e1-4bc1-45e9-a116-f2f08cb2c51e",
+        "order": 9,
+        "description": "ARIMA and SARIMA model - estimation and verification of models, forecasts in ARIMA models",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "fd08d10e-0470-4055-b490-e2fc24cbaebc",
+        "subject_id": "f3ba96e1-4bc1-45e9-a116-f2f08cb2c51e",
+        "order": 10,
+        "description": "The use of artificial intelligence in time series forecasting.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "b0f0a4d7-c59e-4421-9410-619e06a18c00",
+        "subject_id": "78744625-c290-4253-b502-c55236e9bd8a",
+        "order": 1,
+        "description": "Acquainting with the rules of participation in classes and the conditions for obtaining a pass. Discussion of the principles of safe use of sports facilities and equipment and safety rules in force during the course.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "9ae15e7f-d5c2-490f-ace4-804628f05541",
+        "subject_id": "78744625-c290-4253-b502-c55236e9bd8a",
+        "order": 2,
+        "description": "Implementation of various sets of warm-up exercises and exercises focused on developing the student's basic motor skills.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "1ff47013-78f0-4293-9db7-033843e7ae62",
+        "subject_id": "78744625-c290-4253-b502-c55236e9bd8a",
+        "order": 3,
+        "description": "Shaping general physical fitness, motor coordination, endurance, flexibility, speed through individual selection of sports activities (eg: football, volleyball, basketball, table tennis) or recreational physical activity (eg: badminton, gym exercises).",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "2261122c-ec31-4251-b92f-c3bc010a21bf",
+        "subject_id": "78744625-c290-4253-b502-c55236e9bd8a",
+        "order": 4,
+        "description": "Physical fitness test: Multistage 20 m Shuttle Run (Beep test).",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "16bddb23-c72b-45f1-bec8-0ef638efcee2",
+        "subject_id": "78744625-c290-4253-b502-c55236e9bd8a",
+        "order": 1,
+        "description": "Acquainting with the rules of participation in classes and credit conditions. Discussion of swimming pool conditions and safety rules applicable during exercise in the aquatic environment.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "321f4fd0-a586-4101-ae93-c58d613798da",
+        "subject_id": "78744625-c290-4253-b502-c55236e9bd8a",
+        "order": 2,
+        "description": "Initial adaptation to the aquatic environment: - face dipping, eye opening and orientation under the surface of the water, - mastery of breathing in the aquatic environment, familiarization with the buoyancy of water, - control of lying on the breast and back, - plays and games in water. Warm-up exercises, preparing for exercises in water. Learning how to behave in water in difficult and unusual situations: choking, shrinkage, sinking, etc.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "2757b532-15d9-492a-aff6-ae5da86429e4",
+        "subject_id": "78744625-c290-4253-b502-c55236e9bd8a",
+        "order": 3,
+        "description": "Learning backstroke style: lying on the back, slipping, correct leg work with a board on the hips and without a board, proper work of the arms. Improvement of proper coordination of lower and upper limbs. Learning free style: slipping on the chest, proper leg work combined with breathing, exercise with a board and without a board. Learning the proper work of the arms (swimming with a proper body with a proper breath and exhalation). Learning how to coordinate the work of lower and upper limbs with the determination of proper breathing. Learning breaststroke style: proper work of legs with a board and without boards on the chest and on the back, correct work of arms in a classic style. Coordination of lower and upper limbs and breathing in a classic style. Learning to jump on the legs and on the head.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "d349b11d-20bc-40ac-b424-88278e45ca38",
+        "subject_id": "78744625-c290-4253-b502-c55236e9bd8a",
+        "order": 4,
+        "description": "Fitness test: a 25-meter swimming trial chosen by the student.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "a9100262-738f-4c3e-9470-ccb2fcd95a9b",
+        "subject_id": "3dfb0cb7-85c4-4e7e-b73e-ed0975030499",
+        "order": 1,
+        "description": "Combinatorial systems. Karnaugh method. Sample exercises. Programming in C, ST and LD (IEC 61131-3). Engineering environment TwinCAT Beckhoff. Incorrect measurements. PLC/PAC controller. Logic control instruments I.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "7e715054-4c97-4d9b-9e8a-3c2772950583",
+        "subject_id": "3dfb0cb7-85c4-4e7e-b73e-ed0975030499",
+        "order": 2,
+        "description": "Sequential systems. Moore automaton. Sample exercises. Implementations of automata – C, ST, LD. Control with plant simulation and visualization. logic control instruments II.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "e7dd9b2a-dc8b-49b2-b85a-b98677653060",
+        "subject_id": "3dfb0cb7-85c4-4e7e-b73e-ed0975030499",
+        "order": 3,
+        "description": "Time systems. Cycle counter. Timers. Automata for realization of time diagrams. Practical time systems in LD. On-line parameterization.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "e97ef616-dacf-4a7a-8348-28fad753a509",
+        "subject_id": "3dfb0cb7-85c4-4e7e-b73e-ed0975030499",
+        "order": 4,
+        "description": "Sequential-time systems. Examples of problems with time conditions. Applications of IEC 61131-3 standard function blocks, Multi-automata problems.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "9b1d2ee5-faa9-418c-a5f1-45878a297dce",
+        "subject_id": "3dfb0cb7-85c4-4e7e-b73e-ed0975030499",
+        "order": 5,
+        "description": "Models of plants for continuous regulation. Balance equations. Transfer function. Step response. Matlab/Simulink environment. Simulation of nonlinear systems. Small perturbation Delay.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "ebfbf0ab-5869-4272-a4aa-140c9bba453f",
+        "subject_id": "3dfb0cb7-85c4-4e7e-b73e-ed0975030499",
+        "order": 6,
+        "description": "Dynamics of 1st and 2nd order systems. Block diagrams. Practical continuous regulation systems. Laplace transform elements. Control plots in 2nd order systems. Continuous regulation instruments I.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "1d68d4e9-e598-479e-9ddc-59243ae0cdbc",
+        "subject_id": "3dfb0cb7-85c4-4e7e-b73e-ed0975030499",
+        "order": 7,
+        "description": "Control plant identification. Step responses of static, astatic and non-minimum phase plants. 1st and 2nd order approximations. Continuous regulation instruments II.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "e136db56-bba3-4646-9ba8-fd02eb5197c6",
+        "subject_id": "3dfb0cb7-85c4-4e7e-b73e-ed0975030499",
+        "order": 8,
+        "description": "PID controllers. Safe settings of PID controllers. Settings for typical transfer functions without or with delay. Tuning tables. Automatic tuning using step response method. Control instruments.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "bb26ec0b-710e-4c97-9d67-c4c584164599",
+        "subject_id": "3dfb0cb7-85c4-4e7e-b73e-ed0975030499",
+        "order": 9,
+        "description": "Evans root locus. Idea of the method. Selected properties of root locus. Choosing the gain. Servomechanisms. Control of astatic, oscillatory and unstable plants.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "affd7eeb-6f12-4c1a-9cfa-e26623d0ddf8",
+        "subject_id": "3dfb0cb7-85c4-4e7e-b73e-ed0975030499",
+        "order": 10,
+        "description": "Frequency method. Frequency characteristics. Phase and gain margins. Nyquist theorem. Choosing the gain. Ziegler-Nichols tunings. Automatic tuning using relay oscillations. PLC/PAC controllers vs. DCS systems.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "a765c8bb-266b-429a-9394-2a0a31889fdf",
+        "subject_id": "e5d1d507-0ae3-4846-8b36-647ef2f7d4b3",
+        "order": 1,
+        "description": "Characteristic of measurements techniques in electrical systems",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "32fcce34-af2c-47e5-a570-bad6027f065e",
+        "subject_id": "e5d1d507-0ae3-4846-8b36-647ef2f7d4b3",
+        "order": 2,
+        "description": "Rectifying diode and its applications",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "93ac6f70-40c9-4db4-901a-d28f7684b646",
+        "subject_id": "e5d1d507-0ae3-4846-8b36-647ef2f7d4b3",
+        "order": 3,
+        "description": "Zener diode and its applications, other types of diodes",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "3077193b-e7c2-470d-8117-02deda02a38e",
+        "subject_id": "e5d1d507-0ae3-4846-8b36-647ef2f7d4b3",
+        "order": 4,
+        "description": "Bipolar transistor - operation, properties, applications",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "25ed4126-9e74-41c5-bdc2-1883ea1c8e45",
+        "subject_id": "e5d1d507-0ae3-4846-8b36-647ef2f7d4b3",
+        "order": 5,
+        "description": "Unipolar transistors - operation, properties, applications",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "7e1f25c8-e01d-4fb0-8c3e-92dae241d796",
+        "subject_id": "e5d1d507-0ae3-4846-8b36-647ef2f7d4b3",
+        "order": 6,
+        "description": "Transistors - large and small-signal models",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "9d2f6f41-3c93-4541-81bb-4dc8d345db5a",
+        "subject_id": "e5d1d507-0ae3-4846-8b36-647ef2f7d4b3",
+        "order": 7,
+        "description": "Bias circuits of transistors",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "95c1fbb9-d943-4894-826d-7d2322527ba9",
+        "subject_id": "e5d1d507-0ae3-4846-8b36-647ef2f7d4b3",
+        "order": 8,
+        "description": "Small signal amplifiers in medium frequency range",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "4c50d1d3-54d3-427c-a878-d8fd70087d5b",
+        "subject_id": "e5d1d507-0ae3-4846-8b36-647ef2f7d4b3",
+        "order": 9,
+        "description": "Small signal amplifiers in small and large frequency range, differential amplifier",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "f88a121d-824c-447b-a1af-41c38bd23b8b",
+        "subject_id": "e5d1d507-0ae3-4846-8b36-647ef2f7d4b3",
+        "order": 10,
+        "description": "Operational amplifier, active filters",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "f545e85c-2540-429a-8e70-b4558803636f",
+        "subject_id": "e5d1d507-0ae3-4846-8b36-647ef2f7d4b3",
+        "order": 11,
+        "description": "Optoelectronic devices, thyristor, triac, power pulse circuits",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "d3193406-88cb-4bd1-9a3a-8137ef5225e8",
+        "subject_id": "e5d1d507-0ae3-4846-8b36-647ef2f7d4b3",
+        "order": 12,
+        "description": "Broadband and pulse amplifiers, selective amplifiers",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "08098d23-7d40-4ba6-8366-ad5167087c7d",
+        "subject_id": "e5d1d507-0ae3-4846-8b36-647ef2f7d4b3",
+        "order": 13,
+        "description": "Low frequency power amplifiers",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "027d30fb-7578-4070-812a-438352caaeb5",
+        "subject_id": "e5d1d507-0ae3-4846-8b36-647ef2f7d4b3",
+        "order": 14,
+        "description": "Non-linear signal processing circuits",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "87822aa3-4c7e-4b8b-839b-b4662f251d1d",
+        "subject_id": "e5d1d507-0ae3-4846-8b36-647ef2f7d4b3",
+        "order": 15,
+        "description": "Stabilizers, transient proceses in diodes and transistors, A/C and C/A converters",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "a92a2205-5e78-4f26-b957-84f3a72b2a28",
+        "subject_id": "e5d1d507-0ae3-4846-8b36-647ef2f7d4b3",
+        "order": 16,
+        "description": "Panel and oral practise of knowledge shown in the lecture",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "61639da0-7ff3-42a8-b0c4-2cf028e3b184",
+        "subject_id": "e5d1d507-0ae3-4846-8b36-647ef2f7d4b3",
+        "order": 17,
+        "description": "1) Introduction, basic measurements of voltage, current, resistance and capacitance, 2) Applications of diodes, 3) Transistor in common emitter circuit, 4) Operational amplifier in linear circuits, 5) Operational amplifier as active filters.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "c96e6696-f5b5-4f73-a0f4-eda94d6e691f",
+        "subject_id": "29533e0d-aba8-4cb6-a781-9c4f1f4d946d",
+        "order": 1,
+        "description": "Power semiconductor devices (IGBT, MOSFET, SCR thyristors, GTO IGCTCT, devices made of silicon carbide SC) and the basic systems of their direct control. Intelligent power modules (IPM).",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "406cf830-5e70-4ebe-ad1a-78ce777423ff",
+        "subject_id": "29533e0d-aba8-4cb6-a781-9c4f1f4d946d",
+        "order": 2,
+        "description": "The overall structure of the control system used in eneregoelektronice and electric propulsion.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "85a2cbef-1c70-4477-8ef0-f1612d204ed7",
+        "subject_id": "29533e0d-aba8-4cb6-a781-9c4f1f4d946d",
+        "order": 3,
+        "description": "Pulse Systems DC / DC Boost, Buck, Boost, Buck. Static Switches DC. The system halfbridge DC / DC.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "557616a1-f64d-40ae-9ab1-4293f57561f9",
+        "subject_id": "29533e0d-aba8-4cb6-a781-9c4f1f4d946d",
+        "order": 4,
+        "description": "Controllers and switching AC power for the load RL. Static switches for switching the capacitors in AC circuits.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "bc339933-b671-40f7-9470-49d3341a1bc8",
+        "subject_id": "29533e0d-aba8-4cb6-a781-9c4f1f4d946d",
+        "order": 5,
+        "description": "Transistor current and voltage inverters. Kształtownie voltage inverter output voltage. Modulation of three-phase PWM inverters - scalar and vector. Work Rectifier voltage inverter.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "5976369e-933f-42fa-a3ec-0b15c9ddae61",
+        "subject_id": "29533e0d-aba8-4cb6-a781-9c4f1f4d946d",
+        "order": 6,
+        "description": "One and three-phase thyristor converter (rectifier and inverter operation, switching, effects on the supply line, external characteristics, restrictions on the inverter operation, security).",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "e887f923-c714-4bf1-b7c3-b8bdc61c2b3c",
+        "subject_id": "29533e0d-aba8-4cb6-a781-9c4f1f4d946d",
+        "order": 7,
+        "description": "Controls analog and digital logic (microprocessors and FPGAs) were tested in power. Example controller for three-phase thyristor converter.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "68775188-180d-4e05-b6ee-bf5f6751a142",
+        "subject_id": "29533e0d-aba8-4cb6-a781-9c4f1f4d946d",
+        "order": 8,
+        "description": "Uses power electronics systems to process control transmission and processing power (electric drive, elektrotermia, electric lighting, maintenance of renewable energy sources).",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "b05744c6-8245-41c0-b456-a62c8fe17cfc",
+        "subject_id": "29533e0d-aba8-4cb6-a781-9c4f1f4d946d",
+        "order": 9,
+        "description": "Examples of applications of power electronics systems in industrial automation (automation systems, actuators and positioners, power supplies)",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "92fdc78b-6720-4ccd-a7ed-d79342b4ffce",
+        "subject_id": "6dee5825-e531-4aa7-91ee-2dbbcc2aa820",
+        "order": 1,
+        "description": "DC circuits",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "e0a45ceb-7163-45da-acb3-6e86cb3d791c",
+        "subject_id": "6dee5825-e531-4aa7-91ee-2dbbcc2aa820",
+        "order": 2,
+        "description": "AC circuits",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "49b1daad-8013-43fa-a328-2ce3d2ff7c93",
+        "subject_id": "6dee5825-e531-4aa7-91ee-2dbbcc2aa820",
+        "order": 3,
+        "description": "Power in electrical circuits",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "1948d4db-eceb-458a-8222-5c9117bf940a",
+        "subject_id": "6dee5825-e531-4aa7-91ee-2dbbcc2aa820",
+        "order": 4,
+        "description": "Construction and principle of operation of chosen electrical machines",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "2dad1ed3-d0ed-4f16-9db4-1ee02e9431fe",
+        "subject_id": "6dee5825-e531-4aa7-91ee-2dbbcc2aa820",
+        "order": 5,
+        "description": "Introduction to electrical drives",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "4e57805d-880d-4108-8e3d-50a6e036a289",
+        "subject_id": "6725d2dc-e325-4525-b467-9e137bccc8dd",
+        "order": 1,
+        "description": "Introduction to robotics, robots applications",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "6360c4cd-30bd-48cd-9a48-09404224038f",
+        "subject_id": "6725d2dc-e325-4525-b467-9e137bccc8dd",
+        "order": 2,
+        "description": "Coordinate frames, position and orientation of the object, homogeneous notation, composition of spatial transformations, introduction to symbolic computations",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "66dc9581-261d-4bdb-af12-b21e48825fa3",
+        "subject_id": "6725d2dc-e325-4525-b467-9e137bccc8dd",
+        "order": 3,
+        "description": "Workspace, direct kinematics, Denavit-Hantenberga convention, representation of orientation- Euler and RPY angles, application of symbolic computation to solve the direct kinematics problem, examples of direct kinematics models",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "01de5568-994a-480e-bfd4-e17ba3e30ba7",
+        "subject_id": "6725d2dc-e325-4525-b467-9e137bccc8dd",
+        "order": 4,
+        "description": "Inverse kinematics problem, jacobian, singularities, analytical solution of inverse kinematics, numerical solutions of inverse kinematics, differentaial kinematics",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "07e5c3a4-7d43-4746-95a5-d547adb6d2cf",
+        "subject_id": "6725d2dc-e325-4525-b467-9e137bccc8dd",
+        "order": 5,
+        "description": "manipulator dynamics, Lagrange formulation, kinetic energy, potential energy, external forces and torques, energy dissipation. Examples of robots dynamic models",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "4df77ef4-9cf6-4e0b-a7ea-83c4cd55f4ac",
+        "subject_id": "6725d2dc-e325-4525-b467-9e137bccc8dd",
+        "order": 6,
+        "description": "Newton-Euler formalism, foces and torques transfomations, recursive equation of dynamic, optimization of calculations, the ABA algorithm",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "3f3b1ff2-d993-48b5-a359-a1a8d7c8edce",
+        "subject_id": "6725d2dc-e325-4525-b467-9e137bccc8dd",
+        "order": 7,
+        "description": "Motion trajectories in joint space coordinations, motion phases, the start-stop tasks, path profiles, polynomial representation of motion path",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "f3ed14af-de3a-4398-9f05-f9159e32360e",
+        "subject_id": "6725d2dc-e325-4525-b467-9e137bccc8dd",
+        "order": 8,
+        "description": "Motion trajectories in Cartesian space: a) polynomial representation of the curve in space, Frenet trihedron b) spline representation of trajectories, a lines and arcs representation of trajectories, time parameterization of trajectory",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "f74b377c-1597-4bfa-b507-e8ea47eba022",
+        "subject_id": "6725d2dc-e325-4525-b467-9e137bccc8dd",
+        "order": 9,
+        "description": "Tasks programming, motion control languages, types of commands, examples",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "d1de122d-bc08-4c6e-b9b1-e813a5660922",
+        "subject_id": "6725d2dc-e325-4525-b467-9e137bccc8dd",
+        "order": 10,
+        "description": "The control systems of robots: a) servo controller with position and velocity feedback, linear controller and model reference controller b) positioning and tracking problems, reference trajectory generator",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "0e6cca49-255e-4c6e-ba7c-f13cf54a1e54",
+        "subject_id": "6725d2dc-e325-4525-b467-9e137bccc8dd",
+        "order": 11,
+        "description": "Robots actuators and sensors, mechanical gears, pneumatic and hydraulic actuators, electric motors, direct drive, power amplifiers, motion sensors, force and torque sensors, imit switches",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "bfd146e3-1d1e-4784-bb76-2dc67b0806ad",
+        "subject_id": "6725d2dc-e325-4525-b467-9e137bccc8dd",
+        "order": 12,
+        "description": "Motion controllers: architecture, functional blocks, principle of operation, communications interfaces, overview of solutions",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "8b7bed20-2e17-4986-beec-5e4552cec718",
+        "subject_id": "6725d2dc-e325-4525-b467-9e137bccc8dd",
+        "order": 13,
+        "description": "Overview of the current applications of robots",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "d1092a8a-fcfe-4851-9a47-984b2608bd0e",
+        "subject_id": "012c2926-2e2f-4ac3-b019-78db10271012",
+        "order": 1,
+        "description": "Bases of the programming in the C language",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "423952a3-0461-42f6-b725-85700910722e",
+        "subject_id": "012c2926-2e2f-4ac3-b019-78db10271012",
+        "order": 2,
+        "description": "The designing of logic control – realizations of combinatory systems",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "56581399-a6d8-423d-b332-c586bf0d7827",
+        "subject_id": "012c2926-2e2f-4ac3-b019-78db10271012",
+        "order": 3,
+        "description": "The designing of logic control – realizations of sequence systems. The organization of the software of controllers and regulators: the main loop.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "c7d4980a-1f99-418b-81ba-4fe296985669",
+        "subject_id": "012c2926-2e2f-4ac3-b019-78db10271012",
+        "order": 4,
+        "description": "Implementation of microprocessor sequential-time systems. Operation of the operator panel, safe communication with the master computer. Programming PLC controllers with regard to cybersecurity.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "5ec5b874-f9d8-47c3-b8ec-8a4c932604c7",
+        "subject_id": "70597255-87d6-40c2-b05a-92f689229c81",
+        "order": 1,
+        "description": "Equation of motion, electric machines selection to drives",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "5df0b043-0f94-469e-84c3-d19eb1114abb",
+        "subject_id": "70597255-87d6-40c2-b05a-92f689229c81",
+        "order": 2,
+        "description": "Speed regulation methods in drives with electric machines: DC motor, asynchronous motor, motor with electric commutation and stepper motor",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "163ce184-6ae8-4da5-b4da-f1293c0516f1",
+        "subject_id": "70597255-87d6-40c2-b05a-92f689229c81",
+        "order": 3,
+        "description": "Systems of automatic speed and position regulation",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "58029c38-1bc4-4808-be8d-2303bfdc9451",
+        "subject_id": "70597255-87d6-40c2-b05a-92f689229c81",
+        "order": 4,
+        "description": "Application examples of electric drive systems in electric and automobile vehicles",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "9c519907-c752-444a-8e0c-30e70f13f0f5",
+        "subject_id": "7c2cb60e-8a5e-4da6-9689-44391786b37a",
+        "order": 1,
+        "description": "Formulation of optimization tasks",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "d8bc00b8-6823-4cef-a8a3-06aa35dd3d76",
+        "subject_id": "7c2cb60e-8a5e-4da6-9689-44391786b37a",
+        "order": 2,
+        "description": "Linear programming: problem formulation, graphical interpretation of the solution, sketch of the simplex method, using MATLAB and Excel",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "2a0fd0b2-dcec-4f34-802c-aeb08403c423",
+        "subject_id": "7c2cb60e-8a5e-4da6-9689-44391786b37a",
+        "order": 3,
+        "description": "Typical examples of linear programming: manufacturing applications, assignment problem, transportation problem, optimization on networks - maximum flow, least expensive flow, shortest path problem",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "b0b1318e-b5b1-44cd-9019-5251ab2635e8",
+        "subject_id": "7c2cb60e-8a5e-4da6-9689-44391786b37a",
+        "order": 4,
+        "description": "Integer programming: formulation, branch-and-bound method, using MATLAB and Excel, typical examples: knapsack problem, combinatorial auction, task scheduling under constrained resources",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "dd3a39cd-d306-4291-9341-aa7fe7e294c1",
+        "subject_id": "7c2cb60e-8a5e-4da6-9689-44391786b37a",
+        "order": 5,
+        "description": "Nonlinear programming: problem formulation, sketch of most important computational methods, using MATLAB and Excel for unconstrained and constrained problems",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "3981c768-c9c2-4680-8112-0d25fc7a1d69",
+        "subject_id": "7c2cb60e-8a5e-4da6-9689-44391786b37a",
+        "order": 6,
+        "description": "Global optimization and computational complexity, genetic algorithm, particle swarm optimization: basic operations, using MATLAB and Excel, typical examples",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "43a0df79-54b4-4926-abcc-dc29cab928df",
+        "subject_id": "7c2cb60e-8a5e-4da6-9689-44391786b37a",
+        "order": 7,
+        "description": "Introduction to multiobjective optimization: problem formulatiom, Pareto optimality, scalarization methods, an example - multicriteria shortest path problem",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "42b3b026-5fb1-4530-a140-1be2b6cadb15",
+        "subject_id": "28be2e1b-58bd-4781-8928-05099bf6aaf0",
+        "order": 1,
+        "description": "Architecture of DCS distributed automation systems. Process, operator and engineering stations. Architecture of ABB Freelance system. Control Builder F engineering environment. Hardware structure – AC800F controller. Simple FBD diagram. Assignment of variables to I/O channels. Running (commissioning). Emulator.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "124cefd4-d379-4339-aff5-a0cce08d6445",
+        "subject_id": "28be2e1b-58bd-4781-8928-05099bf6aaf0",
+        "order": 2,
+        "description": "Visualization basics. Defining operator station. Defining display. Graphics editor. Static elements – Toolbox. Color animation. Buttons. Runtime realization – DigiVis.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "c689a822-78db-4bfd-91b7-a8daac8943cd",
+        "subject_id": "28be2e1b-58bd-4781-8928-05099bf6aaf0",
+        "order": 3,
+        "description": "Programming in ST, FBD and SFC languages. Sequential automaton. Access to global variables in multitasking system. Function block in ST. FBD diagram. Library blocks. Creating SFC diagram. Programs for steps and transitions. Commisioning.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "94c1fdf1-3bde-454c-942e-c392dc3df425",
+        "subject_id": "28be2e1b-58bd-4781-8928-05099bf6aaf0",
+        "order": 4,
+        "description": "Advanced realizations of logic control. Signaling alarms in building. Alarms and warnings. Control of sorting process. Discrete and continuous movement. Visibility. Realization of sequences. Assembling batch of elements.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "a2840858-80ba-4891-a463-c6ba68398772",
+        "subject_id": "28be2e1b-58bd-4781-8928-05099bf6aaf0",
+        "order": 5,
+        "description": "Operating windows and system displays. Operating window – faceplate. On-line parameterization. Library animation elements. Trend display. Overview and group displays. Navigation.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "5cab42cd-9d95-43ea-89bc-c56ad6b22985",
+        "subject_id": "28be2e1b-58bd-4781-8928-05099bf6aaf0",
+        "order": 6,
+        "description": "PID control loop in Freelance system. Advanced PID algorithm. Simulation of multi-inertia plant. Approximation by low-order model with delay – DigiBrowse. Selection of settings, Examination of PID loop operation.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "65fa2247-371d-49f7-9834-1819e388b048",
+        "subject_id": "28be2e1b-58bd-4781-8928-05099bf6aaf0",
+        "order": 7,
+        "description": "Distributed control-and-measurement system with Modbus RTU communication. System with Lumel SMC Controller. CPDev engineering environment. Off-line simulation. Communication with distributed I/O modules – Modbus RTU. On-line testing. Simplest visualization – InTouch (SCADA). Running SMC – Modbus RTU – InTouch system",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "d930c753-1559-4e9a-8117-42f437daad66",
+        "subject_id": "28be2e1b-58bd-4781-8928-05099bf6aaf0",
+        "order": 8,
+        "description": "System with Modbus TCP communication. Level control simulation. Advanced visualization in InTouch (wizards). Application variables. Scripts. Modbus TCP communication (MBENET). PC as a controller – softcontroller CPCtrl (CPDev). Running CPCtrl – Modbus TCP – InTouch system.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "c258344d-bf3d-499f-979b-5d14a40755ea",
+        "subject_id": "28be2e1b-58bd-4781-8928-05099bf6aaf0",
+        "order": 9,
+        "description": "PID control loop in CPCtrl – Modbus TCP – InTouch system. Plant simulation. Step response – PID settings. PID algorithm in ST (CPDev). Operating window – InTouch. Parameters at controller side and InTouch side. Commisioning the system – examination of the loop.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "5972556c-490a-4642-ba3e-fff5f5879542",
+        "subject_id": "28be2e1b-58bd-4781-8928-05099bf6aaf0",
+        "order": 10,
+        "description": "OPC and Profibus communication standards. Characteristic of OPC standard. OPC in CPCtrl environment (CPDev) – client and server. Configuration of Profibus DP communication in the Freelance system. Distributed measurement system with wireless ZigBee communication.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "0901e94f-5a9f-429e-aa13-bc416a3a460c",
+        "subject_id": "4d4b9302-60d8-4027-91e1-f71deea92322",
+        "order": 1,
+        "description": "General-purpose computer networks - characteristics, methods of media access used in general-purpose computer networks.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "13a71012-4219-4645-8931-d1c2d86bea84",
+        "subject_id": "4d4b9302-60d8-4027-91e1-f71deea92322",
+        "order": 2,
+        "description": "DCS, SCADA systems. Distributed and centralized control. Process station, operator station, engineering station,",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "b1fd9ce0-370f-49a0-a149-4402a4c52b5c",
+        "subject_id": "4d4b9302-60d8-4027-91e1-f71deea92322",
+        "order": 3,
+        "description": "Industrial networks (classification, characteristics, basic information, protocols, the differences between a standard computer network and fieldbuses, network models, simplified model of industrial network),",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "49d5cd3d-6512-4d80-81b6-088cb9e8a8ec",
+        "subject_id": "4d4b9302-60d8-4027-91e1-f71deea92322",
+        "order": 4,
+        "description": "Transmission medium access control. Data exchange methods in industrial networks: cyclic, aperiodic, time parameters.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "43bfb55e-7d88-413c-a93f-febb8fb127bc",
+        "subject_id": "4d4b9302-60d8-4027-91e1-f71deea92322",
+        "order": 5,
+        "description": "Real-time networks. Examples of industrial networks. Time determinism.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "b0cb5d67-f82b-4615-9e1e-595166b14800",
+        "subject_id": "4d4b9302-60d8-4027-91e1-f71deea92322",
+        "order": 6,
+        "description": "Industrial Ethernet. Process stations Ethernet communication.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "692ce6f0-c6fe-4e87-808b-d461cca083a5",
+        "subject_id": "4d4b9302-60d8-4027-91e1-f71deea92322",
+        "order": 7,
+        "description": "Examples of industrial networks. Industrial network communication protocols - Modbus, Profibus, Interbus, CAN, LIN, FIP, a review of other solutions.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "ace5fbdc-39b9-4211-b5ea-7cd2de15ee8c",
+        "subject_id": "4d4b9302-60d8-4027-91e1-f71deea92322",
+        "order": 8,
+        "description": "Modbus TCP.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "21940f03-988d-453a-a698-69559e0e9875",
+        "subject_id": "4d4b9302-60d8-4027-91e1-f71deea92322",
+        "order": 9,
+        "description": "Protocols conversion. Special purpose industrial networks. Communication in wide area distributed industrial systems, examples of solutions.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "03150097-bef5-441b-9d06-89cf33e4aa03",
+        "subject_id": "4d4b9302-60d8-4027-91e1-f71deea92322",
+        "order": 10,
+        "description": "Wireless communication in industrial networks, radiomodems.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "eb30a5e0-3461-452f-9c65-75cda0f36d08",
+        "subject_id": "4d4b9302-60d8-4027-91e1-f71deea92322",
+        "order": 11,
+        "description": "Diagnosis process and operation of an industrial network. Safety and security aspects.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "0e9f47a5-a7ea-4682-8e3d-4ff498e81ceb",
+        "subject_id": "f94c0b73-19d3-4e57-860e-2174e663f907",
+        "order": 1,
+        "description": "Description of control systems in state space",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "b9c80b2d-7d27-4796-b302-c40492e08214",
+        "subject_id": "f94c0b73-19d3-4e57-860e-2174e663f907",
+        "order": 2,
+        "description": "The relationships between state space description and transfer function description of control systems",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "f62655cc-7298-4aa7-a7b9-a267d94ed112",
+        "subject_id": "f94c0b73-19d3-4e57-860e-2174e663f907",
+        "order": 3,
+        "description": "Solving state equations of linear systems",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "ab2d779a-d3f8-421a-b613-8c10cb893bef",
+        "subject_id": "f94c0b73-19d3-4e57-860e-2174e663f907",
+        "order": 4,
+        "description": "Stability of dynamic systems",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "a99a4157-3f5b-44d6-ab15-d6d7d6df70c1",
+        "subject_id": "f94c0b73-19d3-4e57-860e-2174e663f907",
+        "order": 5,
+        "description": "Controllability and observability of dynamical systems",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "c6cb0277-8ac7-45ad-99ea-6f171ecea663",
+        "subject_id": "f94c0b73-19d3-4e57-860e-2174e663f907",
+        "order": 6,
+        "description": "Linear state controllers",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "cba9c27d-9b54-4614-8c3a-de717387cd8f",
+        "subject_id": "f94c0b73-19d3-4e57-860e-2174e663f907",
+        "order": 7,
+        "description": "Design of state controller using root locus",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "3aba98ed-80e5-473f-a0d0-9ac4cdc6508a",
+        "subject_id": "f94c0b73-19d3-4e57-860e-2174e663f907",
+        "order": 8,
+        "description": "Design of state controller using the linear-quadratic optimization",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "830fc490-a86d-46c2-9356-b491019390ec",
+        "subject_id": "f94c0b73-19d3-4e57-860e-2174e663f907",
+        "order": 9,
+        "description": "State estimation",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "b3418990-2729-43f3-b433-93304bd866da",
+        "subject_id": "f94c0b73-19d3-4e57-860e-2174e663f907",
+        "order": 10,
+        "description": "The full Luenberger observer",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "28ec9397-9efc-4cae-bbf2-45584dae7c54",
+        "subject_id": "f94c0b73-19d3-4e57-860e-2174e663f907",
+        "order": 11,
+        "description": "A reduced observer",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "178ccde9-b87e-4701-8851-3bd1b71a5b93",
+        "subject_id": "f94c0b73-19d3-4e57-860e-2174e663f907",
+        "order": 12,
+        "description": "Control system with a state controller and an observer",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "21cccf36-9f85-4f4a-bdcf-5001918eb713",
+        "subject_id": "f94c0b73-19d3-4e57-860e-2174e663f907",
+        "order": 13,
+        "description": "Kalman filter",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "9be310c6-ac07-4363-894e-150cfb150a77",
+        "subject_id": "6bfa0093-ade6-44fd-bf89-3701f8868d2f",
+        "order": 1,
+        "description": "Introduction, basic notions of discrete processes.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "1fb6c7a5-42ed-4257-8f00-78f61e75d0e8",
+        "subject_id": "6bfa0093-ade6-44fd-bf89-3701f8868d2f",
+        "order": 2,
+        "description": "Petri net - structure, operation, properties",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "1ac6a7b9-34e7-4a1d-8bcf-c0a3f98ddd3f",
+        "subject_id": "6bfa0093-ade6-44fd-bf89-3701f8868d2f",
+        "order": 3,
+        "description": "The method of Petri net synthesis",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "93129d97-3ed7-47ae-bcef-aac770d7bfbd",
+        "subject_id": "6bfa0093-ade6-44fd-bf89-3701f8868d2f",
+        "order": 4,
+        "description": "Examples of the discrete processes",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "c8cd9b86-4437-48ed-b449-a9b69e2a4e53",
+        "subject_id": "6bfa0093-ade6-44fd-bf89-3701f8868d2f",
+        "order": 5,
+        "description": "Sequential function chart SFC, Grafcet",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "0e48368c-78f7-4360-af68-ce0ea758ed76",
+        "subject_id": "6bfa0093-ade6-44fd-bf89-3701f8868d2f",
+        "order": 6,
+        "description": "Queuing theory",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "fb6e98d1-3f8c-46e7-818b-b7e99b181ece",
+        "subject_id": "6bfa0093-ade6-44fd-bf89-3701f8868d2f",
+        "order": 7,
+        "description": "Network scheduling, Critical Path Method, Program Ewaluation and Review Technique, Gantt charts.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "729716c0-57a5-44d9-8dbf-8169ecc6b77b",
+        "subject_id": "6bfa0093-ade6-44fd-bf89-3701f8868d2f",
+        "order": 8,
+        "description": "Softwares, which support of planning and management of production processes. The selected languages of discrete simulation.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "ea75c074-a306-44b1-88b0-72eb5b9163b7",
+        "subject_id": "6bfa0093-ade6-44fd-bf89-3701f8868d2f",
+        "order": 9,
+        "description": "scheduling problems of single machine job, flow-shop and job-shop",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "6497b848-fc8d-42ab-a95a-f7bae6987bf1",
+        "subject_id": "6bfa0093-ade6-44fd-bf89-3701f8868d2f",
+        "order": 10,
+        "description": "Optimization methods - graphs, combinatorial, discrete programming.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "2565ab41-2cc6-4133-a9c4-e2b2afc29abf",
+        "subject_id": "6bfa0093-ade6-44fd-bf89-3701f8868d2f",
+        "order": 11,
+        "description": "Exact optimization methods and approximate optimization methods",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "5c29338e-caa2-469f-b5d3-5570ce124685",
+        "subject_id": "c8683c1d-ac34-4f20-ba89-4ecca6564b52",
+        "order": 1,
+        "description": "Introduction to decision support systems",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "5abd2c56-fd0f-4497-8baf-9df10d1736bb",
+        "subject_id": "c8683c1d-ac34-4f20-ba89-4ecca6564b52",
+        "order": 2,
+        "description": "The nature of decision making",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "98f2f3d6-aa45-4377-bc1b-1b1cf65ced90",
+        "subject_id": "c8683c1d-ac34-4f20-ba89-4ecca6564b52",
+        "order": 3,
+        "description": "Data, information and knowledge",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "2be829a6-7c58-40aa-b987-3cbb1d1e23ed",
+        "subject_id": "c8683c1d-ac34-4f20-ba89-4ecca6564b52",
+        "order": 4,
+        "description": "The fundamentals of database technology",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "9c93cc1b-091e-4910-8c82-739a9db11ce9",
+        "subject_id": "c8683c1d-ac34-4f20-ba89-4ecca6564b52",
+        "order": 5,
+        "description": "Relational database aplication systems development",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "5a99e1db-5d6f-4cfe-be41-6304a84a2462",
+        "subject_id": "c8683c1d-ac34-4f20-ba89-4ecca6564b52",
+        "order": 6,
+        "description": "Introduction to SQL",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "f513e443-981c-45c7-894c-75de2c7ac361",
+        "subject_id": "c8683c1d-ac34-4f20-ba89-4ecca6564b52",
+        "order": 7,
+        "description": "Midterm test",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "0410e162-1b4d-4434-80a8-c9c50b7b5935",
+        "subject_id": "c8683c1d-ac34-4f20-ba89-4ecca6564b52",
+        "order": 8,
+        "description": "Introduction to knowledge discovery from data",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "f521ecac-e3e1-4411-9ab0-36da0cb48e44",
+        "subject_id": "c8683c1d-ac34-4f20-ba89-4ecca6564b52",
+        "order": 9,
+        "description": "Data preprocessing methods",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "96cd30b9-fb79-4c07-b431-4a96d259efba",
+        "subject_id": "c8683c1d-ac34-4f20-ba89-4ecca6564b52",
+        "order": 10,
+        "description": "The concept and architecture of data warehouse",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "76040fef-8562-4617-9720-1721d3f66821",
+        "subject_id": "c8683c1d-ac34-4f20-ba89-4ecca6564b52",
+        "order": 11,
+        "description": "Multidimensional data model. OLAP operations",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "180d0a14-9a01-4ee1-81e7-1f8a6b6213cd",
+        "subject_id": "c8683c1d-ac34-4f20-ba89-4ecca6564b52",
+        "order": 12,
+        "description": "Frequent pattern discovery and association analysis",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "0a67e99a-8556-42c2-b029-16efa6388f94",
+        "subject_id": "c8683c1d-ac34-4f20-ba89-4ecca6564b52",
+        "order": 13,
+        "description": "Induction and evaluation of classification models",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "fcdc0632-c5af-4625-aaaf-51a7f0f6d49b",
+        "subject_id": "c8683c1d-ac34-4f20-ba89-4ecca6564b52",
+        "order": 14,
+        "description": "The concept of clusterization and selected clustering methods",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "9ab2fb87-0074-4652-ab2e-b63d902adbd6",
+        "subject_id": "c8683c1d-ac34-4f20-ba89-4ecca6564b52",
+        "order": 15,
+        "description": "User interface goals and components",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "e0b12b8e-d99e-4842-b19c-f05a468c0a6c",
+        "subject_id": "c8683c1d-ac34-4f20-ba89-4ecca6564b52",
+        "order": 16,
+        "description": "DSS planning and requirements analysis",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "5b106975-1b96-4b9b-a75e-b58f59890c68",
+        "subject_id": "c8683c1d-ac34-4f20-ba89-4ecca6564b52",
+        "order": 17,
+        "description": "DSS designing and reengineering",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "c078449f-2e4d-4f9f-bb2b-83e9d7bb9db4",
+        "subject_id": "c8683c1d-ac34-4f20-ba89-4ecca6564b52",
+        "order": 18,
+        "description": "Final test",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "8f6f38eb-7a01-4c72-b326-a945ecf9af6e",
+        "subject_id": "c8683c1d-ac34-4f20-ba89-4ecca6564b52",
+        "order": 19,
+        "description": "Completing assignments and projects concerning: (i) database application system development and (ii) knowledge discovery from data and business intelligence (BI). Deployment of existing database management systems (Oracle11g XE) as well as popular commercial (MS SQL Server Analysis Services) and non-commercial (Weka, Orange) packages for data warehouse building and management and analytical application development. Using available datasets for testing analytical functions.",
+        "estimated_minutes": 60
+    },
+    //WEiI - ACR - SPEC - Automation...
+    {
+        "id": "3ce32e6e-ccbf-4bfc-9657-87439f0aca0f",
+        "subject_id": "4344af37-5068-41bb-bcda-f959ceaa4961",
+        "order": 1,
+        "description": "Construction of numerically controlled machines: Characteristics of numerically controlled machines. Numerically controlled axes. Characteristic points of the machine. Structures and guides. Tool spindles and heads. Position and displacement measurement systems. Tool changers.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "2ac2ee8e-68f5-4c9a-af47-b7a274d64c8f",
+        "subject_id": "4344af37-5068-41bb-bcda-f959ceaa4961",
+        "order": 2,
+        "description": "Modular structure of numerically controlled machines: Control devices. Main drives. Feed motion drives. Auxiliary drives. Hydraulic systems. Mechanical assemblies. Diagnostic devices. Auxiliaries.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "335a28e1-5eae-4e54-855b-aef78f3c4739",
+        "subject_id": "4344af37-5068-41bb-bcda-f959ceaa4961",
+        "order": 3,
+        "description": "Numerical control of technological machines: Computer control systems (CNC) of technological machines. Basic concepts of numerical control. Coordinate systems and motor structures in numerically controlled machines. Analysis of the possibilities of CNC systems.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "f8e92c16-c4eb-4428-9c41-5bb3f785e960",
+        "subject_id": "4344af37-5068-41bb-bcda-f959ceaa4961",
+        "order": 4,
+        "description": "Analysis of the geometric accuracy of CNC machines and research possibilities in this area.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "5102beb1-faac-4514-b0db-ef6c91e31e0a",
+        "subject_id": "4344af37-5068-41bb-bcda-f959ceaa4961",
+        "order": 5,
+        "description": "Analysis of the stiffness of the CNC machine tool. Thermal loads on a CNC machine tool. Methods of deformation compensation. Sources of vibrations in a CNC machine tool.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "fe35d231-8f84-4903-9901-dd86e57f00a9",
+        "subject_id": "4344af37-5068-41bb-bcda-f959ceaa4961",
+        "order": 6,
+        "description": "Development trends in the construction and operation of CNC machines.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "fd0a2176-6647-477b-bf52-720d373ca4a5",
+        "subject_id": "4344af37-5068-41bb-bcda-f959ceaa4961",
+        "order": 7,
+        "description": "Setting up CNC lathes.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "ce5271d9-3b79-4576-94fe-2939781fe79e",
+        "subject_id": "4344af37-5068-41bb-bcda-f959ceaa4961",
+        "order": 8,
+        "description": "Setting up CNC milling machines.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "e3a31384-fd26-4240-8467-c4dc4dc11666",
+        "subject_id": "4344af37-5068-41bb-bcda-f959ceaa4961",
+        "order": 9,
+        "description": "Setting up CNC grinders.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "868f26b7-cff7-43e4-a797-54e289fee3d7",
+        "subject_id": "4344af37-5068-41bb-bcda-f959ceaa4961",
+        "order": 10,
+        "description": "Research on the accuracy of CNC machine tools with the use of diagnostic devices.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "f4de151e-32c5-4a7e-95f6-ba0223165fa2",
+        "subject_id": "4344af37-5068-41bb-bcda-f959ceaa4961",
+        "order": 11,
+        "description": "Research in the field of geometric accuracy of CNC machine tools with the use of sensor devices and control devices.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "ff865b4e-e5ef-4ab9-9216-8d32e959f4f1",
+        "subject_id": "4344af37-5068-41bb-bcda-f959ceaa4961",
+        "order": 12,
+        "description": "Research on the rigidity of selected machine tool assemblies.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "54649534-0784-4268-8e28-276b8c845274",
+        "subject_id": "4344af37-5068-41bb-bcda-f959ceaa4961",
+        "order": 13,
+        "description": "Interactive programming.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "210adb82-bbc6-4b4c-bcfa-8588a5c5c9a8",
+        "subject_id": "4344af37-5068-41bb-bcda-f959ceaa4961",
+        "order": 14,
+        "description": "Development and commissioning of control programs for CNC machine tools.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "bdabae71-32e5-47c7-8eb6-2bb55d66b651",
+        "subject_id": "4344af37-5068-41bb-bcda-f959ceaa4961",
+        "order": 15,
+        "description": "Development of a maintenance plan for a CNC machine tool.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "e3e3ca7a-b689-4b23-b806-000c9f878820",
+        "subject_id": "4344af37-5068-41bb-bcda-f959ceaa4961",
+        "order": 16,
+        "description": "Summary.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "480e4392-7f22-46e5-8cff-5f7165373dcb",
+        "subject_id": "c2d8a15a-e59d-4aff-915f-bbc61ac9a901",
+        "order": 1,
+        "description": "Introduction to the application of AI and CI methods in manufacturing systems and intralogistics",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "f7d1aad4-f148-45a9-b6b9-28ddd637e85b",
+        "subject_id": "c2d8a15a-e59d-4aff-915f-bbc61ac9a901",
+        "order": 2,
+        "description": "Architectures of information systems enabling the use of AI methods in industrial processes",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "3fc2a1eb-bb3b-423f-8a02-1c452585b54a",
+        "subject_id": "c2d8a15a-e59d-4aff-915f-bbc61ac9a901",
+        "order": 3,
+        "description": "The process of applying CI methods in production systems – introduction",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "4c1eda18-f57e-4aa3-8e92-6a33fea0d9ab",
+        "subject_id": "c2d8a15a-e59d-4aff-915f-bbc61ac9a901",
+        "order": 4,
+        "description": "Methods for assessing the quality of classification and machine discovery of knowledge.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "c6262eca-a92e-40d8-9543-dd80202d0e8b",
+        "subject_id": "c2d8a15a-e59d-4aff-915f-bbc61ac9a901",
+        "order": 5,
+        "description": "Machine discovery of cause-and-effect relationships or sequence patterns - a practical example.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "fec4b2e4-ad4f-4989-a6fc-7cbca27162e0",
+        "subject_id": "c2d8a15a-e59d-4aff-915f-bbc61ac9a901",
+        "order": 6,
+        "description": "One-class or multi-class classification methods - a practical example",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "435fd9bc-3955-49df-a3aa-c9ced8258504",
+        "subject_id": "c2d8a15a-e59d-4aff-915f-bbc61ac9a901",
+        "order": 7,
+        "description": "Predictive models",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "fb144665-a61d-45e1-9431-6f6902a6c02d",
+        "subject_id": "cae14b91-6b27-4b1a-bcf3-a3638d06ba48",
+        "order": 1,
+        "description": "Introduction to Manufacturing Engineering. Classification of methods of shaping machine parts. Characteristics and application of subtractive and nonsubtractive processing Basic concepts. Differences between cutting, abrasion and eroding. Kinematics of the subtractive manufacturing processes. Technological parameters of the processes. Surface quality and dimensional and shape accuracy in manufacturing processes. Physical foundations of the cutting process. Cutting zones and phenomena occurring in them. Cut layer cross-section.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "e2927a78-2720-46b5-8a1b-32938b6d0b3d",
+        "subject_id": "cae14b91-6b27-4b1a-bcf3-a3638d06ba48",
+        "order": 2,
+        "description": "Basic phenomena in the cutting process. Classification and characteristics of chips. Chip construction. Chip upset. Chip breaking. Construction of chipbreakers. Chip shapes. The phenomenon of crumpling of the surface layer in machining. Influence of process parameters on the phenomenon of crumple. The phenomenon of built-up. Influence of the built-up phenomenon on the machining process, workpiece and tool. Cutting force. Formulas for calculating the cutting force. Cutting force components. Work and cutting power. Determination of cutting power. Cutting heat. Temperature distribution in the cutting zone. Heat balance of the cutting process. Vibrations in the cutting process. Influence of the process parameters on the heat balance. Machinability of construction materials. Machinability indicators. Classification of materials in terms of machinability. The role of coolants in the cutting process. Ways to bring coolant to the cutting zone. Shaping the surface layer in the machining processes. The influence of the machining process on the properties of the surface layer.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "376a23d6-f58e-4143-a926-ab70175ae473",
+        "subject_id": "cae14b91-6b27-4b1a-bcf3-a3638d06ba48",
+        "order": 3,
+        "description": "Fundamentals of technological processes. The structure of the technological process. Tooling for machining. Designing technological processes for CNC machines. Blanks in subtractive processing. Basics of technical drawing. Principles of drawing up technical drawings. Symbolism and markings on technical drawings. Basics of creating technological documentation. Fundamentals of technical metrology. Tools and measuring instruments. The accuracy of the shape of objects. Surface topography after processing.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "2e0a2019-64a7-482c-8397-50adeba86d90",
+        "subject_id": "cae14b91-6b27-4b1a-bcf3-a3638d06ba48",
+        "order": 4,
+        "description": "Characteristics and classification of the turning process. Technological parameters of turning. Cut layer in turning. Construction and application of turning tools. Chip breaking process tests. Research on the swelling of chips. Surface roughness measurements after turning. Preparation of the test stand. Conducting research.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "35550904-d073-4178-b817-e5d00b37fba8",
+        "subject_id": "cae14b91-6b27-4b1a-bcf3-a3638d06ba48",
+        "order": 5,
+        "description": "Characteristics and classification of the milling process. Varieties of milling. Technological parameters of milling. Cut layer in milling. Construction and application of milling tools. Types of cutter blades. Measurements of surface roughness after milling. Preparation of the test stand. Conducting research.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "27a37698-c619-4f21-b3e5-50d68c224cf4",
+        "subject_id": "cae14b91-6b27-4b1a-bcf3-a3638d06ba48",
+        "order": 6,
+        "description": "Characteristics and classification of hole machining processes. Technological parameters of drilling, reaming and countersinking. Cut layer in drilling, reaming and countersinking. Construction and application of tools for machining holes. Measurement of the accuracy of holes after machining. Thread machining methods, thread machining tools. Preparation of the test stand. Conducting research.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "9eaaeaaf-7727-4eab-9ae3-5c60634f87ab",
+        "subject_id": "cae14b91-6b27-4b1a-bcf3-a3638d06ba48",
+        "order": 7,
+        "description": "Characteristics and classification of grinding processes. Technological parameters of grinding shafts, holes and planes. Construction and marking of grinding wheels. Preparation of grinding wheels for work. Characteristics of the grinding wheel dressing process. Measurements of the accuracy of objects after grinding and surface roughness. Machining of gears. Gear machining methods in soft and hard condition. Gear processing tools. Shaping and envelope machining. Preparation of the test stand. Conducting research.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "8fb44fc5-a4e8-4806-a8f1-320ce9576d9b",
+        "subject_id": "cae14b91-6b27-4b1a-bcf3-a3638d06ba48",
+        "order": 8,
+        "description": "Erosion machining: electrical discharge machining, laser machining, abrasive water jet machining. Characteristics and parameters of the processes.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "df342330-8828-4316-86ea-edc4d5d89c03",
+        "subject_id": "cae14b91-6b27-4b1a-bcf3-a3638d06ba48",
+        "order": 9,
+        "description": "Selection of tools and cutting parameters. The use of computer applications for the selection of tools and machining parameters. Selection of tools and cutting parameters for the machining processes of products with determined geometry and quality requirements.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "0e0bcd6c-5b03-4cdb-93ff-ea64ca25b6a0",
+        "subject_id": "cae14b91-6b27-4b1a-bcf3-a3638d06ba48",
+        "order": 10,
+        "description": "Fundamentals of technical metrology. Basic tools and measuring instruments. Measurement of dimensions and deviations of shape and position. Surface roughness measurement.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "0b7a6902-1b32-4069-b56c-4c541699a1c4",
+        "subject_id": "cae14b91-6b27-4b1a-bcf3-a3638d06ba48",
+        "order": 11,
+        "description": "Designing technological processes of typical machine parts. Selection of machining equipment. Selection of a blank. Technological documentation.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "30bf9add-5041-4256-b458-43dbbde80d5e",
+        "subject_id": "20a82486-15f8-4a8e-a00c-b06d7da9f3a8",
+        "order": 1,
+        "description": "Technical and engineering problems occurring at the place of the summer practice , and the basic principles of the organization and safety of work. Also, the basic rights and duties of the employee.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "81fa6b72-ce9c-4c17-87fe-ef714373b99e",
+        "subject_id": "5e0c9b53-f217-4b23-85aa-041b673ea954",
+        "order": 1,
+        "description": "Relational databases. Database examples. Relational database example. Database languages: DDL, DML, DCL, QL. Operations on relations: section, projection, join, union.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "6f4be431-d829-4479-8813-c2e0e2fa20ad",
+        "subject_id": "5e0c9b53-f217-4b23-85aa-041b673ea954",
+        "order": 2,
+        "description": "Principles of database design. Data modeling. Creating relational database scheme from entity relationship diagram.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "fb378a79-9091-4fa9-9916-6386d7fe83e0",
+        "subject_id": "5e0c9b53-f217-4b23-85aa-041b673ea954",
+        "order": 3,
+        "description": "Creation and modification of database scheme. Instructions for data manipulation. Table creation. Data types. Integrity constraints and validation. Inserting data. Updating and deleting.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "efe89e61-256f-44ad-8a64-0fb4ec0cd3a4",
+        "subject_id": "5e0c9b53-f217-4b23-85aa-041b673ea954",
+        "order": 4,
+        "description": "Simple SELECT queries. Data retrieval - WHERE caluse. Results ordering. Row grouping.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "8a8e8fab-b29d-4a17-aa5e-b819c5ce9ba1",
+        "subject_id": "5e0c9b53-f217-4b23-85aa-041b673ea954",
+        "order": 5,
+        "description": "Vertical relation joining. Specification of join conditions. JOIN clause. Horizontal joins: UNION, INTERSECT, MINUS. Creating subqueries. Correlated and not correlated mode. Single-row functions. Aggregate functions.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "5e174819-27cb-45e1-b6d4-84c343d5c2ec",
+        "subject_id": "5e0c9b53-f217-4b23-85aa-041b673ea954",
+        "order": 6,
+        "description": "Industrial databases - characteristics, applications. TIme-stamp concept. Cooperation with SCADA systems. OPC mechanism.Protection against SQL Injection attacks.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "ed898333-7887-4ba8-bd9e-9211f76350b6",
+        "subject_id": "e14ce13f-10d6-4f3a-9866-29c113924bcf",
+        "order": 1,
+        "description": "Intralogistics - goals, functionalities, devices, control systems. software, transport lines, automatic storage and picking systems",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "bbd7f050-9d00-4ba8-93a1-3d8a1dd6c9e2",
+        "subject_id": "e14ce13f-10d6-4f3a-9866-29c113924bcf",
+        "order": 2,
+        "description": "E-Commerce magazines",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "54ab85f6-8971-4d91-8987-a57211339a81",
+        "subject_id": "e14ce13f-10d6-4f3a-9866-29c113924bcf",
+        "order": 3,
+        "description": "Databases in manufacturing systems. Material and tool databases. Computer systems supporting the selection of tools and technological parameters. Computer systems for the selection and calculation of machine parts. Automatic dispensing machines. Industrial solutions.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "984f6d0c-3d1c-4e82-8a27-641f78cad097",
+        "subject_id": "e14ce13f-10d6-4f3a-9866-29c113924bcf",
+        "order": 4,
+        "description": "Numerical analyzes of manufacturing processes and machining tools.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "cad92f5e-a4c4-4b4c-9dc5-5e8fbf2c955c",
+        "subject_id": "e14ce13f-10d6-4f3a-9866-29c113924bcf",
+        "order": 5,
+        "description": "Integrated and automated manufacturing systems. Machining cells. Complete, high-performance and hybrid machining techniques. Additive Machining.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "28b42003-68b3-47f6-ac7f-8207c7b53ad3",
+        "subject_id": "c939e0c4-b26a-4841-bc1c-5ad0c2ed1406",
+        "order": 1,
+        "description": "Definitions and functions of the material flow subsystem. Object transport subsystem: transport classification, pallets for transport, storage and transport of workpieces.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "23e5b19f-cc41-49e7-be76-dd0ab106d8bf",
+        "subject_id": "c939e0c4-b26a-4841-bc1c-5ad0c2ed1406",
+        "order": 2,
+        "description": "Storage subsystem: classification, central storage, storage of workpieces, multi-station storage of workpieces.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "477da5dc-6403-4060-97e7-b84971680e6c",
+        "subject_id": "c939e0c4-b26a-4841-bc1c-5ad0c2ed1406",
+        "order": 3,
+        "description": "Manipulation subsystem: manipulation and handling devices, grippers.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "195152d1-2104-44b7-986b-00e78307e171",
+        "subject_id": "c939e0c4-b26a-4841-bc1c-5ad0c2ed1406",
+        "order": 4,
+        "description": "Definitions and functions of the tool flow subsystem. Tool flow subsystem: elements of the tool management subsystem, tool systems, tool coding systems. Computer systems of tool management.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "cb57e9b6-11e6-4936-b05e-42d7236aac1c",
+        "subject_id": "c939e0c4-b26a-4841-bc1c-5ad0c2ed1406",
+        "order": 5,
+        "description": "-",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "6bca7a2e-14a5-4fea-9b33-bde9a0a3c4aa",
+        "subject_id": "c939e0c4-b26a-4841-bc1c-5ad0c2ed1406",
+        "order": 6,
+        "description": "Hydraulic and pneumatic systems in automatic systems. Simulation of hydraulic and pneumatic systems, eg Fluid Sim.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "11b2639d-340c-409c-be6c-6db62630a711",
+        "subject_id": "c939e0c4-b26a-4841-bc1c-5ad0c2ed1406",
+        "order": 7,
+        "description": "Construction of robotic manufacturing systems. Robotized manipulation and palletizing stations. Robotized machining stations.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "2d52fb16-7233-418e-bcda-ab8ed0674869",
+        "subject_id": "c939e0c4-b26a-4841-bc1c-5ad0c2ed1406",
+        "order": 8,
+        "description": "Autonomous industrial trucks (driveless industrial truck) – Norma 3691-4:2020",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "f6318cc3-0553-4307-87ef-250767b7a44a",
+        "subject_id": "c939e0c4-b26a-4841-bc1c-5ad0c2ed1406",
+        "order": 9,
+        "description": "Tooling systems in lathes. Tool heads, automatic tool measurement.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "3c8cccad-6896-491e-8cdf-74d99f3ce3ac",
+        "subject_id": "c939e0c4-b26a-4841-bc1c-5ad0c2ed1406",
+        "order": 10,
+        "description": "Programming the work of ASO (robot + milling machine + transport station) (automatic processing of a short series of workpieces, handling of storage of semi-finished products and workpieces).",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "145688fd-6413-41eb-af68-1a12b469eddf",
+        "subject_id": "c939e0c4-b26a-4841-bc1c-5ad0c2ed1406",
+        "order": 11,
+        "description": "Hydraulic systems - design of a manipulation system with hydraulic cylinders, simulation of the system in various operating conditions",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "250ae3f4-b7de-46a7-8b52-2981c3961864",
+        "subject_id": "c939e0c4-b26a-4841-bc1c-5ad0c2ed1406",
+        "order": 12,
+        "description": "Pneumatic systems - design of the handling and transport system with the use of pneumatic actuators, simulation of the system in various operating conditions.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "9c5c1175-3ae2-4430-a5e2-8b06d436eed2",
+        "subject_id": "c939e0c4-b26a-4841-bc1c-5ad0c2ed1406",
+        "order": 13,
+        "description": "Manipulators used in numerically controlled machine tools. Pallet change systems.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "7ab3b912-8452-44ea-b371-ae6db67dfa53",
+        "subject_id": "c939e0c4-b26a-4841-bc1c-5ad0c2ed1406",
+        "order": 14,
+        "description": "Machining automation on the example of a multi-axis turning-milling center.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "72ca620a-66fe-462a-a783-1f8f66acad55",
+        "subject_id": "c939e0c4-b26a-4841-bc1c-5ad0c2ed1406",
+        "order": 15,
+        "description": "Numerically controlled X axis system (selection of speed regulator settings, position, stability).",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "8a0a09b1-66c9-4433-b957-6494d7fafd55",
+        "subject_id": "c939e0c4-b26a-4841-bc1c-5ad0c2ed1406",
+        "order": 16,
+        "description": "Tool systems, tool coding systems, tool magazines, control systems, autonomous, integrated.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "03cf0995-7c14-4ac3-804a-cf5d4456fd9e",
+        "subject_id": "c939e0c4-b26a-4841-bc1c-5ad0c2ed1406",
+        "order": 17,
+        "description": "Computer systems of tool management, instrumentation, automatic dispensing machines, tool measuring systems.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "9c478b46-ccfa-425c-9cd0-e3c837183885",
+        "subject_id": "c939e0c4-b26a-4841-bc1c-5ad0c2ed1406",
+        "order": 18,
+        "description": "Programming of selected functions of the machine tool (PLC of the machine tool), e.g. additional controlled axis. Control of the storage of semi-finished products.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "2f088d76-8d43-4678-a00a-2008e3cf82c1",
+        "subject_id": "b587cbb9-7c08-4f4b-b7b0-71126d6d4011",
+        "order": 1,
+        "description": "Diagnostics and supervision - introduction. Basic concepts, terminology and tasks of diagnostics and supervision in processes machining.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "7c6f5582-b435-4324-9ca7-cf778bd9cfc5",
+        "subject_id": "b587cbb9-7c08-4f4b-b7b0-71126d6d4011",
+        "order": 2,
+        "description": "Diagnostic signals. Measurements of typical physical quantities. Measurement signals. Processing of measurement signals. Sensors and principles of force measurement, moments, temperature, vibration, displacement and acoustic emission.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "8ea8777c-8d9e-496c-8a7c-40c8827df212",
+        "subject_id": "b587cbb9-7c08-4f4b-b7b0-71126d6d4011",
+        "order": 3,
+        "description": "Diagnostics and supervision of machine tools. Geometric and kinematic accuracy, rigidity of machine tool assemblies. Bearing condition diagnostics. Diagnostics of axle drive units. Communication interfaces used in diagnostic systems.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "ca9304d8-d131-4744-9a9a-b7e890544b95",
+        "subject_id": "b587cbb9-7c08-4f4b-b7b0-71126d6d4011",
+        "order": 4,
+        "description": "Diagnostics of the tool condition and the machining process. Tool wear, forms of wear. Measurement signals used in tool diagnostics, cutting forces, temperature, vibrations.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "c6b15bf1-2803-47fe-9723-17b5a4139331",
+        "subject_id": "b587cbb9-7c08-4f4b-b7b0-71126d6d4011",
+        "order": 5,
+        "description": "Diagnostics and supervision of the accuracy of workpieces. Measurement of the accuracy of objects in the working space of the machine tool. Measurements outside the machine tool. Correction of dimensions. Adaptation systems in machining systems. Artificial intelligence systems in supervising machining processes. Selected industrial applications, complex sensors in intralogistics.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "34cb6cf3-6570-449c-8565-0af4cffb1f66",
+        "subject_id": "b587cbb9-7c08-4f4b-b7b0-71126d6d4011",
+        "order": 6,
+        "description": "Selected industrial applications, complex sensors in intralogistics. Methodology for the implementation of scientific research. Designing a research stand. Development of research results.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "cb5b62c4-d7c1-42ff-8948-6481dbf705d0",
+        "subject_id": "b587cbb9-7c08-4f4b-b7b0-71126d6d4011",
+        "order": 7,
+        "description": "Criteria for selecting an A / D converter for a specific measurement task. Processing of the measurement signal in the time and frequency domains. Virtual measurement system. Programming of measurement functions using software such as Testpoint and Lab View Signal Express.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "d7035e48-c7a1-4176-8157-d98de263a890",
+        "subject_id": "b587cbb9-7c08-4f4b-b7b0-71126d6d4011",
+        "order": 8,
+        "description": "Testing the geometric and kinematic accuracy of the machine tool.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "1b46e255-7813-49e1-abf7-daca4b159b0f",
+        "subject_id": "b587cbb9-7c08-4f4b-b7b0-71126d6d4011",
+        "order": 9,
+        "description": "Measurement of the static stiffness of the OUPN system, e.g. CNC lathes.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "46c9ae8a-0ab2-45a5-ab49-45ad3ec1266d",
+        "subject_id": "b587cbb9-7c08-4f4b-b7b0-71126d6d4011",
+        "order": 10,
+        "description": "Modal analysis of selected components of the machine tool.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "dcbe9391-7b37-498e-893f-3dae092a8689",
+        "subject_id": "b587cbb9-7c08-4f4b-b7b0-71126d6d4011",
+        "order": 11,
+        "description": "Analysis of the stability of the turning process.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "22e7b931-312d-4f61-bfee-751ee1395048",
+        "subject_id": "b587cbb9-7c08-4f4b-b7b0-71126d6d4011",
+        "order": 12,
+        "description": "Application strain gauges (force, pressure, moment, displacement, vibration).",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "3c7277ff-c52e-40ee-b603-06eb31f41c18",
+        "subject_id": "b587cbb9-7c08-4f4b-b7b0-71126d6d4011",
+        "order": 13,
+        "description": "Multi-axis measurement of cutting forces during milling (piezo multi-axis, rotary sensors).",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "8f39e098-54e1-4b98-aa69-27eb12fe99e3",
+        "subject_id": "b587cbb9-7c08-4f4b-b7b0-71126d6d4011",
+        "order": 14,
+        "description": "Blade condition monitoring based on the measurement of forces and temperatures in the turning process.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "34f133a9-f9b0-4b6e-ab89-7d02314f9113",
+        "subject_id": "b587cbb9-7c08-4f4b-b7b0-71126d6d4011",
+        "order": 15,
+        "description": "Measurement of mechanical vibrations as a method of monitoring the condition of the tool and the cutting process, spectral analysis.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "bf78f137-d429-4ece-96aa-1a805f0131e7",
+        "subject_id": "b587cbb9-7c08-4f4b-b7b0-71126d6d4011",
+        "order": 16,
+        "description": "Diagnostics of the grinding process using the acoustic emission signal.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "e63805bb-b4e1-4818-8077-768733b1de90",
+        "subject_id": "b587cbb9-7c08-4f4b-b7b0-71126d6d4011",
+        "order": 17,
+        "description": "Vibroacoustic methods in diagnostics of selected mechanical components of a machine tool.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "3294561d-78d3-4d80-9b25-a608e49e0d9a",
+        "subject_id": "b587cbb9-7c08-4f4b-b7b0-71126d6d4011",
+        "order": 18,
+        "description": "Temperature measurements as a diagnostic method of cutting processes. Thermal imaging method. Image analysis.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "d9efb33f-d88a-46ec-a6bc-578826590d4c",
+        "subject_id": "b587cbb9-7c08-4f4b-b7b0-71126d6d4011",
+        "order": 19,
+        "description": "Supervision of the turning and milling process using the image from the ultra-fast camera. Image analysis.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "d9f9eb61-705c-44cf-b585-a6160d5af196",
+        "subject_id": "e163b9de-d84a-4e20-9f26-10ab46be532f",
+        "order": 1,
+        "description": "Structure of control systems used in intralogistics",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "d1396b95-ebf4-4a50-8d8c-ce28363d013f",
+        "subject_id": "e163b9de-d84a-4e20-9f26-10ab46be532f",
+        "order": 2,
+        "description": "Control software (PLC) architecture used in intralogistics",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "8d07f180-cf45-4d86-86b5-8ccc5141959c",
+        "subject_id": "e163b9de-d84a-4e20-9f26-10ab46be532f",
+        "order": 3,
+        "description": "Architecture of HMI software used in intralogistics",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "fa473a56-f3a7-4983-b778-1bc1812230f7",
+        "subject_id": "e163b9de-d84a-4e20-9f26-10ab46be532f",
+        "order": 4,
+        "description": "Safety layer software",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "e82feaaa-b0dd-471f-8f49-50c5f83446f9",
+        "subject_id": "e163b9de-d84a-4e20-9f26-10ab46be532f",
+        "order": 5,
+        "description": "Communication of the control system with external systems",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "8ec79085-851b-42e4-99de-596c0751ad44",
+        "subject_id": "e163b9de-d84a-4e20-9f26-10ab46be532f",
+        "order": 6,
+        "description": "Wirtulated commissioning",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "5fd158e5-7b72-42b0-bbb1-ac168f9070f7",
+        "subject_id": "5b2dfb27-3399-4623-94a0-332377151e2f",
+        "order": 1,
+        "description": "Architecture of the hardware layer of control systems used in intralogistics",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "27a43a88-e421-489b-a46b-c2a8391cf9bf",
+        "subject_id": "5b2dfb27-3399-4623-94a0-332377151e2f",
+        "order": 2,
+        "description": "Introduction to software (e.g. EPLAN) supporting the design of the hardware layer of control systems used in intralogistics",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "6006bea9-936d-4696-bc58-5e14b848af18",
+        "subject_id": "5b2dfb27-3399-4623-94a0-332377151e2f",
+        "order": 3,
+        "description": "Safety systems - selection of devices",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "2e0d8876-02fe-4dbd-b8e8-408bd7203237",
+        "subject_id": "5b2dfb27-3399-4623-94a0-332377151e2f",
+        "order": 4,
+        "description": "Drive technology - design and selection of equipment (contactors, inverters, feedback control systems)",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "2273baaf-dc82-46fc-bc08-51992797f281",
+        "subject_id": "5b2dfb27-3399-4623-94a0-332377151e2f",
+        "order": 5,
+        "description": "Project documentation - good practices",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "d2eb6ee3-6b57-4654-95bb-682102701ab4",
+        "subject_id": "9d5d3b4c-636e-413d-82aa-809f32147c56",
+        "order": 1,
+        "description": "Process of implementation of projects for the development of control systems",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "6a76a3d9-895c-4e80-a593-92ff5831c68a",
+        "subject_id": "9d5d3b4c-636e-413d-82aa-809f32147c56",
+        "order": 2,
+        "description": "Good practices in conducting projects in the area of development and implementation of control systems",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "1ac68ec0-4619-412e-8f44-cba2a8596164",
+        "subject_id": "9d5d3b4c-636e-413d-82aa-809f32147c56",
+        "order": 3,
+        "description": "Good practices in the area of working with calendar and mail. Team communication, psychological types",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "3debaebd-a84d-4d38-9793-f0e526027740",
+        "subject_id": "9d5d3b4c-636e-413d-82aa-809f32147c56",
+        "order": 4,
+        "description": "Self-motivation and well-being",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "34b94454-c762-4a8e-ac11-4e1aacc5e492",
+        "subject_id": "21c8add5-5a50-4f0b-8fa4-fa6e6927ead3",
+        "order": 1,
+        "description": "Formal and editorial requirements of the thesis. The structure of work, the content of the sections and subsections.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "7108ea6a-7d3f-41ce-80f1-fe567a9abe78",
+        "subject_id": "21c8add5-5a50-4f0b-8fa4-fa6e6927ead3",
+        "order": 2,
+        "description": "The rules for creating theoretical and practical work.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "aefdba63-d463-473a-b7a7-4a47ef09de49",
+        "subject_id": "21c8add5-5a50-4f0b-8fa4-fa6e6927ead3",
+        "order": 3,
+        "description": "Presentation of the theoretical part of the thesis. Create a table of contents, thesis, purpose, scope.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "996b467c-a1b1-495d-aa13-a769431439cd",
+        "subject_id": "21c8add5-5a50-4f0b-8fa4-fa6e6927ead3",
+        "order": 1,
+        "description": "Discussion of the principles of the thesis presentation on the practical part.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "181be63c-2612-4162-8f9a-bfda3df04c90",
+        "subject_id": "21c8add5-5a50-4f0b-8fa4-fa6e6927ead3",
+        "order": 2,
+        "description": "Presentations of thesis practical part.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "3da1d950-2b32-496a-b448-3f128b3feba7",
+        "subject_id": "1f3ee25c-dff5-4fec-851f-f95e9c35673e",
+        "order": 1,
+        "description": "Antennas and propagation of radio waves in the telecommunication channel",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "d0575c68-5cca-46df-817f-d05a33dffde3",
+        "subject_id": "1f3ee25c-dff5-4fec-851f-f95e9c35673e",
+        "order": 2,
+        "description": "ZigBee Technology",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "60fe2c78-cf3c-4cdf-a1cb-15aae8d7aa0c",
+        "subject_id": "1f3ee25c-dff5-4fec-851f-f95e9c35673e",
+        "order": 3,
+        "description": "Bluetooth Technology",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "197458c7-e2d3-4a6b-b36b-2fbb9437489d",
+        "subject_id": "1f3ee25c-dff5-4fec-851f-f95e9c35673e",
+        "order": 4,
+        "description": "Wi-Fi Technology",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "782d2bb5-56e1-4a93-a1db-8e62598b5987",
+        "subject_id": "1f3ee25c-dff5-4fec-851f-f95e9c35673e",
+        "order": 5,
+        "description": "GSM/GPRS Technology",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "d80bc481-a4e9-467f-bc74-1eff9baa4ceb",
+        "subject_id": "1f3ee25c-dff5-4fec-851f-f95e9c35673e",
+        "order": 6,
+        "description": "Fundamentals of mobile telephony systems",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "77c57836-3a7d-4c16-a430-f937a28b891d",
+        "subject_id": "1f3ee25c-dff5-4fec-851f-f95e9c35673e",
+        "order": 7,
+        "description": "Design of a dedicated antenna for use in a selected radio communication system or microprocessor system for communication in a wireless computer network (WPAN or WLAN)",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "02921a6c-a636-43e7-ae0b-a27ff8c81a2f",
+        "subject_id": "1f3ee25c-dff5-4fec-851f-f95e9c35673e",
+        "order": 8,
+        "description": "RFID technology",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "13e17c44-82ca-42d1-8df3-cf8235b2fee4",
+        "subject_id": "1f3ee25c-dff5-4fec-851f-f95e9c35673e",
+        "order": 9,
+        "description": "Antennas and wave propagation",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "6d32550f-d635-4c73-b97f-d8fcbca228b9",
+        "subject_id": "1f3ee25c-dff5-4fec-851f-f95e9c35673e",
+        "order": 10,
+        "description": "Antenna measurements",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "a29ba2cd-0ec4-473b-8e24-b62b5c606442",
+        "subject_id": "1f3ee25c-dff5-4fec-851f-f95e9c35673e",
+        "order": 11,
+        "description": "Implementations of network control systems",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "10f41b51-af4b-43be-a4ec-ba253fb96e4c",
+        "subject_id": "1f3ee25c-dff5-4fec-851f-f95e9c35673e",
+        "order": 12,
+        "description": "Summary",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "19874ae4-4759-47a2-bee9-f236befb2ff5",
+        "subject_id": "83094699-d34c-4943-98d2-056ac97bcded",
+        "order": 1,
+        "description": "The use of computational intelligence methods in the problems of machine and device diagnosis (predictive maintenance, diagnosis of bearing condition, prediction of cutter damage, RUL method).",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "ea6f4279-6be9-4000-81dd-947745dd3550",
+        "subject_id": "83094699-d34c-4943-98d2-056ac97bcded",
+        "order": 2,
+        "description": "The use of computational intelligence methods in the issues of diagnosing technological processes, e.g. diagnosing the milling process, drilling.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "065bf6e4-1fe6-4c0a-85e4-e3b1c004188d",
+        "subject_id": "83094699-d34c-4943-98d2-056ac97bcded",
+        "order": 3,
+        "description": "Adaptive systems of diagnostics and control of machines, existing industrial solutions.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "caad42b8-bca7-4128-afc7-fd3a0e90901f",
+        "subject_id": "83094699-d34c-4943-98d2-056ac97bcded",
+        "order": 4,
+        "description": "Intelligent sensors used in the diagnostics of machines and processes. Self-diagnosis of measurement systems. Selected concepts and practical applications of artificial intelligence in diagnostics of machine tools and manufacturing processes.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "6b22f49f-378f-457f-8202-be59365daf86",
+        "subject_id": "83094699-d34c-4943-98d2-056ac97bcded",
+        "order": 5,
+        "description": "Getting to know the working environment of the integrated production system in the field of the MCD (Mechatronic Concept Design) module. Development of conceptual models and detailed mechatronic systems. Simulation and verification of the developed models of mechatronic systems.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "bd000c7f-a192-463c-9e4d-f8075b3da6e1",
+        "subject_id": "83094699-d34c-4943-98d2-056ac97bcded",
+        "order": 6,
+        "description": "Development of a project of a comprehensive diagnostic system for a selected component of a machine tool or manufacturing process, selection of diagnostic signals, design of a measuring path, determination of symptoms.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "4a7baa83-4e3c-4e14-8274-16808b6c3e0b",
+        "subject_id": "a0161636-a395-4d37-95e1-e22385befafb",
+        "order": 1,
+        "description": "Introduction.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "2ab21e90-3741-4c6b-b77a-40b9dc408693",
+        "subject_id": "a0161636-a395-4d37-95e1-e22385befafb",
+        "order": 2,
+        "description": "Elements of systems theory: history, development of the conception, known outstanding representatives.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "a282af8f-7a39-4e5b-baee-d050ec129fa0",
+        "subject_id": "a0161636-a395-4d37-95e1-e22385befafb",
+        "order": 3,
+        "description": "Mathematical fundamentals of systems theory. Mathematical models of processes and phenomena.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "8f4b4c09-9da6-4491-a454-aa149c58751f",
+        "subject_id": "a0161636-a395-4d37-95e1-e22385befafb",
+        "order": 4,
+        "description": "Simple and complex systems: definitions, examples, basic terms",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "3e5f8723-49e9-4742-b072-21eaefd4388f",
+        "subject_id": "a0161636-a395-4d37-95e1-e22385befafb",
+        "order": 5,
+        "description": "Modelling of simple and complex systems",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "0643bb6d-fb6e-4a97-bd16-439201b608c7",
+        "subject_id": "a0161636-a395-4d37-95e1-e22385befafb",
+        "order": 6,
+        "description": "Cryptography. Methods and categories of breaking ciphers. Basic types of ciphers. Digital signature. Safety certificates. Hash functions.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "4e0548ca-78b0-4473-a5bd-c20d67a01bcc",
+        "subject_id": "a0161636-a395-4d37-95e1-e22385befafb",
+        "order": 7,
+        "description": "System vulnerability analysis. Tools for performing a scan.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "8bcd8147-5bac-4788-993e-22e61d0aecd8",
+        "subject_id": "a0161636-a395-4d37-95e1-e22385befafb",
+        "order": 8,
+        "description": "Footprinting and Reconnaissance - initial gathering of information about the target of an attack.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "37078760-afe7-4a97-a59d-6eae5e52c372",
+        "subject_id": "a0161636-a395-4d37-95e1-e22385befafb",
+        "order": 9,
+        "description": "Active polling of services / systems in order to recognize weak points in the infrastructure.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "77ab1ef0-cfb7-4648-bde6-bfa96ffa5b85",
+        "subject_id": "a0161636-a395-4d37-95e1-e22385befafb",
+        "order": 10,
+        "description": "Social engineering attacks.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "ee8265c5-8080-42e4-afe3-faf96998f630",
+        "subject_id": "a0161636-a395-4d37-95e1-e22385befafb",
+        "order": 11,
+        "description": "Denial-of-Service attacks.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "de7bcf8f-fb92-4d5e-9baa-f936036c0904",
+        "subject_id": "a0161636-a395-4d37-95e1-e22385befafb",
+        "order": 12,
+        "description": "Security policy. Security models. Creation of security procedures. Measures of confidentiality and security of systems. System audit.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "6b56970a-2430-4ec9-84a8-d14e6323b129",
+        "subject_id": "a0161636-a395-4d37-95e1-e22385befafb",
+        "order": 13,
+        "description": "IPS, IDS systems.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "3bbfe4d1-81cd-4fa3-b249-b02f4a9f5c5b",
+        "subject_id": "a0161636-a395-4d37-95e1-e22385befafb",
+        "order": 14,
+        "description": "Some security aspects of IoT and OT technologies.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "25bd5cba-2d17-450d-a707-41aa495ee8eb",
+        "subject_id": "a0161636-a395-4d37-95e1-e22385befafb",
+        "order": 15,
+        "description": "Incident analysis and management tools.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "ae586ee7-ce9c-4e07-9b4c-ec521e490ced",
+        "subject_id": "734eac67-4cf0-4eea-9949-b6f98b1af633",
+        "order": 1,
+        "description": "-",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "01ba09b0-0c4e-4d00-9ef5-3d958e86441e",
+        "subject_id": "b69b24cb-5bf1-421e-a21f-14449a3e86ee",
+        "order": 1,
+        "description": "Purpose and functions of IIoT in manufacturing systems and intralogistics. Comparison of IoT, IIoT and CPS. BigData in IIoT",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "1501ac78-3cd0-475c-96e1-b2eec5947146",
+        "subject_id": "b69b24cb-5bf1-421e-a21f-14449a3e86ee",
+        "order": 2,
+        "description": "IIoT Systems Architecture",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "d6cda9df-1ef1-4097-9e9f-3807821f8096",
+        "subject_id": "b69b24cb-5bf1-421e-a21f-14449a3e86ee",
+        "order": 3,
+        "description": "Elements of manufacturing systems as IIoT objects. Communication protocols used in the IIoT",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "95693166-a4fb-4289-a39b-1ddb8f88c7d3",
+        "subject_id": "b69b24cb-5bf1-421e-a21f-14449a3e86ee",
+        "order": 4,
+        "description": "Examples of industrial applications and IIoT systems",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "2739147b-7489-4ceb-bbd3-7981b18d7a25",
+        "subject_id": "b69b24cb-5bf1-421e-a21f-14449a3e86ee",
+        "order": 5,
+        "description": "Areas of IIoT development",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "1edccfa5-ad00-4cc7-8bfe-7b5305e59575",
+        "subject_id": "5794c2c6-9073-4e9b-a0d3-251a1fe9e32a",
+        "order": 1,
+        "description": "Formal and editorial requirements of the thesis. The structure of work, the content of the sections and subsections.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "934be0f0-3eef-4ba9-9fde-1f42fe1f48b8",
+        "subject_id": "5794c2c6-9073-4e9b-a0d3-251a1fe9e32a",
+        "order": 2,
+        "description": "The rules for creating theoretical and practical work.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "7fb9f50b-efe3-482f-ad4d-e878588cd84a",
+        "subject_id": "5794c2c6-9073-4e9b-a0d3-251a1fe9e32a",
+        "order": 3,
+        "description": "Presentation of the theoretical part of the thesis. Create a table of contents, thesis, purpose, scope.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "258b69ec-1936-4b83-8adf-c150d84a0e47",
+        "subject_id": "5794c2c6-9073-4e9b-a0d3-251a1fe9e32a",
+        "order": 1,
+        "description": "Discussion of the principles of the thesis presentation on the practical part.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "20168307-b77d-4139-9a51-dddd07d0cd7f",
+        "subject_id": "5794c2c6-9073-4e9b-a0d3-251a1fe9e32a",
+        "order": 2,
+        "description": "Presentations of thesis practical part.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "27419b2d-d1d7-4eff-b52c-32a9b100de07",
+        "subject_id": "e1d8ac75-409e-43a0-901a-2d8941b4137f",
+        "order": 1,
+        "description": "Image processing and analysis. Object recognition techniques using global and local features. Searching and retrieving images from large databases.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "fa169b06-6683-46b1-9a44-541de41cc53b",
+        "subject_id": "e1d8ac75-409e-43a0-901a-2d8941b4137f",
+        "order": 2,
+        "description": "Industry 4.0 idea and application of IT, automation and robotics technologies.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "7db80232-1b1c-4bb1-9f52-e8794c41d473",
+        "subject_id": "e1d8ac75-409e-43a0-901a-2d8941b4137f",
+        "order": 3,
+        "description": "Selected methods of optimisation: linear and non-linear programming, metaheuristics. Production scheduling. Computer tools for optimisation and scheduling.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "b692c280-06ab-4d37-8e93-aa0801f718d1",
+        "subject_id": "efc5bf1f-f3c9-4e3e-b8ca-0526a6b7056c",
+        "order": 1,
+        "description": "The role of metrology of geometric quantities in the modern production process.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "c3dd1849-1083-4de7-a586-1db7181ae1e1",
+        "subject_id": "efc5bf1f-f3c9-4e3e-b8ca-0526a6b7056c",
+        "order": 2,
+        "description": "Coordinate measurements in the production process. The essence of the coordinate measuring technique. Overview of contact and non-contact automated measuring systems.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "7ec6377d-d010-4320-96dd-2377eacabe0f",
+        "subject_id": "efc5bf1f-f3c9-4e3e-b8ca-0526a6b7056c",
+        "order": 3,
+        "description": "The fundamentals of the coordinate measuring technique in the field of, among others, stages of contact and non-contact coordinate measurements and programming methods of coordinate measuring systems.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "8d57e489-199f-439f-b7a4-5f8c5fd5b6aa",
+        "subject_id": "efc5bf1f-f3c9-4e3e-b8ca-0526a6b7056c",
+        "order": 4,
+        "description": "The accuracy analysis of measuring systems. Factors influencing measurement results.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "f47f45c6-233e-4771-b656-5305bed8a8e4",
+        "subject_id": "efc5bf1f-f3c9-4e3e-b8ca-0526a6b7056c",
+        "order": 5,
+        "description": "The analysis of repeatability and reproducibility of measuring systems.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "430f958e-2a19-4e3e-9a33-603a8a1ab7fe",
+        "subject_id": "efc5bf1f-f3c9-4e3e-b8ca-0526a6b7056c",
+        "order": 6,
+        "description": "Contact and non-contact roughness measurements by using automated measuring systems. Roughness parameters.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "380e42a0-0788-45eb-9a9e-8b5acf00cda2",
+        "subject_id": "efc5bf1f-f3c9-4e3e-b8ca-0526a6b7056c",
+        "order": 7,
+        "description": "The digitization of objects with complex geometric shapes.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "fabbe151-8d30-4c07-939a-7358ceaec7f7",
+        "subject_id": "efc5bf1f-f3c9-4e3e-b8ca-0526a6b7056c",
+        "order": 8,
+        "description": "Measurements of geometric quantities on CNC machine tools (On Machine Measurement).",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "ec7aabe9-fc8b-4e57-a47a-38d582c04590",
+        "subject_id": "efc5bf1f-f3c9-4e3e-b8ca-0526a6b7056c",
+        "order": 9,
+        "description": "Fundamentals of operation of a coordinate measuring machine equipped with contact probes. Measurements in single-point probing and scanning modes.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "4a2f966c-029e-4d71-8a14-1a9507d63874",
+        "subject_id": "efc5bf1f-f3c9-4e3e-b8ca-0526a6b7056c",
+        "order": 10,
+        "description": "Fundamentals of operation of a coordinate measuring machine equipped with a laser probe.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "4fdcd996-8a16-405b-8188-2f27cbf3f657",
+        "subject_id": "efc5bf1f-f3c9-4e3e-b8ca-0526a6b7056c",
+        "order": 11,
+        "description": "Fundamentals of operation of a measuring arm equipped with a laser probe.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "b4366b46-74fb-4544-8f42-01c805033269",
+        "subject_id": "efc5bf1f-f3c9-4e3e-b8ca-0526a6b7056c",
+        "order": 12,
+        "description": "The non-contact digitization of products consisting of curvilinear surfaces by using a CMM equipped with a laser probe. The analysis of digitization results.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "0b034b00-3b39-4305-bffa-65778ec6d8aa",
+        "subject_id": "efc5bf1f-f3c9-4e3e-b8ca-0526a6b7056c",
+        "order": 13,
+        "description": "Off-line programming of a coordinate measuring machine.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "12ef4628-0623-4ad8-aff5-5587b5fddb91",
+        "subject_id": "efc5bf1f-f3c9-4e3e-b8ca-0526a6b7056c",
+        "order": 14,
+        "description": "Contact and non-contact roughness measurements.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "e3a4b7d4-bc6d-45c5-8432-d467f5f029f5",
+        "subject_id": "efc5bf1f-f3c9-4e3e-b8ca-0526a6b7056c",
+        "order": 15,
+        "description": "Measurements of deviations of typical geometric elements and the analysis of measurement results.",
+        "estimated_minutes": 60
+    },
+    //WEiI - ACR - SPEC - Computer control system
+    {
+        "id": "5ecf0921-13b9-4346-91db-88b932598fe1",
+        "subject_id": "91f85c19-d24c-4e52-92ec-58790a340b04",
+        "order": 1,
+        "description": "Overview of applications of the artificial intelligence methods in industrial control systems.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "ac04a1ae-f8c2-44c5-be95-60548a0eaea2",
+        "subject_id": "91f85c19-d24c-4e52-92ec-58790a340b04",
+        "order": 2,
+        "description": "Introduction to the theory of fuzzy sets. Logical operators in multi-valued logics.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "3bd7cd69-7ec2-44e6-95c1-cc3b92bca127",
+        "subject_id": "91f85c19-d24c-4e52-92ec-58790a340b04",
+        "order": 3,
+        "description": "Generalized fuzzy expert system. The fuzzy controllers of Takagi-Sugeno and Mamdani type.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "57201bab-8c8b-4ecc-94f6-68008bb3b963",
+        "subject_id": "91f85c19-d24c-4e52-92ec-58790a340b04",
+        "order": 4,
+        "description": "Selected problems of the analytical theory of fuzzy modelling and control - the relation between the models of conventional control theory and rule-based systems.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "7671fd3e-7ca3-4bdb-9894-946eb3be997d",
+        "subject_id": "91f85c19-d24c-4e52-92ec-58790a340b04",
+        "order": 5,
+        "description": "Synthesis of the fuzzy PID controller for the 2nd order plant by the conventional quality index.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "303a02b5-56b5-48cf-8a12-49856c22931b",
+        "subject_id": "91f85c19-d24c-4e52-92ec-58790a340b04",
+        "order": 6,
+        "description": "A neuro-fuzzy navigation system for a mobile robot.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "5c004400-1d52-4221-9b00-22eed0f3c5d2",
+        "subject_id": "91f85c19-d24c-4e52-92ec-58790a340b04",
+        "order": 7,
+        "description": "Synthesis and analysis of a closed-loop neuro-fuzzy control system for structurally unstable plant.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "af39ba65-1187-475e-a445-b68002e4bd6f",
+        "subject_id": "91f85c19-d24c-4e52-92ec-58790a340b04",
+        "order": 8,
+        "description": "Fuzzy Petri net as a control and diagnostic system for a complex technological process.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "9c27c59f-7ae0-4a72-a70d-5d68c1c3eec0",
+        "subject_id": "91f85c19-d24c-4e52-92ec-58790a340b04",
+        "order": 9,
+        "description": "The use of gene expression programming technique for the control system design.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "07d34097-8800-4578-928f-2c2f54dd13b5",
+        "subject_id": "91f85c19-d24c-4e52-92ec-58790a340b04",
+        "order": 10,
+        "description": "Application of reinforced learning methods in control systems design.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "ec25bd7d-a221-4d2f-852e-776e3c2b4752",
+        "subject_id": "91f85c19-d24c-4e52-92ec-58790a340b04",
+        "order": 11,
+        "description": "Adaptive neuro-fuzzy contreller design.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "c74e5932-a6e2-4e8c-af80-efed022f2315",
+        "subject_id": "fe30213f-c6bf-43bb-ace3-6c5357bac031",
+        "order": 1,
+        "description": "implementation of the data layer of an information system",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "a1faea5c-4a7a-40c5-b9fd-c2c5db0d15f5",
+        "subject_id": "fe30213f-c6bf-43bb-ace3-6c5357bac031",
+        "order": 2,
+        "description": "The characteristic of selected technologies (Java EE, .NET, Ruby on Rails, embedded systems)",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "b8c3bcdd-ef71-4f11-9a48-7ea5cb61fa52",
+        "subject_id": "fe30213f-c6bf-43bb-ace3-6c5357bac031",
+        "order": 3,
+        "description": "implementation of the business layer of an information system",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "3708b369-39cf-4bed-bf4e-ac83f7beae4e",
+        "subject_id": "fe30213f-c6bf-43bb-ace3-6c5357bac031",
+        "order": 4,
+        "description": "implementation of the GUI of an information system",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "a09d2ccc-88be-4ca7-bfc1-bcfcc6ab144a",
+        "subject_id": "fe30213f-c6bf-43bb-ace3-6c5357bac031",
+        "order": 5,
+        "description": "development of embedded systems",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "cb66ded4-d211-4163-9fce-cb2007554e1b",
+        "subject_id": "fe30213f-c6bf-43bb-ace3-6c5357bac031",
+        "order": 6,
+        "description": "realization of a project task using selected technology",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "41ea734e-a5ed-4cf5-bf6e-5727443bbb06",
+        "subject_id": "a05502a6-a6d2-4502-8bb4-98eabf965185",
+        "order": 1,
+        "description": "Technical and engineering problems occurring at the place of the summer practice , and the basic principles of the organization and safety of work. Also, the basic rights and duties of the employee.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "b3b08e6a-5dba-43a8-b3c8-1e1fcec7ce99",
+        "subject_id": "ec7d5240-7ef7-4397-8c9e-03e15d5f49ed",
+        "order": 1,
+        "description": "Real-time systems characteristics. Real-time and safety-critical applications. Hard and soft time constraints.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "757f6497-794d-4be7-8b12-404e187ca318",
+        "subject_id": "ec7d5240-7ef7-4397-8c9e-03e15d5f49ed",
+        "order": 2,
+        "description": "Real-time application life cycle. Real-time system development. Design and implementation tools. Specification of real-time software. Engineering and formal methods. Universal and dedicated programming languages. Host-target architecture.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "b6cdf0ab-4f93-44ad-ab74-d18b8b26bc7e",
+        "subject_id": "ec7d5240-7ef7-4397-8c9e-03e15d5f49ed",
+        "order": 3,
+        "description": "Concept of a process. Process priority. Interrupt handling. Scheduling algorithms. CPU utilization. Process life cycle.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "5fcccc65-abca-42c3-8a41-4aeb0ea46f39",
+        "subject_id": "ec7d5240-7ef7-4397-8c9e-03e15d5f49ed",
+        "order": 4,
+        "description": "Real-time operating systems (RTOS). Characteristics and requirements. Similarities and differences between RTOS and regular operating system. POSIX standard. QNX operating system. Microkernel architecture. Review of other real-time operating systems: VxWork, Windows CE .NET, RTLinux, FreeRTOS.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "7550a7e9-94f8-42d4-8bc4-f2171f8acc27",
+        "subject_id": "ec7d5240-7ef7-4397-8c9e-03e15d5f49ed",
+        "order": 5,
+        "description": "Inter-process communication and synchronization. Message passing and rendez-vous. Process state changes during message-passing. Semaphores and signals. Execution of concurrent processes and threads. Fuctions: exec(), spawn(), fork(), tfork(), qnx_spawn(), system().",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "ec232ae2-e7d4-4462-9a3c-ac6de35ab9aa",
+        "subject_id": "ec7d5240-7ef7-4397-8c9e-03e15d5f49ed",
+        "order": 6,
+        "description": "Modification of process properties (priority, scheduling algorithm). Client-server application design principles. Interrupt handling in QNX. TIme support. Processes in a distributed environment. Virtual circuits. Global names.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "42e58587-98aa-4e8d-8b75-9502eee0e4b0",
+        "subject_id": "2a9f8192-de59-4686-bf70-ff6e44b3005d",
+        "order": 1,
+        "description": "Introduction to PLC and PAC programming. The ladder diagram (LD) language.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "7ff37c5c-c421-48cb-8bbb-7bd07b9e23ef",
+        "subject_id": "2a9f8192-de59-4686-bf70-ff6e44b3005d",
+        "order": 2,
+        "description": "Synthesis of control algorithms, part I (state machine graphs, state encoding methods: full encoding and one-hot encoding, LD language implementation)",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "953d1143-5537-4ca7-82f9-0c25a5d6dafc",
+        "subject_id": "2a9f8192-de59-4686-bf70-ff6e44b3005d",
+        "order": 3,
+        "description": "The IEC 61131-3 standard. Software development rules, program structure, variable declarations, etc. Program organization units: functions, function blocks, programs. Data types and variables.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "d3e588a8-1ebe-4184-bd7a-75ba327123f4",
+        "subject_id": "2a9f8192-de59-4686-bf70-ff6e44b3005d",
+        "order": 4,
+        "description": "PLC programming languages: instruction list (IL), function block diagram (FBD), structure text (ST",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "b177d355-c2e1-4faf-ae05-a8826cfacd16",
+        "subject_id": "2a9f8192-de59-4686-bf70-ff6e44b3005d",
+        "order": 5,
+        "description": "Synthesis of control algorithms, part II: concurrent processes (Petri nets, state machine graphs synchronization, implementation in the PLC programming languages).",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "e2df5b6a-0ddc-4af8-89f5-92786edb5c31",
+        "subject_id": "2a9f8192-de59-4686-bf70-ff6e44b3005d",
+        "order": 6,
+        "description": "Sequential function chart (SFC). Selected PLC and PAC controllers, programming and features.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "095e2547-d854-4c37-9e66-cfb6775160e6",
+        "subject_id": "2a9f8192-de59-4686-bf70-ff6e44b3005d",
+        "order": 7,
+        "description": "Practical programming of selected PLCs.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "4f1f55eb-8d82-4c87-b708-ae8ea49f38a7",
+        "subject_id": "863a6542-7094-437c-8fb5-06f85ef59fbe",
+        "order": 1,
+        "description": "Relational databases. Database examples. Relational database example. Database languages: DDL, DML, DCL, QL. Operations on relations: section, projection, join, union.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "6a207923-460b-45e0-aa85-9c4559b992cc",
+        "subject_id": "863a6542-7094-437c-8fb5-06f85ef59fbe",
+        "order": 2,
+        "description": "Principles of database design. Data modeling. Creating relational database scheme from entity relationship diagram.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "75d47952-aaf1-4c65-9de7-509a8618d4a8",
+        "subject_id": "863a6542-7094-437c-8fb5-06f85ef59fbe",
+        "order": 3,
+        "description": "Creation and modification of database scheme. Instructions for data manipulation. Table creation. Data types. Integrity constraints and validation. Inserting data. Updating and deleting.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "6d1196d8-70d4-4045-9b6f-18fe06f05ca0",
+        "subject_id": "863a6542-7094-437c-8fb5-06f85ef59fbe",
+        "order": 4,
+        "description": "Simple SELECT queries. Data retrieval - WHERE caluse. Results ordering. Row grouping.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "3566aa8c-467f-4cc8-9eba-c20d34f0ef3b",
+        "subject_id": "863a6542-7094-437c-8fb5-06f85ef59fbe",
+        "order": 5,
+        "description": "Vertical relation joining. Specification of join conditions. JOIN clause. Horizontal joins: UNION, INTERSECT, MINUS. Creating subqueries. Correlated and not correlated mode. Single-row functions. Aggregate functions.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "c030adb4-4aa7-48a6-9338-744c39fb79f0",
+        "subject_id": "863a6542-7094-437c-8fb5-06f85ef59fbe",
+        "order": 6,
+        "description": "Industrial databases - characteristics, applications. TIme-stamp concept. Cooperation with SCADA systems. OPC mechanism.Protection against SQL Injection attacks.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "626f4acd-347c-444b-a248-c18bcc7550cf",
+        "subject_id": "3277898e-3125-456e-b0be-310f2fb8f73d",
+        "order": 1,
+        "description": "Organizational class. Presentingthe scope of the material and determing the form of credit classes. Familiarizing with the work rule in the laboratory. Low-level network protocols. LAN and WAN. OSI and TCP/IP models. Layers of models.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "a768187f-09b5-4e50-a100-587663950816",
+        "subject_id": "3277898e-3125-456e-b0be-310f2fb8f73d",
+        "order": 2,
+        "description": "The TCP/IP protocol in 4 and 6 versions: the structure of an IP datagram, segmentation of datagrams, addressing scheme, IP and Ethernet, routing in networks with IP, bandwidth reservation mechanism, quality of service in the network with IP protocol, VoIP technologies in the network with IP protocol.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "425d55cb-4f96-45fe-9386-dfa14fbb7b4c",
+        "subject_id": "3277898e-3125-456e-b0be-310f2fb8f73d",
+        "order": 3,
+        "description": "Network devices (active, passive). Selected network devices (switch, router). Routing in computer networks.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "c03ad92d-2d95-45f5-be9e-0bc56594a21b",
+        "subject_id": "3277898e-3125-456e-b0be-310f2fb8f73d",
+        "order": 4,
+        "description": "Transmission media (Twisted pair, optical fiber, wireless networks). Network cabling.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "3424ce53-f408-43ed-a94b-e7e878cdd994",
+        "subject_id": "3277898e-3125-456e-b0be-310f2fb8f73d",
+        "order": 5,
+        "description": "Security of computer networks.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "83f6083d-cf39-4881-915f-a7402e03bcf0",
+        "subject_id": "3277898e-3125-456e-b0be-310f2fb8f73d",
+        "order": 6,
+        "description": "Services (DHCP, DNS, FTP, SMTP, POP3, IMAP).",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "0e335067-1d91-4101-b9bd-659ec6404cfa",
+        "subject_id": "3277898e-3125-456e-b0be-310f2fb8f73d",
+        "order": 7,
+        "description": "Linux operating system",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "4022be1e-991a-426c-aad2-6e16bd0ba449",
+        "subject_id": "14782710-d330-4b0d-af1e-ede284228c00",
+        "order": 1,
+        "description": "Discussion of combinational circuits description methods, as well methods of their minimization. Analysis of logic gates manufactured in differrent technologies. Review of combinational functional modules (multipleksers, demultipleksers, coders, decoders, transcoders) and their usage in digital circuits designing.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "d158adea-be82-4237-8be2-6efafa36a576",
+        "subject_id": "14782710-d330-4b0d-af1e-ede284228c00",
+        "order": 2,
+        "description": "Review of sequenctial circuits including bistable digital triggers, registers, counters, memories",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "efa451db-9ee1-4c49-8a97-22d0bdf7ba36",
+        "subject_id": "14782710-d330-4b0d-af1e-ede284228c00",
+        "order": 3,
+        "description": "Combinational circuits synthesis",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "3af2d01d-95da-4b97-8197-fc9bbc559eda",
+        "subject_id": "14782710-d330-4b0d-af1e-ede284228c00",
+        "order": 4,
+        "description": "Sequential circuits synthesis",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "9d7c11c0-f453-47fc-8501-1917b1420238",
+        "subject_id": "14782710-d330-4b0d-af1e-ede284228c00",
+        "order": 5,
+        "description": "Programmable logic devices and methods of digital circuits testing",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "c8f6dbc9-2f81-4298-b55f-1521563bd733",
+        "subject_id": "e3300d3c-866e-4224-8f68-4b124af05e48",
+        "order": 1,
+        "description": "Basic notions, methods, tools and current development trends in the field of mechatronics and rapid control prototyping",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "8026f55d-052d-4b51-82b2-237c7c877304",
+        "subject_id": "e3300d3c-866e-4224-8f68-4b124af05e48",
+        "order": 2,
+        "description": "Virtual and rapid control prototyping, case study - servomechanism",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "6f73bc1c-964c-4ea3-ab4b-feb87b0ec595",
+        "subject_id": "e3300d3c-866e-4224-8f68-4b124af05e48",
+        "order": 3,
+        "description": "Virtual and rapid control prototyping, case study - tower crane",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "41a55e4b-e5b8-4f94-9c82-f648e365149e",
+        "subject_id": "e3300d3c-866e-4224-8f68-4b124af05e48",
+        "order": 4,
+        "description": "Virtual and rapid control prototyping, case study - helicopter",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "27a1d988-7aeb-420d-b6a0-3a5c08b44262",
+        "subject_id": "ad2fad00-b038-4f30-8827-5551463f06c8",
+        "order": 1,
+        "description": "Introduction, idea of ​​FEM methods, the importance of FEM methods",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "53094c7b-348e-43a1-95a0-0078265f4f9b",
+        "subject_id": "ad2fad00-b038-4f30-8827-5551463f06c8",
+        "order": 2,
+        "description": "Rigid body and flexible body. Classification and types of flexible bodies. Linear body, planar and volumetric bodies. Selected properties of elastic bodies. Examples.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "d877cfb5-b9ca-4aad-ad90-b9e6316c8cae",
+        "subject_id": "ad2fad00-b038-4f30-8827-5551463f06c8",
+        "order": 3,
+        "description": "Mathematical models of elastic bodies. Spatial discretization of physical phenomena. Discretization of time. The idea of ​​simplifying the model. Mass-spring-damper model.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "72132143-3104-4908-b060-3ff6aec95d65",
+        "subject_id": "ad2fad00-b038-4f30-8827-5551463f06c8",
+        "order": 4,
+        "description": "Motion simulation of FEM objects, field of the forces, objects motions in a force field, . Numerical methods for FEM methods, numerical integration methods for the FEM models, stability of numerical methods, accuracy of the calculations, method selection.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "c692f8e2-1c65-425e-824e-42663439fac2",
+        "subject_id": "ad2fad00-b038-4f30-8827-5551463f06c8",
+        "order": 5,
+        "description": "Motion modeling of selected flexible body, the MST- type object application, Simulation of surgical thread in a sewing phase.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "f0e16bd4-8d9a-4804-9ba4-7f9af86d76e1",
+        "subject_id": "ad2fad00-b038-4f30-8827-5551463f06c8",
+        "order": 6,
+        "description": "Analysis of rigid body contact with the flexible body, the contact phases, modeling of dynamic responses, limitations of the motion.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "52eaa57d-fdbb-49e5-b82f-54751617b7cb",
+        "subject_id": "0e4b1203-c86a-40eb-9d83-76a9d4b94ba5",
+        "order": 1,
+        "description": "An introduction to the lecture and laboratory. Presentation of the rules for cooperation. Assignment of subjects to self-develop and deliver. Establishing rules for the course credit. Passing the current list of source materials on to students.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "bc61f6f4-1960-40ec-9635-ac06773c23b7",
+        "subject_id": "0e4b1203-c86a-40eb-9d83-76a9d4b94ba5",
+        "order": 2,
+        "description": "Types and methods of doing business in Poland.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "3fcf3f02-f056-4eb1-a345-009ac66575f9",
+        "subject_id": "0e4b1203-c86a-40eb-9d83-76a9d4b94ba5",
+        "order": 3,
+        "description": "Projects. Writing an employment contract, a contract for specific work, a mandate contract, issuing an invoice - discussed individually during classes",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "de452714-2641-438b-95a4-0a11aa100fe6",
+        "subject_id": "0e4b1203-c86a-40eb-9d83-76a9d4b94ba5",
+        "order": 4,
+        "description": "Business model analysis Commercial law companies Establishing a commercial law company using the eKRS platform Funding for opening a business",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "12b332c0-97a5-4e3e-a7ab-621554b8f74a",
+        "subject_id": "0e4b1203-c86a-40eb-9d83-76a9d4b94ba5",
+        "order": 5,
+        "description": "Preparation of SWOT, Business Model Canvas for your own business idea",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "2578584a-ada9-4bfb-b2b3-bdf01002ccb6",
+        "subject_id": "0e4b1203-c86a-40eb-9d83-76a9d4b94ba5",
+        "order": 6,
+        "description": "Sole proprietorship: tax office - forms of taxation Sole proprietorship: ZUS CEIDG-1 Practical aspects of running your own business",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "3421769a-4f72-473e-b654-6adf897c8486",
+        "subject_id": "0e4b1203-c86a-40eb-9d83-76a9d4b94ba5",
+        "order": 7,
+        "description": "Application for funding for starting a business from UP",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "a68d3552-e792-45a1-a666-629a5eee0903",
+        "subject_id": "d5dfd946-19ab-42af-b9ca-c7f93fa2bf96",
+        "order": 1,
+        "description": "Introduction to Verilog Hardware Description Language",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "7ff0f70c-a38c-4cbb-9b44-dab4768e62c3",
+        "subject_id": "d5dfd946-19ab-42af-b9ca-c7f93fa2bf96",
+        "order": 2,
+        "description": "Basics of digital circuit simulation",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "e71a8d21-ed4c-458f-9ae8-fc5db2f36a96",
+        "subject_id": "d5dfd946-19ab-42af-b9ca-c7f93fa2bf96",
+        "order": 3,
+        "description": "Combinatorial circuit description",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "7d037bbc-d422-4f63-94a0-4eef673ecb90",
+        "subject_id": "d5dfd946-19ab-42af-b9ca-c7f93fa2bf96",
+        "order": 4,
+        "description": "Sequential circuit description and concurrent processes",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "198c44d0-6d12-42c9-a5c1-741c9eac84c3",
+        "subject_id": "d5dfd946-19ab-42af-b9ca-c7f93fa2bf96",
+        "order": 5,
+        "description": "Design and implementation examples of selected digital circuits",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "47d22756-202c-4d5b-953a-e5ffc07dfb5f",
+        "subject_id": "d5dfd946-19ab-42af-b9ca-c7f93fa2bf96",
+        "order": 6,
+        "description": "Embedded microprocessors",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "bd338f9f-5955-4574-98cd-a8c641118741",
+        "subject_id": "edaf238d-a700-4fd8-bb62-59d3529046c5",
+        "order": 1,
+        "description": "Basic issues of mobile robotics, types of robots.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "3b162584-ff06-491c-be8c-ef2fe05a0938",
+        "subject_id": "edaf238d-a700-4fd8-bb62-59d3529046c5",
+        "order": 2,
+        "description": "Nonlinear differential equations. Fundamentals of kinematics of wheel robots.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "81f883ab-7d70-4757-8115-0a16cdc95999",
+        "subject_id": "edaf238d-a700-4fd8-bb62-59d3529046c5",
+        "order": 3,
+        "description": "Kinematics of a nonholonomic robot. Open-loop and closed-loop control.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "a3c036fb-880d-4b0e-82d3-1d566e84753a",
+        "subject_id": "edaf238d-a700-4fd8-bb62-59d3529046c5",
+        "order": 4,
+        "description": "Kinematics of a holonomic robot. Open-loop control.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "a602bbf5-984b-4d86-a4a6-b0d9fde876c2",
+        "subject_id": "edaf238d-a700-4fd8-bb62-59d3529046c5",
+        "order": 5,
+        "description": "Pioneer 3-AT wheel robot. Programming robots using the ARIA library. Processing information from sensors.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "5c2c61e5-ddab-460b-8701-41a6c2b1be52",
+        "subject_id": "edaf238d-a700-4fd8-bb62-59d3529046c5",
+        "order": 6,
+        "description": "Mobile Robot Operating System (ROS).",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "f8682ee1-061a-4672-905d-302c10ea8aaf",
+        "subject_id": "edaf238d-a700-4fd8-bb62-59d3529046c5",
+        "order": 7,
+        "description": "Application of computer vision and artificial intelligence methods in robotics.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "cd2d2469-355d-403c-9132-1b76fd115b74",
+        "subject_id": "edaf238d-a700-4fd8-bb62-59d3529046c5",
+        "order": 8,
+        "description": "Methods of localization and navigation for mobile robots.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "7a31c341-b038-4a4b-9961-37ffec9e9f80",
+        "subject_id": "b00ce108-7f42-4374-9b60-90c346f6e244",
+        "order": 1,
+        "description": "Formal and editorial requirements of the thesis. The structure of work, the content of the sections and subsections.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "2c86b1a0-7a0f-4f67-8574-dd56ec892d5b",
+        "subject_id": "b00ce108-7f42-4374-9b60-90c346f6e244",
+        "order": 2,
+        "description": "The rules for creating theoretical and practical work.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "00500f46-d04f-48f6-8782-cec7210fffb3",
+        "subject_id": "b00ce108-7f42-4374-9b60-90c346f6e244",
+        "order": 3,
+        "description": "Presentation of the theoretical part of the thesis. Create a table of contents, thesis, purpose, scope.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "9dac303c-ef11-4457-a913-f72362111ab9",
+        "subject_id": "b00ce108-7f42-4374-9b60-90c346f6e244",
+        "order": 1,
+        "description": "Discussion of the principles of the thesis presentation on the practical part.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "e72b202f-fe08-4131-bb8d-f41b2490aec3",
+        "subject_id": "b00ce108-7f42-4374-9b60-90c346f6e244",
+        "order": 2,
+        "description": "Presentations of thesis practical part.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "2a475e98-2b1d-4a60-8972-54a5e69eeb40",
+        "subject_id": "50f7bee4-bafb-45b9-9fc9-1ef2ddc72753",
+        "order": 1,
+        "description": "Antennas and propagation of radio waves in the telecommunication channel",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "d7b7c9fb-c406-4101-8ad7-1c2038ce624a",
+        "subject_id": "50f7bee4-bafb-45b9-9fc9-1ef2ddc72753",
+        "order": 2,
+        "description": "ZigBee Technology",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "b9478ceb-876e-452f-9cd3-62a361422453",
+        "subject_id": "50f7bee4-bafb-45b9-9fc9-1ef2ddc72753",
+        "order": 3,
+        "description": "Bluetooth Technology",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "86875281-f7b6-491d-b3de-567ce199a6e6",
+        "subject_id": "50f7bee4-bafb-45b9-9fc9-1ef2ddc72753",
+        "order": 4,
+        "description": "Wi-Fi Technology",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "b59b282d-3e55-44b0-ae70-194c516011b3",
+        "subject_id": "50f7bee4-bafb-45b9-9fc9-1ef2ddc72753",
+        "order": 5,
+        "description": "GSM/GPRS Technology",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "9ab2ec02-002b-493e-8a5a-14f7cd502b77",
+        "subject_id": "50f7bee4-bafb-45b9-9fc9-1ef2ddc72753",
+        "order": 6,
+        "description": "Fundamentals of mobile telephony systems",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "5da06eac-c8ca-4a1c-af18-89d5be9351d6",
+        "subject_id": "50f7bee4-bafb-45b9-9fc9-1ef2ddc72753",
+        "order": 7,
+        "description": "Design of a dedicated antenna for use in a selected radio communication system or microprocessor system for communication in a wireless computer network (WPAN or WLAN)",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "da371551-0635-467d-bf0f-fa39bca5fd61",
+        "subject_id": "e8376373-27a7-46a4-852b-135f1bf051e8",
+        "order": 1,
+        "description": "Basic notions and current development trends in the field of monitoring and control of production processes, IT systems - SCADA, MES, ERP, MRP",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "118db20a-d7dd-4de6-8012-f0e69f9b9666",
+        "subject_id": "e8376373-27a7-46a4-852b-135f1bf051e8",
+        "order": 2,
+        "description": "System for monitoring of machines and operators work - case study",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "34899eb0-7688-43e2-bd88-d840fd74dbcb",
+        "subject_id": "e8376373-27a7-46a4-852b-135f1bf051e8",
+        "order": 3,
+        "description": "Production planning and scheduling - case study",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "d1031b42-04a6-43b7-bbfa-4f0ff760e6e6",
+        "subject_id": "e8376373-27a7-46a4-852b-135f1bf051e8",
+        "order": 4,
+        "description": "Production in-process monitoring and production traceability system - case study",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "3f5ad43c-173e-4a3a-b954-c6a1b2933f7f",
+        "subject_id": "462376ec-0ce8-4d67-92b8-00cc2a1c94d1",
+        "order": 1,
+        "description": "Introduction. Determining the form of credit and the scope of the material. Basic definitions of security. Risk management. Acts and legal standards.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "8e28895b-0721-4807-92d9-0c5446dec397",
+        "subject_id": "462376ec-0ce8-4d67-92b8-00cc2a1c94d1",
+        "order": 2,
+        "description": "Cryptography. Methods and categories of breaking ciphers. Basic types of ciphers. Introduction to information theory. Entropy. Coincidence characters. Frequency analysis of ciphers.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "26bc06c5-3051-4923-aa8b-9e496e727892",
+        "subject_id": "462376ec-0ce8-4d67-92b8-00cc2a1c94d1",
+        "order": 3,
+        "description": "Capturing information in LANs, encrypted data capture, an attack on an SSL session. IDS and IPS systems. The legal aspect, hardware and software solutions",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "6aff3e9a-4e11-4ef1-ae3d-6054efce9875",
+        "subject_id": "462376ec-0ce8-4d67-92b8-00cc2a1c94d1",
+        "order": 4,
+        "description": "Firewalls: Firewalls characteristics, types of firewalls, implement firewalls, location and configuration of firewalls.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "77d19828-57e8-4882-a9db-f5606ed12c87",
+        "subject_id": "462376ec-0ce8-4d67-92b8-00cc2a1c94d1",
+        "order": 5,
+        "description": "Protection of the operating system. Administrator Tasks. Remote operating system detection.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "1ec78287-b04a-4591-ba55-a2a7ebde5239",
+        "subject_id": "462376ec-0ce8-4d67-92b8-00cc2a1c94d1",
+        "order": 6,
+        "description": "Intrusion detection systems in the computer system, security scanners.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "60b5d7c3-48b0-4b3b-9a62-c2694745a84d",
+        "subject_id": "462376ec-0ce8-4d67-92b8-00cc2a1c94d1",
+        "order": 7,
+        "description": "Virtual VPN tunnels. Email security. Digital signature. Safety certificates. Hash functions.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "1a1790c7-56ea-499a-a503-c2e305505cf8",
+        "subject_id": "462376ec-0ce8-4d67-92b8-00cc2a1c94d1",
+        "order": 8,
+        "description": "The security of the system. Measures of confidentiality and security systems. Audit of the system.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "5c87aa49-7753-4be6-8e31-bdc3d30e6df1",
+        "subject_id": "462376ec-0ce8-4d67-92b8-00cc2a1c94d1",
+        "order": 9,
+        "description": "Security policy. Security models. Creating safety procedures.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "7501c3c2-efa6-49db-9b77-38ce87bd943c",
+        "subject_id": "462376ec-0ce8-4d67-92b8-00cc2a1c94d1",
+        "order": 10,
+        "description": "Securing the physical infrastructure of the system - requirements, threats, conservation measures.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "378c2b37-6e2a-44db-9f9f-2e2adbaf8938",
+        "subject_id": "462376ec-0ce8-4d67-92b8-00cc2a1c94d1",
+        "order": 11,
+        "description": "Critical elements of the system and methods of protection: power, cooling, cabling.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "afc0ca9a-2804-4f0c-9e24-1bb831b93725",
+        "subject_id": "e32903df-d747-45a7-839e-6fa6f81b175c",
+        "order": 1,
+        "description": "-",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "3de13ccd-db3a-409e-a186-0418ffb1424d",
+        "subject_id": "360cd30a-7fc5-4fe7-987a-311a44ca3945",
+        "order": 1,
+        "description": "Formal and editorial requirements of the thesis. The structure of work, the content of the sections and subsections.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "6cf8b694-8b8d-4032-8a64-eb75c2b25bdd",
+        "subject_id": "360cd30a-7fc5-4fe7-987a-311a44ca3945",
+        "order": 2,
+        "description": "The rules for creating theoretical and practical work.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "08a0ecbc-231b-4b2f-a3c0-73d6b09e56d0",
+        "subject_id": "360cd30a-7fc5-4fe7-987a-311a44ca3945",
+        "order": 3,
+        "description": "Presentation of the theoretical part of the thesis. Create a table of contents, thesis, purpose, scope.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "b7c717b5-9127-42ec-ad18-da90265fd601",
+        "subject_id": "360cd30a-7fc5-4fe7-987a-311a44ca3945",
+        "order": 1,
+        "description": "Discussion of the principles of the thesis presentation on the practical part.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "4e81922f-4ab6-4e5b-a83e-7d65b038f242",
+        "subject_id": "360cd30a-7fc5-4fe7-987a-311a44ca3945",
+        "order": 2,
+        "description": "Presentations of thesis practical part.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "fdb6968a-fb75-4323-8790-3d52241d15cc",
+        "subject_id": "1069d26c-572e-4af3-8a0b-56380a63c9f6",
+        "order": 1,
+        "description": "Principles of Windows programming: window class definition, window class registration, window definition, message handling loop activation, window procedure, messages servicing",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "fbec38d3-30a3-4028-a60b-3cb59dcbfdef",
+        "subject_id": "1069d26c-572e-4af3-8a0b-56380a63c9f6",
+        "order": 2,
+        "description": "OpenGL library application to 3D interactive animation creation: wireframes definition, scene composition using three-dimensional transformations, lighting and shading definition, texture-mapping, OpenGL library extensions, graphics engines as modern platforms for interactive 3D applications creation",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "9f8e5896-f05f-4ea1-ad9d-c7f8f5a7ba14",
+        "subject_id": "1069d26c-572e-4af3-8a0b-56380a63c9f6",
+        "order": 3,
+        "description": "Structure of vision system. image pre-processing (histograms and histogram equalization, pixel brightness transformations, image smoothing and edge detection using spatial filters, frequency methods and morphological operations), Image segmentation (image thresholding, Hough transform, edge following). Object feature measurement and analysis, automatic object identification (object classification using K-nearest neighbours method, clastering using K-means algorithm). Introduction to stereovision and calibration of vision system. Tools designed for solving tasks in the field of computer vision (Image Processing and Image Acquisition Toolboxes for MATLAB, OpenCV library). Examples of computer vision applications.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "93690bfe-0089-4057-a927-93324adc8c2b",
+        "subject_id": "f8d86439-3b8a-4aa4-9a6e-73ba22d9406b",
+        "order": 1,
+        "description": "Image processing and analysis. Object recognition techniques using global and local features. Searching and retrieving images from large databases.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "9241b637-56d6-43af-9ddf-cadfece93d29",
+        "subject_id": "f8d86439-3b8a-4aa4-9a6e-73ba22d9406b",
+        "order": 2,
+        "description": "Industry 4.0 idea and application of IT, automation and robotics technologies.",
+        "estimated_minutes": 60
+    },
+    {
+        "id": "338ab3f0-5f7c-42c9-98dd-14b195c3765b",
+        "subject_id": "f8d86439-3b8a-4aa4-9a6e-73ba22d9406b",
+        "order": 3,
+        "description": "Selected methods of optimisation: linear and non-linear programming, metaheuristics. Production scheduling. Computer tools for optimisation and scheduling.",
+        "estimated_minutes": 60
+    },
+
 ]
 // Helper to get directions for a faculty
 export function getDirections(facultyId: string): Direction[] {
@@ -10592,7 +15332,7 @@ export const DEMO_USER = {
   lastName: 'Johnson',
   email: 'alex.johnson@stud.prz.edu.pl',
   faculty_id: 'weii',
-  direction_id: 'weii-cs',
+  direction_id: 'weii-ce',
   specialization_id: undefined as string | undefined,
   semester: 3,
 };
