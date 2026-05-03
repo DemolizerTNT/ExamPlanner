@@ -28,6 +28,8 @@ interface AppContextType {
   specializations: Specialization[];
   getDirectionsFor: (facultyId: string) => Direction[];
   getSpecializationsFor: (directionId: string) => Specialization[];
+  loadDirectionsForFaculty: (facultyId: string) => Promise<Direction[]>;
+  loadSpecializationsForDirection: (directionId: string) => Promise<Specialization[]>;
   subjects: Subject[];
   knowledgePointsBySubject: Record<string, KnowledgePoint[]>;
   progress: Record<string, UserProgress>;
@@ -141,8 +143,8 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
   const profileRefreshAttemptedRef = useRef(false);
   const [isLoggingOut, setIsLoggingOut] = useState(false);
   const [faculties, setFaculties] = useState<Faculty[]>([]);
-  const [directions, setDirections] = useState<Direction[]>([]);
-  const [specializations, setSpecializations] = useState<Specialization[]>([]);
+  const [directionsByFaculty, setDirectionsByFaculty] = useState<Record<string, Direction[]>>({});
+  const [specializationsByDirection, setSpecializationsByDirection] = useState<Record<string, Specialization[]>>({});
   const [catalogSubjects, setCatalogSubjects] = useState<Subject[]>([]);
   const [knowledgePoints, setKnowledgePoints] = useState<KnowledgePoint[]>([]);
   const [isOnboarded, setIsOnboarded] = useState(() => {
@@ -159,6 +161,52 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
   const weeksUntilExam = Math.max(1, Math.ceil((EXAM_START.getTime() - TODAY.getTime()) / msPerWeek));
 
   const currentUser = user || FALLBACK_USER;
+  const getDirectionsFor = useCallback(
+    (facultyId: string) => directionsByFaculty[facultyId] || [],
+    [directionsByFaculty]
+  );
+
+  const getSpecializationsFor = useCallback(
+    (directionId: string) => specializationsByDirection[directionId] || [],
+    [specializationsByDirection]
+  );
+
+  const loadDirectionsForFaculty = useCallback(async (facultyId: string) => {
+    if (!facultyId) {
+      return [];
+    }
+
+    try {
+      const directionsForFaculty = await apiClient.getDirections(facultyId);
+      setDirectionsByFaculty((prev) => ({
+        ...prev,
+        [facultyId]: directionsForFaculty,
+      }));
+      return directionsForFaculty;
+    } catch (error) {
+      console.error('Failed to load directions for faculty:', error);
+      return [];
+    }
+  }, []);
+
+  const loadSpecializationsForDirection = useCallback(async (directionId: string) => {
+    if (!directionId) {
+      return [];
+    }
+
+    try {
+      const specializationsForDirection = await apiClient.getSpecializations(directionId);
+      setSpecializationsByDirection((prev) => ({
+        ...prev,
+        [directionId]: specializationsForDirection,
+      }));
+      return specializationsForDirection;
+    } catch (error) {
+      console.error('Failed to load specializations for direction:', error);
+      return [];
+    }
+  }, []);
+
   const subjects = useMemo(() => catalogSubjects.filter((subject) => {
     if (subject.faculty_id !== currentUser.faculty_id) {
       return false;
@@ -245,6 +293,10 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
     setIsOnboarded(false);
     localStorage.removeItem(STORAGE_KEYS.USER);
     localStorage.removeItem(STORAGE_KEYS.ONBOARDED);
+    setDirectionsByFaculty({});
+    setSpecializationsByDirection({});
+    setCatalogSubjects([]);
+    setKnowledgePoints([]);
   }, []);
 
   const refreshProfile = useCallback(async () => {
@@ -271,12 +323,7 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
 
     const loadCatalogData = async () => {
       try {
-        const [remoteFaculties, remoteSpecializations, remoteSubjects, remoteKnowledgePoints] = await Promise.all([
-          apiClient.getFaculties(),
-          apiClient.getSpecializations(),
-          apiClient.getSubjects(),
-          apiClient.getKnowledgePoints(),
-        ]);
+        const remoteFaculties = await apiClient.getFaculties();
 
         if (isCancelled) {
           return;
@@ -284,33 +331,6 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
 
         if (remoteFaculties.length > 0) {
           setFaculties(remoteFaculties);
-        }
-
-        const directionsByFaculty = await Promise.all(
-          remoteFaculties.map(async (faculty) => {
-            try {
-              return await apiClient.getDirections(faculty.id);
-            } catch {
-              return [] as Direction[];
-            }
-          })
-        );
-
-        if (isCancelled) {
-          return;
-        }
-
-        const remoteDirections = directionsByFaculty.flat();
-
-        setDirections(remoteDirections);
-        setSpecializations(remoteSpecializations);
-
-        if (remoteSubjects.length > 0) {
-          setCatalogSubjects(remoteSubjects);
-        }
-
-        if (remoteKnowledgePoints.length > 0) {
-          setKnowledgePoints(remoteKnowledgePoints);
         }
       } catch (error) {
         console.error('Failed to load catalog data:', error);
@@ -323,6 +343,85 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
       isCancelled = true;
     };
   }, []);
+
+  useEffect(() => {
+    let isCancelled = false;
+
+    const loadUserCatalog = async () => {
+      if (!isOnboarded || !currentUser.faculty_id || currentUser.semester <= 0) {
+        setCatalogSubjects([]);
+        setKnowledgePoints([]);
+        return;
+      }
+
+      try {
+        const [remoteSubjects, remoteDirections, remoteSpecializations] = await Promise.all([
+          apiClient.getSubjects({
+            facultyId: currentUser.faculty_id,
+            directionId: currentUser.direction_id,
+            specializationId: currentUser.specialization_id,
+            semester: currentUser.semester,
+          }),
+          loadDirectionsForFaculty(currentUser.faculty_id),
+          currentUser.direction_id
+            ? loadSpecializationsForDirection(currentUser.direction_id)
+            : Promise.resolve([] as Specialization[]),
+        ]);
+
+        if (isCancelled) {
+          return;
+        }
+
+        if (remoteDirections.length > 0) {
+          setDirectionsByFaculty((prev) => ({
+            ...prev,
+            [currentUser.faculty_id]: remoteDirections,
+          }));
+        }
+
+        if (currentUser.direction_id && remoteSpecializations.length > 0) {
+          setSpecializationsByDirection((prev) => ({
+            ...prev,
+            [currentUser.direction_id as string]: remoteSpecializations,
+          }));
+        }
+
+        setCatalogSubjects(remoteSubjects);
+
+        const remoteKnowledgePoints = await Promise.all(
+          remoteSubjects.map(async (subject) => {
+            try {
+              return await apiClient.getKnowledgePoints(subject.id);
+            } catch {
+              return [] as KnowledgePoint[];
+            }
+          })
+        );
+
+        if (isCancelled) {
+          return;
+        }
+
+        setKnowledgePoints(remoteKnowledgePoints.flat());
+      } catch (error) {
+        console.error('Failed to load user catalog:', error);
+      }
+    };
+
+    void loadUserCatalog();
+
+    return () => {
+      isCancelled = true;
+    };
+  }, [
+    isOnboarded,
+    currentUser.faculty_id,
+    currentUser.direction_id,
+    currentUser.specialization_id,
+    currentUser.semester,
+    loadDirectionsForFaculty,
+    loadSpecializationsForDirection,
+  ]);
 
   useEffect(() => {
     const handleAuthExpired = () => {
@@ -483,10 +582,12 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
       isOnboarded,
       isLoggingOut,
       faculties,
-      directions,
-      specializations,
-      getDirectionsFor: (facultyId: string) => directions.filter(direction => direction.faculty_id === facultyId),
-      getSpecializationsFor: (directionId: string) => specializations.filter(spec => spec.direction_id === directionId),
+      directions: Object.values(directionsByFaculty).flat(),
+      specializations: Object.values(specializationsByDirection).flat(),
+      getDirectionsFor,
+      getSpecializationsFor,
+      loadDirectionsForFaculty,
+      loadSpecializationsForDirection,
       subjects,
       knowledgePointsBySubject,
       progress,

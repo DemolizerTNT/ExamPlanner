@@ -16,7 +16,15 @@ const STEP_META = [
 ];
 
 export function Onboarding() {
-  const { user, faculties, getDirectionsFor, getSpecializationsFor, completeOnboarding } = useApp();
+  const {
+    user,
+    faculties,
+    getDirectionsFor,
+    getSpecializationsFor,
+    loadDirectionsForFaculty,
+    loadSpecializationsForDirection,
+    completeOnboarding,
+  } = useApp();
   const [step, setStep] = useState(1);
   const [selectedFaculty,    setSelectedFaculty]    = useState('');
   const [selectedDirection,  setSelectedDirection]  = useState('');
@@ -32,8 +40,20 @@ export function Onboarding() {
   const goBack = () => setStep(s => Math.max(1, s - 1));
 
   /* ── step handlers ── */
-  const handleFaculty = (id: string) => { setSelectedFaculty(id); setSelectedDirection(''); setSelectedSpec(undefined); setStep(2); };
-  const handleDirection = (id: string) => { setSelectedDirection(id); setSelectedSpec(undefined); setStep(3); };
+  const handleFaculty = async (id: string) => {
+    setSelectedFaculty(id);
+    setSelectedDirection('');
+    setSelectedSpec(undefined);
+    await loadDirectionsForFaculty(id);
+    setStep(2);
+  };
+
+  const handleDirection = async (id: string) => {
+    setSelectedDirection(id);
+    setSelectedSpec(undefined);
+    await loadSpecializationsForDirection(id);
+    setStep(3);
+  };
   const handleSpec = (id: string | undefined) => { setSelectedSpec(id); setStep(4); };
   const handleFinish = () => {
     if (selectedFaculty && selectedDirection && selectedSemester > 0) {
