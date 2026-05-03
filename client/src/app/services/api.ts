@@ -1,4 +1,5 @@
 import axios, { type AxiosError, type AxiosInstance } from 'axios';
+import type { Faculty, Direction, KnowledgePoint, Specialization, Subject } from '../types/catalog';
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:3000/api';
 
@@ -44,6 +45,67 @@ interface ProfileResponse {
 interface ApiError {
   message: string;
   errors?: Record<string, string>;
+}
+
+interface CatalogFacultiesResponse {
+  message: string;
+  faculties: Array<{
+    id: string;
+    name: string;
+    shortName: string;
+  }>;
+}
+
+interface CatalogDirectionsResponse {
+  message: string;
+  directions: Array<{
+    id: string;
+    facultyId: string;
+    name: string;
+  }>;
+}
+
+interface CatalogSpecializationsResponse {
+  message: string;
+  specializations: Array<{
+    id: string;
+    directionId: string;
+    name: string;
+    minSemester: number;
+  }>;
+}
+
+interface CatalogSubjectsResponse {
+  message: string;
+  subjects: Array<{
+    id: string;
+    facultyId: string;
+    directionId?: string | null;
+    specializationId?: string | null;
+    semester: number;
+    name: string;
+    hasExam: boolean;
+    examDate?: string | null;
+    color: string;
+  }>;
+}
+
+interface CatalogKnowledgePointsResponse {
+  message: string;
+  knowledgePoints: Array<{
+    id: string;
+    subjectId: string;
+    order: number;
+    description: string;
+    estimatedMinutes: number;
+  }>;
+}
+
+interface SubjectFilters {
+  facultyId?: string;
+  directionId?: string;
+  specializationId?: string;
+  semester?: number;
 }
 
 class ApiClient {
@@ -199,6 +261,74 @@ class ApiClient {
       accessToken: this.accessToken, // Fallback: wysyłamy token w body, jeśli interceptor go nie dodał
     });
     return response.data;
+  }
+
+  // Catalog endpoints
+  async getFaculties(): Promise<Faculty[]> {
+    const response = await this.client.get<CatalogFacultiesResponse>('/faculties');
+
+    return response.data.faculties.map((faculty) => ({
+      id: faculty.id,
+      name: faculty.name,
+      shortName: faculty.shortName,
+    }));
+  }
+
+  async getDirections(facultyId: string): Promise<Direction[]> {
+    const response = await this.client.get<CatalogDirectionsResponse>('/directions', {
+      params: { facultyId },
+    });
+
+    return response.data.directions.map((direction) => ({
+      id: direction.id,
+      faculty_id: direction.facultyId,
+      name: direction.name,
+    }));
+  }
+
+  async getSpecializations(directionId?: string): Promise<Specialization[]> {
+    const response = await this.client.get<CatalogSpecializationsResponse>('/specializations', {
+      params: directionId ? { directionId } : undefined,
+    });
+
+    return response.data.specializations.map((specialization) => ({
+      id: specialization.id,
+      direction_id: specialization.directionId,
+      name: specialization.name,
+      min_semester: specialization.minSemester,
+    }));
+  }
+
+  async getSubjects(filters: SubjectFilters = {}): Promise<Subject[]> {
+    const response = await this.client.get<CatalogSubjectsResponse>('/subjects', {
+      params: filters,
+    });
+
+    return response.data.subjects.map((subject) => ({
+      id: subject.id,
+      faculty_id: subject.facultyId,
+      direction_id: subject.directionId ?? undefined,
+      specialization_id: subject.specializationId ?? undefined,
+      semester: subject.semester,
+      name: subject.name,
+      has_exam: subject.hasExam,
+      exam_date: subject.examDate ?? undefined,
+      color: subject.color,
+    }));
+  }
+
+  async getKnowledgePoints(subjectId?: string): Promise<KnowledgePoint[]> {
+    const response = await this.client.get<CatalogKnowledgePointsResponse>('/knowledge-points', {
+      params: subjectId ? { subjectId } : undefined,
+    });
+
+    return response.data.knowledgePoints.map((knowledgePoint) => ({
+      id: knowledgePoint.id,
+      subject_id: knowledgePoint.subjectId,
+      order: knowledgePoint.order,
+      description: knowledgePoint.description,
+      estimated_minutes: knowledgePoint.estimatedMinutes,
+    }));
   }
 
   // Utility: sprawdzenie czy użytkownik jest zalogowany

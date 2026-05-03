@@ -4,7 +4,7 @@ import { useApp } from '../context/AppContext';
 import { motion, AnimatePresence } from 'motion/react';
 import { format, startOfMonth, endOfMonth, eachDayOfInterval, startOfWeek, endOfWeek, isSameMonth, isSameDay, addMonths, subMonths, addWeeks, subWeeks } from 'date-fns';
 import { enUS } from 'date-fns/locale';
-import type { KnowledgePoint, Subject, UserProgress } from '../data/mockData2';
+import type { KnowledgePoint, Subject, UserProgress } from '../types/catalog';
 
 const TODAY = new Date('2026-03-27');
 

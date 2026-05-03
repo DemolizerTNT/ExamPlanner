@@ -1,14 +1,10 @@
 /* eslint-disable react-refresh/only-export-components */
 
 import { createContext, useContext, useState, useEffect, useCallback, useMemo, useRef } from 'react';
-import {
-  DEMO_USER, FACULTIES, DIRECTIONS, SPECIALIZATIONS,
-  getSubjects, getKnowledgePoints, getDirections, getSpecializations,
-} from '../data/mockData2';
 import { apiClient, type UserProfile } from '../services/api';
 import type {
   Faculty, Direction, Specialization, Subject, KnowledgePoint, UserProgress, ProgressStatus
-} from '../data/mockData2';
+} from '../types/catalog';
 
 interface AppUser {
   id: string;
@@ -70,8 +66,15 @@ function getWeekNumber(date: Date): number {
 }
 
 const FALLBACK_USER: AppUser = {
-  ...DEMO_USER,
+  id: 'guest',
+  firstName: 'Student',
+  lastName: '',
   avatarUrl: null,
+  email: '',
+  faculty_id: '',
+  direction_id: undefined,
+  specialization_id: undefined,
+  semester: 1,
 };
 
 const splitName = (fullName: string) => {
@@ -137,49 +140,56 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
   const [user, setUser] = useState<AppUser | null>(() => hydrateStoredUser());
   const profileRefreshAttemptedRef = useRef(false);
   const [isLoggingOut, setIsLoggingOut] = useState(false);
+  const [faculties, setFaculties] = useState<Faculty[]>([]);
+  const [directions, setDirections] = useState<Direction[]>([]);
+  const [specializations, setSpecializations] = useState<Specialization[]>([]);
+  const [catalogSubjects, setCatalogSubjects] = useState<Subject[]>([]);
+  const [knowledgePoints, setKnowledgePoints] = useState<KnowledgePoint[]>([]);
   const [isOnboarded, setIsOnboarded] = useState(() => {
     return localStorage.getItem(STORAGE_KEYS.ONBOARDED) === 'true';
   });
   const [progress, setProgress] = useState<Record<string, UserProgress>>(() => {
     const stored = localStorage.getItem(STORAGE_KEYS.PROGRESS);
     if (stored) return JSON.parse(stored);
-    // Seed some demo progress
-    const initial: Record<string, UserProgress> = {};
-    const demoPoints = [
-      '8f551a1b-a995-451d-b10e-1726d460f047','a11c617e-6395-437b-a589-7665d51a3d30','42aca409-c723-4c51-8c9e-f825f6dd379c',
-      'b0772d41-1ff2-43e1-9991-bfcf43d0ee56','3af429e1-fa4c-4a56-abf1-27cd8677a662','29857906-bda8-44ad-b7f0-3c0270130b80','d86eca9e-995a-4de6-8016-581fb380bc09','22bf41d7-f48a-4987-a71c-757a40787284',
-      'b3620c2b-f3c7-450b-9c8a-273f018e4991','07806c10-8c24-48f6-aab0-fc538d11a878','c7b4e199-4ba7-49c2-b064-33ab73015588',
-    ];
-    const skippedPoints = ['d86eca9e-995a-4de6-8016-581fb380bc09', 'a11c617e-6395-437b-a589-7665d51a3d30'];
-    demoPoints.forEach(id => {
-      initial[id] = { user_id: 'user-1', point_id: id, status: 'completed', completion_date: '2026-03-20' };
-    });
-    skippedPoints.forEach(id => {
-      initial[id] = { user_id: 'user-1', point_id: id, status: 'skipped', completion_date: '2026-03-21' };
-    });
-    return initial;
+    return {};
   });
 
   const currentWeek = getWeekNumber(TODAY);
   const msPerWeek = 7 * 24 * 60 * 60 * 1000;
   const weeksUntilExam = Math.max(1, Math.ceil((EXAM_START.getTime() - TODAY.getTime()) / msPerWeek));
 
-  const faculties = FACULTIES;
   const currentUser = user || FALLBACK_USER;
-  const subjects = getSubjects(
-    currentUser.faculty_id,
-    currentUser.semester,
-    currentUser.direction_id,
-    currentUser.specialization_id
-  );
+  const subjects = useMemo(() => catalogSubjects.filter((subject) => {
+    if (subject.faculty_id !== currentUser.faculty_id) {
+      return false;
+    }
+
+    if (subject.semester !== currentUser.semester) {
+      return false;
+    }
+
+    if (subject.direction_id && currentUser.direction_id && subject.direction_id !== currentUser.direction_id) {
+      return false;
+    }
+
+    if (subject.direction_id && !currentUser.direction_id) {
+      return false;
+    }
+
+    if (subject.specialization_id) {
+      return subject.specialization_id === currentUser.specialization_id;
+    }
+
+    return true;
+  }), [catalogSubjects, currentUser]);
 
   const knowledgePointsBySubject = useMemo<Record<string, KnowledgePoint[]>>(() => {
     const map: Record<string, KnowledgePoint[]> = {};
-    subjects.forEach(s => {
-      map[s.id] = getKnowledgePoints(s.id);
+    subjects.forEach((s) => {
+      map[s.id] = knowledgePoints.filter((point) => point.subject_id === s.id);
     });
     return map;
-  }, [subjects]);
+  }, [subjects, knowledgePoints]);
 
   // All points for the semester
   const allPoints = subjects.flatMap(s => knowledgePointsBySubject[s.id] || []);
@@ -257,6 +267,64 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
   }, [progress]);
 
   useEffect(() => {
+    let isCancelled = false;
+
+    const loadCatalogData = async () => {
+      try {
+        const [remoteFaculties, remoteSpecializations, remoteSubjects, remoteKnowledgePoints] = await Promise.all([
+          apiClient.getFaculties(),
+          apiClient.getSpecializations(),
+          apiClient.getSubjects(),
+          apiClient.getKnowledgePoints(),
+        ]);
+
+        if (isCancelled) {
+          return;
+        }
+
+        if (remoteFaculties.length > 0) {
+          setFaculties(remoteFaculties);
+        }
+
+        const directionsByFaculty = await Promise.all(
+          remoteFaculties.map(async (faculty) => {
+            try {
+              return await apiClient.getDirections(faculty.id);
+            } catch {
+              return [] as Direction[];
+            }
+          })
+        );
+
+        if (isCancelled) {
+          return;
+        }
+
+        const remoteDirections = directionsByFaculty.flat();
+
+        setDirections(remoteDirections);
+        setSpecializations(remoteSpecializations);
+
+        if (remoteSubjects.length > 0) {
+          setCatalogSubjects(remoteSubjects);
+        }
+
+        if (remoteKnowledgePoints.length > 0) {
+          setKnowledgePoints(remoteKnowledgePoints);
+        }
+      } catch (error) {
+        console.error('Failed to load catalog data:', error);
+      }
+    };
+
+    void loadCatalogData();
+
+    return () => {
+      isCancelled = true;
+    };
+  }, []);
+
+  useEffect(() => {
     const handleAuthExpired = () => {
       clearAuthState();
     };
@@ -279,7 +347,11 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
     }
 
     profileRefreshAttemptedRef.current = true;
-    void refreshProfile();
+    const runProfileRefresh = async () => {
+      await refreshProfile();
+    };
+
+    void runProfileRefresh();
   }, [refreshProfile]);
 
   const login = async (email: string, password: string): Promise<boolean> => {
@@ -291,12 +363,14 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
         lastName: '',
         avatarUrl: null,
         email: response.user.email,
-        faculty_id: 'weii',
-        direction_id: 'weii-cs',
+        faculty_id: '',
+        direction_id: undefined,
         specialization_id: undefined,
-        semester: 3,
+        semester: 1,
       };
       setUser(u);
+      setIsOnboarded(false);
+      localStorage.removeItem(STORAGE_KEYS.ONBOARDED);
       localStorage.setItem(STORAGE_KEYS.USER, JSON.stringify(u));
       return true;
     } catch (error) {
@@ -320,12 +394,19 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
         semester: 0,
       };
       setUser(u);
+      setIsOnboarded(false);
+      localStorage.removeItem(STORAGE_KEYS.ONBOARDED);
       localStorage.setItem(STORAGE_KEYS.USER, JSON.stringify(u));
       return { ok: true };
-    } catch (err: any) {
+    } catch (err: unknown) {
       console.error('Register failed:', err);
       // Try to get a useful message from the server
-      const serverMessage = err?.response?.data?.message || err?.message || 'Registration failed';
+      const serverMessage =
+        typeof err === 'object' && err !== null && 'response' in err
+          ? ((err as { response?: { data?: { message?: string } } }).response?.data?.message || 'Registration failed')
+          : err instanceof Error
+            ? err.message
+            : 'Registration failed';
       return { ok: false, message: serverMessage };
     }
   };
@@ -402,10 +483,10 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
       isOnboarded,
       isLoggingOut,
       faculties,
-      directions: DIRECTIONS,
-      specializations: SPECIALIZATIONS,
-      getDirectionsFor: getDirections,
-      getSpecializationsFor: getSpecializations,
+      directions,
+      specializations,
+      getDirectionsFor: (facultyId: string) => directions.filter(direction => direction.faculty_id === facultyId),
+      getSpecializationsFor: (directionId: string) => specializations.filter(spec => spec.direction_id === directionId),
       subjects,
       knowledgePointsBySubject,
       progress,

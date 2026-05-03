@@ -7,7 +7,6 @@ import {
 } from 'lucide-react';
 import { useApp } from '../context/AppContext';
 import { ProfileEditDialog } from './ProfileEditDialog';
-import { FACULTIES, DIRECTIONS, SPECIALIZATIONS } from '../data/mockData2';
 
 const NAV_ITEMS = [
   { path: '/', label: 'Dashboard', icon: LayoutDashboard },
@@ -18,14 +17,14 @@ const NAV_ITEMS = [
 ];
 
 export function Layout({ children }: { children: ReactNode }) {
-  const { user, logout, getSemesterProgress, isLoggingOut } = useApp();
+  const { user, logout, getSemesterProgress, isLoggingOut, faculties, directions, specializations } = useApp();
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const location = useLocation();
   const progress = getSemesterProgress();
   const fullName = [user?.firstName, user?.lastName].filter(Boolean).join(' ');
-  const faculty   = FACULTIES.find(f => f.id === user?.faculty_id);
-  const direction = DIRECTIONS.find(d => d.id === user?.direction_id);
-  const specObj = SPECIALIZATIONS.find(s => s.id === user?.specialization_id);
+  const faculty   = faculties.find(f => f.id === user?.faculty_id);
+  const direction = directions.find(d => d.id === user?.direction_id);
+  const specObj = specializations.find(s => s.id === user?.specialization_id);
 
   return (
     <div className="flex h-screen bg-[#F8F9FB] overflow-hidden">
