@@ -57,13 +57,19 @@ const validateRefresh = (req, res, next) => {
   return next();
 };
 
-// Validate access token when logging out.
+// Validate tokens when logging out.
 const validateLogout = (req, res, next) => {
-  const { accessToken } = req.body;
+  const { accessToken, refreshToken } = req.body;
 
   if (!accessToken || typeof accessToken !== 'string') {
     return res.status(400).json({
       message: 'Missing or invalid access token',
+    });
+  }
+
+  if (!refreshToken || typeof refreshToken !== 'string') {
+    return res.status(400).json({
+      message: 'Missing or invalid refresh token',
     });
   }
 

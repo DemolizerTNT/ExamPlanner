@@ -262,6 +262,7 @@ class ApiClient {
     try {
       await this.client.post('/auth/logout', {
         accessToken: this.accessToken,
+        refreshToken: this.refreshToken,
       });
     } catch (e) {
       // Nie logujemy błędów wylogowania — obsługa UI pokaże stan niezalogowany po czyszczeniu

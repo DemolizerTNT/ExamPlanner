@@ -521,12 +521,6 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
     // Pokaż spinner
     setIsLoggingOut(true);
 
-    // Natychmiast wyczyść tokeny po stronie klienta aby zapobiec odświeżaniu
-    // i przywróceniu sesji przez interceptor.
-    try {
-      apiClient.clearSession();
-    } catch {}
-
     // Poczekaj na odpowiedź serwera potwierdzającą wylogowanie.
     try {
       await apiClient.logout();
