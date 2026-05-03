@@ -291,6 +291,7 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
   const clearAuthState = useCallback(() => {
     setUser(null);
     setIsOnboarded(false);
+    profileRefreshAttemptedRef.current = false;
     localStorage.removeItem(STORAGE_KEYS.USER);
     localStorage.removeItem(STORAGE_KEYS.ONBOARDED);
     setDirectionsByFaculty({});
