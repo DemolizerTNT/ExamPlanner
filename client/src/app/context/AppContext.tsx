@@ -298,6 +298,8 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
     setSpecializationsByDirection({});
     setCatalogSubjects([]);
     setKnowledgePoints([]);
+    setProgress({});
+    localStorage.removeItem(STORAGE_KEYS.PROGRESS);
   }, []);
 
   const refreshProfile = useCallback(async () => {
@@ -516,16 +518,23 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
       return;
     }
 
+    // Pokaż spinner
     setIsLoggingOut(true);
 
-    // Wysyłamy request w tle bez czekania
-    apiClient.logout().catch(error => console.error('Logout error:', error));
+    // Natychmiast wyczyść tokeny po stronie klienta aby zapobiec odświeżaniu
+    // i przywróceniu sesji przez interceptor.
+    try {
+      apiClient.clearSession();
+    } catch {}
 
-    // Kółko się kręci przez 1 sekundę, potem wyłączamy UI
-    setTimeout(() => {
+    // Poczekaj na odpowiedź serwera potwierdzającą wylogowanie.
+    try {
+      await apiClient.logout();
+    } catch {
+    }
+
       clearAuthState();
       setIsLoggingOut(false);
-    }, 1000);
   };
 
   const completeOnboarding = (

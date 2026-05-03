@@ -112,6 +112,9 @@ class ApiClient {
   private client: AxiosInstance;
   private accessToken: string | null = null;
   private refreshToken: string | null = null;
+  // Flaga informująca, że trwa proces wylogowywania/czyszczenia sesji.
+  // Jeśli jest true, interceptor odświeżania tokena powinien się nie uruchamiać.
+  private isClearing: boolean = false;
 
   constructor() {
     this.client = axios.create({
@@ -140,6 +143,16 @@ class ApiClient {
         const requestUrl = originalRequest?.url || '';
 
         if (requestUrl.includes('/auth/refresh')) {
+          return Promise.reject(error);
+        }
+
+        // Jeśli w trakcie wylogowywania - nie próbujemy odświeżać tokena
+        if (this.isClearing) {
+          // Upewnij się, że tokeny są wyczyszczone i powiadom aplikację
+          this.clearTokens();
+          try {
+            window.dispatchEvent(new CustomEvent('authExpired'));
+          } catch {}
           return Promise.reject(error);
         }
 
@@ -195,6 +208,19 @@ class ApiClient {
     localStorage.removeItem('auth_tokens');
   }
 
+  /**
+   * Public helper to immediately clear tokens and notify the app that authentication expired.
+   * Use this when the UI must reflect immediate logout (e.g. user clicked "logout").
+   */
+  public clearSession(): void {
+    this.clearTokens();
+    try {
+      window.dispatchEvent(new CustomEvent('authExpired'));
+    } catch (e) {
+      // ignore
+    }
+  }
+
   // Auth endpoints
   async register(firstName: string, lastName: string, email: string, password: string): Promise<RegisterResponse> {
     const response = await this.client.post<RegisterResponse>('/auth/register', {
@@ -231,12 +257,17 @@ class ApiClient {
   }
 
   async logout(): Promise<void> {
+    // Zaznaczamy, że zaczęło się wylogowywanie — to zablokuje próby odświeżenia
+    this.isClearing = true;
     try {
       await this.client.post('/auth/logout', {
         accessToken: this.accessToken,
       });
+    } catch (e) {
+      // Nie logujemy błędów wylogowania — obsługa UI pokaże stan niezalogowany po czyszczeniu
     } finally {
       this.clearTokens();
+      this.isClearing = false;
     }
   }
 
