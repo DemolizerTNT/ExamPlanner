@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { ChevronDown, ChevronUp, Clock, CheckCircle2, Circle, SkipForward, Award, BookOpen, Calendar } from 'lucide-react';
 import { useApp } from '../context/AppContext';
-import { FACULTIES } from '../data/mockData2';
 import { motion, AnimatePresence } from 'motion/react';
 
 const TODAY = new Date();
@@ -23,9 +22,9 @@ function weekBadgeColor(week: number, currentWeek: number): { bg: string; text: 
 }
 
 export function Exams() {
-  const { user, subjects, knowledgePointsBySubject, getPointStatus, markPoint, getSubjectProgress, pointWeekMap, currentWeek } = useApp();
+  const { user, subjects, knowledgePointsBySubject, getPointStatus, markPoint, getSubjectProgress, pointWeekMap, currentWeek, faculties } = useApp();
   const [expanded, setExpanded] = useState<string | null>(subjects[0]?.id || null);
-  const faculty = FACULTIES.find(f => f.id === user?.faculty_id);
+  const faculty = faculties.find(f => f.id === user?.faculty_id);
 
   const toggle = (id: string) => setExpanded(prev => prev === id ? null : id);
 

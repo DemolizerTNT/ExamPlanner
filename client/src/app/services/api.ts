@@ -1,4 +1,5 @@
 import axios, { type AxiosError, type AxiosInstance } from 'axios';
+import type { Faculty, Direction, KnowledgePoint, Specialization, Subject } from '../types/catalog';
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:3000/api';
 
@@ -46,10 +47,74 @@ interface ApiError {
   errors?: Record<string, string>;
 }
 
+interface CatalogFacultiesResponse {
+  message: string;
+  faculties: Array<{
+    id: string;
+    name: string;
+    shortName: string;
+  }>;
+}
+
+interface CatalogDirectionsResponse {
+  message: string;
+  directions: Array<{
+    id: string;
+    facultyId: string;
+    name: string;
+  }>;
+}
+
+interface CatalogSpecializationsResponse {
+  message: string;
+  specializations: Array<{
+    id: string;
+    directionId: string;
+    name: string;
+    minSemester: number;
+  }>;
+}
+
+interface CatalogSubjectsResponse {
+  message: string;
+  subjects: Array<{
+    id: string;
+    facultyId: string;
+    directionId?: string | null;
+    specializationId?: string | null;
+    semester: number;
+    name: string;
+    hasExam: boolean;
+    examDate?: string | null;
+    color: string;
+  }>;
+}
+
+interface CatalogKnowledgePointsResponse {
+  message: string;
+  knowledgePoints: Array<{
+    id: string;
+    subjectId: string;
+    order: number;
+    description: string;
+    estimatedMinutes: number;
+  }>;
+}
+
+interface SubjectFilters {
+  facultyId?: string;
+  directionId?: string;
+  specializationId?: string;
+  semester?: number;
+}
+
 class ApiClient {
   private client: AxiosInstance;
   private accessToken: string | null = null;
   private refreshToken: string | null = null;
+  // Flaga informująca, że trwa proces wylogowywania/czyszczenia sesji.
+  // Jeśli jest true, interceptor odświeżania tokena powinien się nie uruchamiać.
+  private isClearing: boolean = false;
 
   constructor() {
     this.client = axios.create({
@@ -78,6 +143,16 @@ class ApiClient {
         const requestUrl = originalRequest?.url || '';
 
         if (requestUrl.includes('/auth/refresh')) {
+          return Promise.reject(error);
+        }
+
+        // Jeśli w trakcie wylogowywania - nie próbujemy odświeżać tokena
+        if (this.isClearing) {
+          // Upewnij się, że tokeny są wyczyszczone i powiadom aplikację
+          this.clearTokens();
+          try {
+            window.dispatchEvent(new CustomEvent('authExpired'));
+          } catch {}
           return Promise.reject(error);
         }
 
@@ -133,6 +208,19 @@ class ApiClient {
     localStorage.removeItem('auth_tokens');
   }
 
+  /**
+   * Public helper to immediately clear tokens and notify the app that authentication expired.
+   * Use this when the UI must reflect immediate logout (e.g. user clicked "logout").
+   */
+  public clearSession(): void {
+    this.clearTokens();
+    try {
+      window.dispatchEvent(new CustomEvent('authExpired'));
+    } catch (e) {
+      // ignore
+    }
+  }
+
   // Auth endpoints
   async register(firstName: string, lastName: string, email: string, password: string): Promise<RegisterResponse> {
     const response = await this.client.post<RegisterResponse>('/auth/register', {
@@ -169,12 +257,17 @@ class ApiClient {
   }
 
   async logout(): Promise<void> {
+    // Zaznaczamy, że zaczęło się wylogowywanie — to zablokuje próby odświeżenia
+    this.isClearing = true;
     try {
       await this.client.post('/auth/logout', {
         accessToken: this.accessToken,
       });
+    } catch (e) {
+      // Nie logujemy błędów wylogowania — obsługa UI pokaże stan niezalogowany po czyszczeniu
     } finally {
       this.clearTokens();
+      this.isClearing = false;
     }
   }
 
@@ -199,6 +292,74 @@ class ApiClient {
       accessToken: this.accessToken, // Fallback: wysyłamy token w body, jeśli interceptor go nie dodał
     });
     return response.data;
+  }
+
+  // Catalog endpoints
+  async getFaculties(): Promise<Faculty[]> {
+    const response = await this.client.get<CatalogFacultiesResponse>('/faculties');
+
+    return response.data.faculties.map((faculty) => ({
+      id: faculty.id,
+      name: faculty.name,
+      shortName: faculty.shortName,
+    }));
+  }
+
+  async getDirections(facultyId: string): Promise<Direction[]> {
+    const response = await this.client.get<CatalogDirectionsResponse>('/directions', {
+      params: { facultyId },
+    });
+
+    return response.data.directions.map((direction) => ({
+      id: direction.id,
+      faculty_id: direction.facultyId,
+      name: direction.name,
+    }));
+  }
+
+  async getSpecializations(directionId?: string): Promise<Specialization[]> {
+    const response = await this.client.get<CatalogSpecializationsResponse>('/specializations', {
+      params: directionId ? { directionId } : undefined,
+    });
+
+    return response.data.specializations.map((specialization) => ({
+      id: specialization.id,
+      direction_id: specialization.directionId,
+      name: specialization.name,
+      min_semester: specialization.minSemester,
+    }));
+  }
+
+  async getSubjects(filters: SubjectFilters = {}): Promise<Subject[]> {
+    const response = await this.client.get<CatalogSubjectsResponse>('/subjects', {
+      params: filters,
+    });
+
+    return response.data.subjects.map((subject) => ({
+      id: subject.id,
+      faculty_id: subject.facultyId,
+      direction_id: subject.directionId ?? undefined,
+      specialization_id: subject.specializationId ?? undefined,
+      semester: subject.semester,
+      name: subject.name,
+      has_exam: subject.hasExam,
+      exam_date: subject.examDate ?? undefined,
+      color: subject.color,
+    }));
+  }
+
+  async getKnowledgePoints(subjectId?: string): Promise<KnowledgePoint[]> {
+    const response = await this.client.get<CatalogKnowledgePointsResponse>('/knowledge-points', {
+      params: subjectId ? { subjectId } : undefined,
+    });
+
+    return response.data.knowledgePoints.map((knowledgePoint) => ({
+      id: knowledgePoint.id,
+      subject_id: knowledgePoint.subjectId,
+      order: knowledgePoint.order,
+      description: knowledgePoint.description,
+      estimated_minutes: knowledgePoint.estimatedMinutes,
+    }));
   }
 
   // Utility: sprawdzenie czy użytkownik jest zalogowany

@@ -2,7 +2,12 @@ const express = require('express');
 const cors = require('cors');
 require('dotenv').config();
 const authRoutes = require('./routes/auth.routes');
+const directionRoutes = require('./routes/direction.routes');
+const facultyRoutes = require('./routes/faculty.routes');
+const knowledgePointRoutes = require('./routes/knowledgePoint.routes');
 const profileRoutes = require('./routes/profile.routes');
+const specializationRoutes = require('./routes/specialization.routes');
+const subjectRoutes = require('./routes/subject.routes');
 const errorHandler = require('./middleware/errorHandler');
 
 // Main entry point for the Express backend.
@@ -20,6 +25,11 @@ app.get('/', (req, res) => {
 
 
 app.use('/api/auth', authRoutes);
+app.use('/api/faculties', facultyRoutes);
+app.use('/api/directions', directionRoutes);
+app.use('/api/knowledge-points', knowledgePointRoutes);
+app.use('/api/specializations', specializationRoutes);
+app.use('/api/subjects', subjectRoutes);
 app.use('/api/profile', profileRoutes);
 // Central error handler should be attached last.
 app.use(errorHandler);

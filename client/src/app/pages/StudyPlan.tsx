@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { CheckCircle2, SkipForward, Clock, ChevronRight, Zap, Calendar, RefreshCw, ArrowRight } from 'lucide-react';
 import { useApp } from '../context/AppContext';
-import type { KnowledgePoint } from '../data/mockData2';
+import type { KnowledgePoint } from '../types/catalog';
 import { motion, AnimatePresence } from 'motion/react';
 
 const CURRENT_WEEK = 5;

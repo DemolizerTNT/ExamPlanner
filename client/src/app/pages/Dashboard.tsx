@@ -75,7 +75,7 @@ export function Dashboard() {
   //get upcoming exams
   const upcomingExams = subjects
   .filter(s => s.has_exam)
-  .sort((a,b) => new Date(a.exam_date!).getTime() - new Date(b.exam_date!).getTime())
+  .sort((a,b) => new Date(a.exam_date || '2026-06-12').getTime() - new Date(b.exam_date || '2026-06-12').getTime())
   .slice(0,2);
 
   // Today's 3 most urgent points (pending, earliest scheduled)
