@@ -37,7 +37,7 @@ interface AppContextType {
   register: (firstName: string, lastName: string, email: string, password: string) => Promise<{ ok: boolean; message?: string }>;
   logout: () => Promise<void>;
   refreshProfile: () => Promise<void>;
-  completeOnboarding: (facultyId: string, directionId: string, specializationId: string | undefined, semester: number) => void;
+  completeOnboarding: (facultyId: string, directionId: string, specializationId: string | undefined, semester: number) => Promise<void>;
   markPoint: (pointId: string, status: ProgressStatus) => void;
   getPointStatus: (pointId: string) => ProgressStatus;
   getSubjectProgress: (subjectId: string) => { completed: number; skipped: number; total: number };
@@ -124,6 +124,10 @@ const hydrateStoredUser = (): AppUser | null => {
   }
 };
 
+const hasOnboardingData = (candidate: AppUser) => {
+  return Boolean(candidate.faculty_id && candidate.direction_id && candidate.semester > 0);
+};
+
 const buildUserFromProfile = (baseUser: AppUser, profile: UserProfile): AppUser => {
   const firstName = profile.firstName?.trim() || baseUser.firstName;
   const lastName = profile.lastName?.trim() || baseUser.lastName;
@@ -135,6 +139,10 @@ const buildUserFromProfile = (baseUser: AppUser, profile: UserProfile): AppUser 
     firstName,
     lastName,
     avatarUrl: profile.avatar ?? baseUser.avatarUrl ?? null,
+    faculty_id: profile.facultyId || baseUser.faculty_id,
+    direction_id: profile.directionId || undefined,
+    specialization_id: profile.specializationId || undefined,
+    semester: profile.semester || baseUser.semester,
   };
 };
 
@@ -310,8 +318,15 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
     try {
       const { profile } = await apiClient.getProfile();
       const nextUser = buildUserFromProfile(user || FALLBACK_USER, profile);
+      const onboarded = hasOnboardingData(nextUser);
       setUser(nextUser);
+      setIsOnboarded(onboarded);
       localStorage.setItem(STORAGE_KEYS.USER, JSON.stringify(nextUser));
+      if (onboarded) {
+        localStorage.setItem(STORAGE_KEYS.ONBOARDED, 'true');
+      } else {
+        localStorage.removeItem(STORAGE_KEYS.ONBOARDED);
+      }
     } catch (error) {
       console.error('Failed to refresh profile:', error);
     }
@@ -320,6 +335,31 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     localStorage.setItem(STORAGE_KEYS.PROGRESS, JSON.stringify(progress));
   }, [progress]);
+
+  useEffect(() => {
+    let isCancelled = false;
+
+    const loadRemoteProgress = async () => {
+      if (!apiClient.isAuthenticated() || !user?.id) {
+        return;
+      }
+
+      try {
+        const remoteProgress = await apiClient.getProgress();
+        if (!isCancelled) {
+          setProgress(remoteProgress);
+        }
+      } catch (error) {
+        console.error('Failed to load progress:', error);
+      }
+    };
+
+    void loadRemoteProgress();
+
+    return () => {
+      isCancelled = true;
+    };
+  }, [user?.id]);
 
   useEffect(() => {
     let isCancelled = false;
@@ -459,7 +499,7 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
   const login = async (email: string, password: string): Promise<boolean> => {
     try {
       const response = await apiClient.login(email, password);
-      const u: AppUser = {
+      let nextUser: AppUser = {
         id: response.user.id,
         firstName: response.user.email.split('@')[0],
         lastName: '',
@@ -468,12 +508,35 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
         faculty_id: '',
         direction_id: undefined,
         specialization_id: undefined,
-        semester: 1,
+        semester: 0,
       };
-      setUser(u);
-      setIsOnboarded(false);
-      localStorage.removeItem(STORAGE_KEYS.ONBOARDED);
-      localStorage.setItem(STORAGE_KEYS.USER, JSON.stringify(u));
+
+      try {
+        const { profile } = await apiClient.getProfile();
+        nextUser = buildUserFromProfile(nextUser, profile);
+      } catch (profileError) {
+        console.error('Failed to load profile after login:', profileError);
+      }
+
+      const onboarded = hasOnboardingData(nextUser);
+      setUser(nextUser);
+      setIsOnboarded(onboarded);
+      localStorage.setItem(STORAGE_KEYS.USER, JSON.stringify(nextUser));
+
+      if (onboarded) {
+        localStorage.setItem(STORAGE_KEYS.ONBOARDED, 'true');
+      } else {
+        localStorage.removeItem(STORAGE_KEYS.ONBOARDED);
+      }
+
+      try {
+        const remoteProgress = await apiClient.getProgress();
+        setProgress(remoteProgress);
+      } catch (progressError) {
+        console.error('Failed to load progress after login:', progressError);
+        setProgress({});
+      }
+
       return true;
     } catch (error) {
       console.error('Login failed:', error);
@@ -497,6 +560,7 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
       };
       setUser(u);
       setIsOnboarded(false);
+      setProgress({});
       localStorage.removeItem(STORAGE_KEYS.ONBOARDED);
       localStorage.setItem(STORAGE_KEYS.USER, JSON.stringify(u));
       return { ok: true };
@@ -531,7 +595,7 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
       setIsLoggingOut(false);
   };
 
-  const completeOnboarding = (
+  const completeOnboarding = async (
     facultyId: string,
     directionId: string,
     specializationId: string | undefined,
@@ -544,22 +608,47 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
       specialization_id: specializationId,
       semester,
     };
+
     setUser(updated);
     localStorage.setItem(STORAGE_KEYS.USER, JSON.stringify(updated));
     setIsOnboarded(true);
     localStorage.setItem(STORAGE_KEYS.ONBOARDED, 'true');
+
+    try {
+      const { profile } = await apiClient.updateStudyProfile(facultyId, directionId, specializationId, semester);
+      const savedUser = buildUserFromProfile(updated, profile);
+      setUser(savedUser);
+      localStorage.setItem(STORAGE_KEYS.USER, JSON.stringify(savedUser));
+    } catch (error) {
+      console.error('Failed to save onboarding:', error);
+    }
   };
 
   const markPoint = (pointId: string, status: ProgressStatus) => {
+    const optimisticProgress: UserProgress = {
+      user_id: currentUser.id,
+      point_id: pointId,
+      status,
+      completion_date: status === 'pending' ? undefined : new Date().toISOString().split('T')[0],
+    };
+
     setProgress(prev => ({
       ...prev,
-      [pointId]: {
-        user_id: currentUser.id,
-        point_id: pointId,
-        status,
-        completion_date: new Date().toISOString().split('T')[0],
-      },
+      [pointId]: optimisticProgress,
     }));
+
+    if (apiClient.isAuthenticated() && currentUser.id !== 'guest') {
+      void apiClient.updateProgress(pointId, status)
+        .then((savedProgress) => {
+          setProgress(prev => ({
+            ...prev,
+            [savedProgress.point_id]: savedProgress,
+          }));
+        })
+        .catch((error) => {
+          console.error('Failed to save progress:', error);
+        });
+    }
   };
 
   const getPointStatus = (pointId: string): ProgressStatus => {

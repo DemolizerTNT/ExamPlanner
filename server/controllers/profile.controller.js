@@ -123,6 +123,10 @@ const normalizeProfileResponse = async (profile, user) => ({
   firstName: profile?.first_name || '',
   lastName: profile?.last_name || '',
   avatar: await resolveAvatarUrl(profile?.avatar || null),
+  facultyId: profile?.faculty_id || '',
+  directionId: profile?.direction_id || null,
+  specializationId: profile?.specialization_id || null,
+  semester: typeof profile?.semester === 'number' ? profile.semester : 0,
   createdAt: profile?.created_at || null,
   updatedAt: profile?.updated_at || null,
 });
@@ -162,6 +166,10 @@ const updateMyProfile = async (req, res, next) => {
 
     const firstName = typeof req.body?.firstName === 'string' ? req.body.firstName.trim() : undefined;
     const lastName = typeof req.body?.lastName === 'string' ? req.body.lastName.trim() : undefined;
+    const facultyId = typeof req.body?.facultyId === 'string' ? req.body.facultyId.trim() : undefined;
+    const directionId = typeof req.body?.directionId === 'string' ? req.body.directionId.trim() : undefined;
+    const specializationId = typeof req.body?.specializationId === 'string' ? req.body.specializationId.trim() : null;
+    const semester = typeof req.body?.semester === 'number' ? req.body.semester : undefined;
 
     const profilePatch = {
       id: user.id,
@@ -174,6 +182,24 @@ const updateMyProfile = async (req, res, next) => {
 
     if (lastName !== undefined) {
       profilePatch.last_name = lastName;
+    }
+
+    if (facultyId !== undefined) {
+      profilePatch.faculty_id = facultyId;
+    }
+
+    if (directionId !== undefined) {
+      profilePatch.direction_id = directionId;
+    }
+
+    if (specializationId !== null) {
+      profilePatch.specialization_id = specializationId || null;
+    } else if (Object.prototype.hasOwnProperty.call(req.body || {}, 'specializationId')) {
+      profilePatch.specialization_id = null;
+    }
+
+    if (semester !== undefined) {
+      profilePatch.semester = semester;
     }
 
     const { error: upsertError } = await upsertUserProfile(profilePatch);

@@ -20,7 +20,7 @@ const upsertUserProfile = async (profileRow) => {
 
 const getUserProfileById = async (userId) => {
   const { data, error } = await getProfileQuery()
-    .select('id, first_name, last_name, avatar, created_at, updated_at')
+    .select('id, first_name, last_name, avatar, faculty_id, direction_id, specialization_id, semester, created_at, updated_at')
     .eq('id', userId)
     .maybeSingle();
 
@@ -31,7 +31,7 @@ const updateUserProfileById = async (userId, payload) => {
   const { data, error } = await getProfileQuery()
     .update(payload)
     .eq('id', userId)
-    .select('id, first_name, last_name, avatar, created_at, updated_at')
+    .select('id, first_name, last_name, avatar, faculty_id, direction_id, specialization_id, semester, created_at, updated_at')
     .single();
 
   return { data, error };
