@@ -24,7 +24,7 @@ function CustomTooltip({ active, payload, label }: ChartTooltipProps) {
   }
 
   return (
-    <div className="bg-white border border-gray-100 rounded-xl shadow-lg px-4 py-3">
+    <div className="bg-white border-2 border-[#003366] rounded-xl shadow-lg px-4 py-3">
       <p style={{ fontSize: '0.8rem', fontWeight: 700 }} className="text-gray-700 mb-1">{label}</p>
       {payload.map((entry) => (
         <p key={entry.name} style={{ fontSize: '0.78rem' }} className="text-gray-600">
@@ -60,7 +60,7 @@ export function Statistics() {
       totalHours: Math.round(totalMinutes / 60 * 10) / 10,
       retention: points.length > 0 ? Math.round((completed.length / points.length) * 100) : 0,
     };
-  });
+  }).sort((a, b) => b.totalHours - a.totalHours);
 
   // Totals
   const totalCompleted = subjectData.reduce((s, d) => s + d.completed, 0);
@@ -200,20 +200,26 @@ export function Statistics() {
       {/* Bar chart: Hours per subject */}
       <div className="bg-white rounded-2xl p-5 border-2 border-[#003366] shadow-sm mb-6">
         <h3 style={{ fontSize: '0.9rem', fontWeight: 700 }} className="text-[#003366] mb-4">Study Hours per Subject</h3>
-        <ResponsiveContainer width="100%" height={220}>
-          <BarChart data={subjectData} margin={{ top: 5, right: 10, left: -20, bottom: 5 }}>
-            <CartesianGrid strokeDasharray="3 3" stroke="#f3f4f6" />
-            <XAxis dataKey="name" tick={{ fontSize: 11, fill: '#6b7280' }} />
-            <YAxis tick={{ fontSize: 11, fill: '#6b7280' }} />
-            <Tooltip content={<CustomTooltip />} />
-            <Bar dataKey="completedHours" name="Completed (h)" fill={NAVY} radius={[4, 4, 0, 0]}>
-              {subjectData.map((entry, index) => (
-                <Cell key={index} fill={entry.color} />
-              ))}
-            </Bar>
-            <Bar dataKey="totalHours" name="Planned (h)" fill="#e5e7eb" radius={[4, 4, 0, 0]} />
-          </BarChart>
-        </ResponsiveContainer>
+        <div className="overflow-x-auto -mx-5 px-5 scrollbar-navy">
+          <ResponsiveContainer width={Math.max(800, subjectData.length * 150)} height={220}>
+            <BarChart data={subjectData} margin={{ top: 20, right: 10, left: -20, bottom: 5 }}>
+              <CartesianGrid strokeDasharray="3 3" stroke="#f3f4f6" />
+              <XAxis dataKey="name" tick={{ fontSize: 11, fill: '#6b7280' }} />
+              <YAxis tick={{ fontSize: 11, fill: '#6b7280' }} />
+              <Tooltip content={<CustomTooltip />} />
+              <Bar dataKey="completedHours" name="Completed (h)" fill={NAVY} radius={[4, 4, 0, 0]}>
+                {subjectData.map((entry, index) => (
+                  <Cell key={index} fill={entry.color} />
+                ))}
+              </Bar>
+              <Bar dataKey="totalHours" name="Planned (h)" radius={[4, 4, 0, 0]}>
+                {subjectData.map((entry, index) => (
+                  <Cell key={index} fill={entry.color} fillOpacity={0.3} />
+                ))}
+              </Bar>
+            </BarChart>
+          </ResponsiveContainer>
+        </div>
       </div>
 
       {/* Per-subject detail */}

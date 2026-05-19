@@ -179,3 +179,28 @@
     line-height: 1.5;
   }
 }
+
+/* Custom scrollbar styles */
+.scrollbar-navy {
+  scrollbar-width: thin;
+  scrollbar-color: #003366 #f0f4f9;
+}
+
+.scrollbar-navy::-webkit-scrollbar {
+  height: 6px;
+}
+
+.scrollbar-navy::-webkit-scrollbar-track {
+  background: #f0f4f9;
+  border-radius: 10px;
+}
+
+.scrollbar-navy::-webkit-scrollbar-thumb {
+  background: #003366;
+  border-radius: 10px;
+}
+
+.scrollbar-navy::-webkit-scrollbar-thumb:hover {
+  background: #001a33;
+}
+
