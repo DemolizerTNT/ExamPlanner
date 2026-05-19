@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { ChevronDown, ChevronUp, Clock, CheckCircle2, Circle, SkipForward, Award, BookOpen, Calendar } from 'lucide-react';
+import { ChevronDown, ChevronUp, Clock, CheckCircle2, Circle, SkipForward, Award, BookOpen, Calendar, Star } from 'lucide-react';
 import { useApp } from '../context/AppContext';
 import { motion, AnimatePresence } from 'motion/react';
 
@@ -232,9 +232,9 @@ export function Exams() {
                                     {week && (
                                       <span className={`px-1.5 py-0.5 rounded-full border-2 ${wBg} ${weekBadgeColor(week, currentWeek).border} ${wText}`} style={{ fontSize: '0.65rem', fontWeight: 600 }}>
                                         {weekLabel(week)}
-                                        {week === currentWeek && ' ★'}
                                       </span>
                                     )}
+                                    {week === currentWeek && <Star size={12} className="text-yellow-400 fill-yellow-400" style={{ marginLeft: '4px' }} />}
                                   </div>
                                 </div>
                                 {status === 'pending' && (

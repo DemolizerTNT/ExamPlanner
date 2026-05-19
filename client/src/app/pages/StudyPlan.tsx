@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { CheckCircle2, SkipForward, Clock, ChevronRight, Zap, Calendar, RefreshCw, ArrowRight } from 'lucide-react';
+import { CheckCircle2, SkipForward, Clock, ChevronRight, Zap, Calendar, RefreshCw, ArrowRight, Trophy } from 'lucide-react';
 import { useApp } from '../context/AppContext';
 import type { KnowledgePoint } from '../types/catalog';
 import { motion, AnimatePresence } from 'motion/react';
@@ -202,7 +202,7 @@ export function StudyPlan() {
             </div>
             {currentPoints.length === 0 ? (
               <div className="bg-white rounded-2xl p-8 border-2 border-[#003366] text-center">
-                <p style={{ fontSize: '2rem' }}>🎉</p>
+                <Trophy size={40} className="text-[#F4C430] mx-auto mb-2" />
                 <p style={{ fontSize: '0.9rem', fontWeight: 600 }} className="text-gray-700 mt-2">
                   Week complete!
                 </p>

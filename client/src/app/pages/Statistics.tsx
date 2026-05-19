@@ -1,5 +1,5 @@
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, PieChart, Pie, Cell, Legend } from 'recharts';
-import { Clock, TrendingUp, CheckCircle2, SkipForward, Target } from 'lucide-react';
+import { Clock, TrendingUp, CheckCircle2, SkipForward, Target, Trophy, ThumbsUp, AlertCircle } from 'lucide-react';
 import { useApp } from '../context/AppContext';
 import { ProgressRing } from '../components/ProgressRing';
 
@@ -124,9 +124,12 @@ export function Statistics() {
             Completed vs. Deferred<br />
             ({totalCompleted} / {totalAttempted || 1} points)
           </p>
-          <div className={`mt-3 px-3 py-1.5 rounded-full ${retentionScore >= 80 ? 'bg-green-500/20' : retentionScore >= 60 ? 'bg-yellow-500/20' : 'bg-red-500/20'}`}>
+          <div className={`mt-3 px-3 py-1.5 rounded-full flex items-center justify-center gap-2 ${retentionScore >= 80 ? 'bg-green-500/20' : retentionScore >= 60 ? 'bg-yellow-500/20' : 'bg-red-500/20'}`}>
+            {retentionScore >= 80 && <Trophy size={16} className="text-green-400" />}
+            {retentionScore >= 60 && retentionScore < 80 && <ThumbsUp size={16} className="text-yellow-400" />}
+            {retentionScore < 60 && <AlertCircle size={16} className="text-red-400" />}
             <p style={{ fontSize: '0.75rem', fontWeight: 600 }} className={retentionScore >= 80 ? 'text-green-300' : retentionScore >= 60 ? 'text-yellow-300' : 'text-red-300'}>
-              {retentionScore >= 80 ? '🏆 Excellent!' : retentionScore >= 60 ? '👍 Good' : '⚡ Improve retention'}
+              {retentionScore >= 80 ? 'Excellent!' : retentionScore >= 60 ? 'Good' : 'Improve retention'}
             </p>
           </div>
         </div>

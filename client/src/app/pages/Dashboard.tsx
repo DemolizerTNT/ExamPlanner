@@ -116,7 +116,7 @@ export function Dashboard() {
       {/* Header */}
       <div className="mb-8">
         <h1 style={{ fontSize: '1.5rem', fontWeight: 700 }} className="text-[#003366]">
-          Hello, {fullName || 'Student'}! 👋
+          Hello, {fullName || 'Student'}!
         </h1>
         <p style={{ fontSize: '0.9rem' }} className="text-gray-500 mt-1">
           Today is {formattedDate}
