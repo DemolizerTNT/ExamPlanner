@@ -190,13 +190,21 @@ export function Dashboard() {
             <div className="space-y-2">
               {todaysFocus.map((point, i) => {
                 const subj = subjects.find(s => s.id === point.subject_id);
+                const status = getPointStatus(point.id);
                 return (
                   <motion.div
                     key={point.id}
                     initial={{ opacity: 0, x: -10 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: i * 0.05 }}
-                    className="flex items-start gap-3 p-3 rounded-xl bg-gray-50 hover:bg-gray-100 transition-colors group"
+                    onClick={() => status === 'pending' && markPoint(point.id, 'completed')}
+                    className={`flex items-start gap-3 p-3 rounded-xl border-2 transition-all ${
+                      status === 'completed'
+                        ? 'bg-green-50 border-green-200'
+                        : status === 'skipped'
+                        ? 'bg-amber-50 border-amber-200'
+                        : 'bg-gray-50 border-gray-200 cursor-pointer hover:bg-gray-100'
+                    } group`}
                   >
                     <div className="w-1 h-full min-h-[40px] rounded-full flex-shrink-0" style={{ backgroundColor: subj?.color || '#003366' }} />
                     <div className="flex-1 min-w-0">
@@ -210,7 +218,7 @@ export function Dashboard() {
                       </div>
                     </div>
                     <button
-                      onClick={() => markPoint(point.id, 'completed')}
+                      onClick={(e) => { e.stopPropagation(); markPoint(point.id, 'completed'); }}
                       className="opacity-0 group-hover:opacity-100 w-7 h-7 rounded-full bg-green-100 hover:bg-green-200 flex items-center justify-center transition-all flex-shrink-0"
                     >
                       <CheckCircle2 size={14} className="text-green-600" />

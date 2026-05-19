@@ -56,6 +56,7 @@ export function StudyPlan() {
             { opacity: 1, x: 0, scale: 1 }
           }
           transition={{ duration: 0.4 }}
+          onClick={() => bucket === 'current' && handleComplete(point.id)}
           className={`flex items-start gap-3 p-4 rounded-xl border-2 transition-all ${
             bucket === 'completed'
               ? 'bg-green-50 border-green-500'
@@ -63,7 +64,7 @@ export function StudyPlan() {
               ? 'bg-amber-50 border-amber-500'
               : bucket === 'next'
               ? 'bg-gray-50 border-[#003366] opacity-75'
-              : 'bg-white border-[#003366] shadow-sm hover:shadow-md'
+              : 'bg-white border-[#003366] shadow-sm hover:shadow-md cursor-pointer'
           }`}
         >
           {/* Status icon */}
@@ -263,7 +264,7 @@ export function StudyPlan() {
                 {nextWeekPoints.slice(0, 6).map(point => {
                   const subj = subjects.find(s => s.id === point.subject_id);
                   return (
-                    <div key={point.id} className="flex items-start gap-2 p-2.5 rounded-xl bg-gray-50">
+                    <div key={point.id} className="flex items-start gap-2 p-2.5 rounded-xl bg-gray-50 border-2 border-gray-300">
                       <div className="w-1.5 h-1.5 rounded-full flex-shrink-0 mt-1.5" style={{ backgroundColor: subj?.color || '#003366' }} />
                       <div className="min-w-0">
                         <p style={{ fontSize: '0.75rem' }} className="text-gray-700 leading-snug line-clamp-2">{point.description}</p>
