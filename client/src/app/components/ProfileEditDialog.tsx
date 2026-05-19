@@ -195,7 +195,7 @@ export function ProfileEditDialog({ variant = 'avatar' }: ProfileEditDialogProps
       )}
 
       <Dialog open={open} onOpenChange={setOpen}>
-        <DialogContent className="sm:max-w-md">
+        <DialogContent className="sm:max-w-md bg-white">
           <DialogHeader>
             <DialogTitle>Edit profile</DialogTitle>
             <DialogDescription>
