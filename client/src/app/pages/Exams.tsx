@@ -14,11 +14,11 @@ function weekLabel(week: number): string {
   return `Week ${week}`;
 }
 
-function weekBadgeColor(week: number, currentWeek: number): { bg: string; text: string } {
-  if (week < currentWeek) return { bg: 'bg-gray-100', text: 'text-gray-400' };
-  if (week === currentWeek) return { bg: 'bg-[#F4C430]/20', text: 'text-[#003366]' };
-  if (week === currentWeek + 1) return { bg: 'bg-blue-50', text: 'text-blue-600' };
-  return { bg: 'bg-gray-50', text: 'text-gray-500' };
+function weekBadgeColor(week: number, currentWeek: number): { bg: string; border: string; text: string } {
+  if (week < currentWeek) return { bg: 'bg-gray-100', border: 'border-gray-400', text: 'text-gray-400' };
+  if (week === currentWeek) return { bg: 'bg-[#F4C430]/20', border: 'border-[#F4C430]', text: 'text-[#003366]' };
+  if (week === currentWeek + 1) return { bg: 'bg-blue-50', border: 'border-blue-300', text: 'text-blue-600' };
+  return { bg: 'bg-gray-50', border: 'border-gray-300', text: 'text-gray-500' };
 }
 
 export function Exams() {
@@ -56,13 +56,13 @@ export function Exams() {
       <div className="flex items-center gap-4 mb-5 flex-wrap">
         <p style={{ fontSize: '0.75rem' }} className="text-gray-500">Week badges:</p>
         {[
-          { bg: 'bg-[#F4C430]/20', text: 'text-[#003366]', label: 'This week' },
-          { bg: 'bg-blue-50', text: 'text-blue-600', label: 'Next week' },
-          { bg: 'bg-gray-50', text: 'text-gray-500', label: 'Future' },
-          { bg: 'bg-gray-100', text: 'text-gray-400', label: 'Past' },
+          { bg: 'bg-[#F4C430]/20', border: 'border-[#F4C430]', text: 'text-[#003366]', label: 'This week' },
+          { bg: 'bg-blue-50', border: 'border-blue-300', text: 'text-blue-600', label: 'Next week' },
+          { bg: 'bg-gray-50', border: 'border-gray-300', text: 'text-gray-500', label: 'Future' },
+          { bg: 'bg-gray-100', border: 'border-gray-400', text: 'text-gray-400', label: 'Past' },
         ].map(item => (
           <div key={item.label} className="flex items-center gap-1.5">
-            <span className={`px-2 py-0.5 rounded-full text-xs ${item.bg} ${item.text}`} style={{ fontSize: '0.65rem' }}>
+            <span className={`px-2 py-0.5 rounded-full text-xs border-2 ${item.bg} ${item.border} ${item.text}`} style={{ fontSize: '0.65rem' }}>
               Week N
             </span>
             <span style={{ fontSize: '0.72rem' }} className="text-gray-400">{item.label}</span>
@@ -206,12 +206,13 @@ export function Exams() {
                                 initial={{ opacity: 0, x: -10 }}
                                 animate={{ opacity: 1, x: 0 }}
                                 transition={{ delay: i * 0.02 }}
+                                onClick={() => status === 'pending' && markPoint(point.id, 'completed')}
                                 className={`flex items-start gap-3 p-3 rounded-xl border-2 transition-all ${
                                   status === 'completed'
                                     ? 'bg-green-50 border-green-200'
                                     : status === 'skipped'
                                     ? 'bg-amber-50 border-amber-200'
-                                    : 'bg-gray-50 border-gray-200'
+                                    : 'bg-gray-50 border-gray-200 cursor-pointer hover:bg-gray-100'
                                 }`}
                               >
                                 <div className="flex-shrink-0 pt-0.5">
@@ -229,7 +230,7 @@ export function Exams() {
                                     <Clock size={11} className="text-gray-300" />
                                     <span style={{ fontSize: '0.7rem' }} className="text-gray-400">{point.estimated_minutes} min</span>
                                     {week && (
-                                      <span className={`px-1.5 py-0.5 rounded-full ${wBg} ${wText}`} style={{ fontSize: '0.65rem', fontWeight: 600 }}>
+                                      <span className={`px-1.5 py-0.5 rounded-full border-2 ${wBg} ${weekBadgeColor(week, currentWeek).border} ${wText}`} style={{ fontSize: '0.65rem', fontWeight: 600 }}>
                                         {weekLabel(week)}
                                         {week === currentWeek && ' ★'}
                                       </span>
