@@ -24,7 +24,7 @@ function ExamCountdown({examDate, hasExam, subjectName, color}: {examDate: strin
   const urgency = days <=14 ? 'text-red-500' : days <=30 ? 'text-amber-500' : 'text-[#003366]';
 
   return(
-    <div className='bg-white rounded-2xl p-5 border border-gray-100 shadow-sm hover:shadow-md transition-shadow'>
+    <div className='bg-white rounded-2xl p-5 border-2 border-[#003366] shadow-sm hover:shadow-md transition-shadow'>
       <div className="flex items-start justify-between mb-3">
         <div className="w-3 h-3 rounded-full mt-1 flex-shrink-0" style={{ backgroundColor: color }} />
         <span style={{ fontSize: '0.7rem', fontWeight: 600 }}
@@ -158,7 +158,7 @@ export function Dashboard() {
             { label: 'Points completed', value: String(totalCompleted), icon: CheckCircle2, color: '#059669', bg: '#ECFDF5' },
             { label: 'Weeks to exam period', value: weeksToExamPeriod, icon: Clock, color: '#D97706', bg: '#FFFBEB' },
           ].map(stat => (
-            <div key={stat.label} className="bg-white rounded-2xl p-4 border border-gray-100 shadow-sm">
+            <div key={stat.label} className="bg-white rounded-2xl p-4 border-2 border-[#003366] shadow-sm">
               <div className="w-9 h-9 rounded-xl flex items-center justify-center mb-3" style={{ backgroundColor: stat.bg }}>
                 <stat.icon size={18} style={{ color: stat.color }} />
               </div>
@@ -172,7 +172,7 @@ export function Dashboard() {
       {/* Middle row */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 mb-6">
         {/* Today's Focus */}
-        <div className="bg-white rounded-2xl p-5 border border-gray-100 shadow-sm">
+        <div className="bg-white rounded-2xl p-5 border-2 border-[#003366] shadow-sm">
           <div className="flex items-center gap-2 mb-4">
             <Zap size={18} className="text-[#F4C430]" />
             <h2 style={{ fontSize: '1rem', fontWeight: 700 }} className="text-[#003366]">This Week's Focus</h2>
@@ -223,7 +223,7 @@ export function Dashboard() {
         </div>
 
         {/* Subject progress */}
-        <div className="bg-white rounded-2xl p-5 border border-gray-100 shadow-sm">
+        <div className="bg-white rounded-2xl p-5 border-2 border-[#003366] shadow-sm">
           <div className="flex items-center gap-2 mb-4">
             <BookOpen size={18} className="text-[#003366]" />
             <h2 style={{ fontSize: '1rem', fontWeight: 700 }} className="text-[#003366]">Subject Progress</h2>
@@ -284,7 +284,7 @@ export function Dashboard() {
               initial={{ opacity: 0, y: 10, scale: 0.9 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: 10, scale: 0.9 }}
-              className="mb-3 bg-white rounded-2xl shadow-xl border border-gray-100 p-4 w-60"
+              className="mb-3 bg-white rounded-2xl shadow-xl border-2 border-[#003366] p-4 w-60"
             >
               <p style={{ fontSize: '0.8rem', fontWeight: 600 }} className="text-gray-600 mb-2">Quick Note</p>
               <input

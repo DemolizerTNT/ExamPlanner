@@ -27,7 +27,7 @@ export function Layout({ children }: { children: ReactNode }) {
   const specObj = specializations.find(s => s.id === user?.specialization_id);
 
   return (
-    <div className="flex h-screen bg-[#F8F9FB] overflow-hidden">
+    <div className="flex h-screen bg-background overflow-hidden">
       {/* Mobile overlay */}
       {sidebarOpen && (
         <div
@@ -138,7 +138,7 @@ export function Layout({ children }: { children: ReactNode }) {
       {/* Main content */}
       <div className="flex-1 flex flex-col min-w-0">
         {/* Top bar (mobile) */}
-        <header className="lg:hidden flex items-center gap-3 px-4 py-3 bg-white border-b border-gray-200">
+        <header className="lg:hidden flex items-center gap-3 px-4 py-3 bg-white border-b-2 border-[#003366]">
           <button onClick={() => setSidebarOpen(true)} className="text-[#003366]">
             <Menu size={22} />
           </button>

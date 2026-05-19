@@ -204,7 +204,7 @@ export function ProfileEditDialog({ variant = 'avatar' }: ProfileEditDialogProps
           </DialogHeader>
 
           <form className="space-y-4" onSubmit={handleSubmit}>
-            <div className="flex items-center gap-4 rounded-xl border border-slate-200 bg-slate-50 p-4">
+            <div className="flex items-center gap-4 rounded-xl border-2 border-[#003366] bg-blue-50 p-4">
               <Avatar className="size-16 rounded-2xl">
                 <AvatarImage src={previewUrl ?? undefined} alt={`${user?.firstName || ''} ${user?.lastName || ''}`.trim() || 'Profile avatar'} />
                 <AvatarFallback className="rounded-2xl bg-[#F4C430] text-lg font-semibold text-[#003366]">

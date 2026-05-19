@@ -77,7 +77,7 @@ export function Exams() {
           { label: 'With exam', value: subjects.filter(s => s.has_exam).length, color: '#ef4444' },
           { label: 'Total points', value: subjects.reduce((s, sub) => s + (knowledgePointsBySubject[sub.id]?.length || 0), 0), color: '#059669' },
         ].map(stat => (
-          <div key={stat.label} className="bg-white rounded-2xl p-4 border border-gray-100 shadow-sm text-center">
+          <div key={stat.label} className="bg-white rounded-2xl p-4 border-2 border-[#003366] shadow-sm text-center">
             <p style={{ fontSize: '1.75rem', fontWeight: 800, color: stat.color }}>
               {stat.value}
             </p>
@@ -96,7 +96,7 @@ export function Exams() {
           const days = subj.exam_date ? daysUntil(subj.exam_date) : null;
 
           return (
-            <div key={subj.id} className="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden">
+            <div key={subj.id} className="bg-white rounded-2xl border-2 border-[#003366] shadow-sm overflow-hidden">
               {/* Card header */}
               <button
                 onClick={() => toggle(subj.id)}
@@ -172,7 +172,7 @@ export function Exams() {
                     transition={{ duration: 0.25 }}
                     className="overflow-hidden"
                   >
-                    <div className="px-5 pb-5 border-t border-gray-100">
+                    <div className="px-5 pb-5 border-t-2 border-[#003366]">
                       <div className="flex items-center gap-2 py-3 mb-2">
                         <BookOpen size={14} className="text-gray-400" />
                         <span style={{ fontSize: '0.78rem', fontWeight: 600 }} className="text-gray-500 uppercase tracking-wide">
@@ -206,12 +206,12 @@ export function Exams() {
                                 initial={{ opacity: 0, x: -10 }}
                                 animate={{ opacity: 1, x: 0 }}
                                 transition={{ delay: i * 0.02 }}
-                                className={`flex items-start gap-3 p-3 rounded-xl border transition-all ${
+                                className={`flex items-start gap-3 p-3 rounded-xl border-2 transition-all ${
                                   status === 'completed'
-                                    ? 'bg-green-50 border-green-100'
+                                    ? 'bg-green-50 border-green-200'
                                     : status === 'skipped'
-                                    ? 'bg-amber-50 border-amber-100'
-                                    : 'bg-gray-50 border-transparent hover:border-gray-200'
+                                    ? 'bg-amber-50 border-amber-200'
+                                    : 'bg-gray-50 border-gray-200'
                                 }`}
                               >
                                 <div className="flex-shrink-0 pt-0.5">

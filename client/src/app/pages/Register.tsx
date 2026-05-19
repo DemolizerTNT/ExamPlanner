@@ -118,7 +118,7 @@ export function Register() {
       </div>
 
       {/* Right panel — form */}
-      <div className="flex-1 flex items-center justify-center p-8 bg-[#F8F9FB] overflow-y-auto">
+      <div className="flex-1 flex items-center justify-center p-8 bg-[#f0f4f9] overflow-y-auto">
         <motion.div
           initial={{ opacity: 0, scale: 0.96 }}
           animate={{ opacity: 1, scale: 1 }}
@@ -214,7 +214,7 @@ export function Register() {
                   value={password}
                   onChange={e => setPassword(e.target.value)}
                   placeholder="Password"
-                  className="w-full pl-10 pr-10 py-3 rounded-xl border border-gray-200 bg-white text-gray-900 focus:outline-none focus:ring-2 focus:ring-[#003366]/30 focus:border-[#003366] transition-all"
+                  className="w-full pl-10 pr-10 py-3 rounded-xl border-2 border-[#003366] bg-white text-gray-900 focus:outline-none focus:ring-2 focus:ring-[#003366]/30 focus:border-[#003366] transition-all"
                   style={{ fontSize: '0.875rem' }}
                 />
                 <button

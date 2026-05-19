@@ -67,7 +67,7 @@ export function Onboarding() {
     : 'No specializations for this direction';
 
   return (
-    <div className="min-h-screen bg-[#F8F9FB] flex flex-col items-center justify-center p-4 sm:p-6">
+    <div className="min-h-screen bg-[#f0f4f9] flex flex-col items-center justify-center p-4 sm:p-6">
       <div className="w-full max-w-xl">
 
         {/* Header */}
@@ -208,7 +208,7 @@ export function Onboarding() {
           {step === 4 && (
             <motion.div key="step4"
               initial={{ opacity: 0, x: 30 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -30 }}
-              className="bg-white rounded-2xl shadow-sm border border-gray-100 p-5"
+              className="bg-white rounded-2xl shadow-sm border-2 border-[#003366] p-5"
             >
               <StepHeader step={4} total={TOTAL_STEPS} title="Select Your Semester" subtitle="Which semester are you currently in?" onBack={goBack} />
 

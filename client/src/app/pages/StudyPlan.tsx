@@ -56,14 +56,14 @@ export function StudyPlan() {
             { opacity: 1, x: 0, scale: 1 }
           }
           transition={{ duration: 0.4 }}
-          className={`flex items-start gap-3 p-4 rounded-xl border transition-all ${
+          className={`flex items-start gap-3 p-4 rounded-xl border-2 transition-all ${
             bucket === 'completed'
-              ? 'bg-green-50 border-green-100'
+              ? 'bg-green-50 border-green-500'
               : bucket === 'skipped'
-              ? 'bg-amber-50 border-amber-100'
+              ? 'bg-amber-50 border-amber-500'
               : bucket === 'next'
-              ? 'bg-gray-50 border-gray-100 opacity-75'
-              : 'bg-white border-gray-100 shadow-sm hover:shadow-md'
+              ? 'bg-gray-50 border-[#003366] opacity-75'
+              : 'bg-white border-[#003366] shadow-sm hover:shadow-md'
           }`}
         >
           {/* Status icon */}
@@ -150,7 +150,7 @@ export function StudyPlan() {
           { label: 'Load / week', value: `${weeklyLoad} min`, icon: Zap, color: '#7c3aed' },
           { label: 'To do this week', value: currentPoints.length, icon: CheckCircle2, color: '#059669' },
         ].map(m => (
-          <div key={m.label} className="bg-white rounded-2xl p-4 border border-gray-100 shadow-sm">
+          <div key={m.label} className="bg-white rounded-2xl p-4 border-2 border-[#003366] shadow-sm">
             <div className="w-8 h-8 rounded-lg flex items-center justify-center mb-2" style={{ backgroundColor: m.color + '15' }}>
               <m.icon size={16} style={{ color: m.color }} />
             </div>
@@ -200,7 +200,7 @@ export function StudyPlan() {
               </h2>
             </div>
             {currentPoints.length === 0 ? (
-              <div className="bg-white rounded-2xl p-8 border border-gray-100 text-center">
+              <div className="bg-white rounded-2xl p-8 border-2 border-[#003366] text-center">
                 <p style={{ fontSize: '2rem' }}>🎉</p>
                 <p style={{ fontSize: '0.9rem', fontWeight: 600 }} className="text-gray-700 mt-2">
                   Week complete!
@@ -249,7 +249,7 @@ export function StudyPlan() {
 
         {/* Next week preview */}
         <div>
-          <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-5 sticky top-6">
+          <div className="bg-white rounded-2xl border-2 border-[#003366] shadow-sm p-5 sticky top-6">
             <div className="flex items-center gap-2 mb-4">
               <ArrowRight size={16} className="text-gray-400" />
               <h2 style={{ fontSize: '0.9rem', fontWeight: 700 }} className="text-gray-600">Next Week</h2>
@@ -280,7 +280,7 @@ export function StudyPlan() {
               </div>
             )}
 
-            <div className="mt-4 pt-4 border-t border-gray-100">
+            <div className="mt-4 pt-4 border-t-2 border-[#003366]">
               <p style={{ fontSize: '0.72rem' }} className="text-gray-400">
                 Estimated time: <strong className="text-gray-600">
                   {nextWeekPoints.reduce((s, p) => s + p.estimated_minutes, 0)} min

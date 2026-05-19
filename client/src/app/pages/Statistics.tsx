@@ -97,7 +97,7 @@ export function Statistics() {
           { label: 'Deferred', value: totalSkipped, icon: SkipForward, color: '#D97706', bg: '#FFFBEB' },
           { label: 'Semester progress', value: `${semesterProgress}%`, icon: TrendingUp, color: '#7c3aed', bg: '#F5F3FF' },
         ].map(kpi => (
-          <div key={kpi.label} className="bg-white rounded-2xl p-5 border border-gray-100 shadow-sm">
+          <div key={kpi.label} className="bg-white rounded-2xl p-5 border-2 border-[#003366] shadow-sm">
             <div className="flex items-center justify-between mb-3">
               <div className="w-9 h-9 rounded-xl flex items-center justify-center" style={{ backgroundColor: kpi.bg }}>
                 <kpi.icon size={18} style={{ color: kpi.color }} />
@@ -132,7 +132,7 @@ export function Statistics() {
         </div>
 
         {/* Pie chart */}
-        <div className="bg-white rounded-2xl p-5 border border-gray-100 shadow-sm">
+        <div className="bg-white rounded-2xl p-5 border-2 border-[#003366] shadow-sm">
           <h3 style={{ fontSize: '0.9rem', fontWeight: 700 }} className="text-[#003366] mb-3">Knowledge Point Status</h3>
           <ResponsiveContainer width="100%" height={180}>
             <PieChart>
@@ -158,7 +158,7 @@ export function Statistics() {
         </div>
 
         {/* Totals */}
-        <div className="bg-white rounded-2xl p-5 border border-gray-100 shadow-sm">
+        <div className="bg-white rounded-2xl p-5 border-2 border-[#003366] shadow-sm">
           <h3 style={{ fontSize: '0.9rem', fontWeight: 700 }} className="text-[#003366] mb-4">Total Study Time</h3>
           <div className="space-y-3">
             <div>
@@ -179,7 +179,7 @@ export function Statistics() {
                 <div className="h-full bg-gray-300 rounded-full" style={{ width: '100%' }} />
               </div>
             </div>
-            <div className="pt-2 border-t border-gray-100">
+            <div className="pt-2 border-t-2 border-[#003366]">
               <div className="flex items-center justify-between">
                 <span style={{ fontSize: '0.78rem' }} className="text-gray-500">Remaining</span>
                 <span style={{ fontSize: '0.9rem', fontWeight: 800 }} className="text-[#003366]">
@@ -198,7 +198,7 @@ export function Statistics() {
       </div>
 
       {/* Bar chart: Hours per subject */}
-      <div className="bg-white rounded-2xl p-5 border border-gray-100 shadow-sm mb-6">
+      <div className="bg-white rounded-2xl p-5 border-2 border-[#003366] shadow-sm mb-6">
         <h3 style={{ fontSize: '0.9rem', fontWeight: 700 }} className="text-[#003366] mb-4">Study Hours per Subject</h3>
         <ResponsiveContainer width="100%" height={220}>
           <BarChart data={subjectData} margin={{ top: 5, right: 10, left: -20, bottom: 5 }}>
@@ -217,8 +217,8 @@ export function Statistics() {
       </div>
 
       {/* Per-subject detail */}
-      <div className="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden">
-        <div className="px-5 py-4 border-b border-gray-100">
+      <div className="bg-white rounded-2xl border-2 border-[#003366] shadow-sm overflow-hidden">
+        <div className="px-5 py-4 border-b-2 border-[#003366]">
           <h3 style={{ fontSize: '0.9rem', fontWeight: 700 }} className="text-[#003366]">Per-Subject Breakdown</h3>
         </div>
         <div className="divide-y divide-gray-50">
