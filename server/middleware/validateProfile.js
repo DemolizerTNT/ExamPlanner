@@ -1,5 +1,5 @@
 const validateProfileUpdate = (req, res, next) => {
-  const { firstName, lastName } = req.body;
+  const { firstName, lastName, facultyId, directionId, specializationId, semester } = req.body;
   const errors = {};
 
   if (firstName !== undefined) {
@@ -22,9 +22,34 @@ const validateProfileUpdate = (req, res, next) => {
     }
   }
 
-  if (firstName === undefined && lastName === undefined) {
+  if (facultyId !== undefined && typeof facultyId !== 'string') {
+    errors.facultyId = 'Faculty id must be a string';
+  }
+
+  if (directionId !== undefined && typeof directionId !== 'string') {
+    errors.directionId = 'Direction id must be a string';
+  }
+
+  if (specializationId !== undefined && specializationId !== null && typeof specializationId !== 'string') {
+    errors.specializationId = 'Specialization id must be a string or null';
+  }
+
+  if (semester !== undefined) {
+    if (typeof semester !== 'number' || !Number.isInteger(semester) || semester < 1 || semester > 10) {
+      errors.semester = 'Semester must be an integer from 1 to 10';
+    }
+  }
+
+  if (
+    firstName === undefined &&
+    lastName === undefined &&
+    facultyId === undefined &&
+    directionId === undefined &&
+    specializationId === undefined &&
+    semester === undefined
+  ) {
     return res.status(400).json({
-      message: 'Provide a first name or last name to update',
+      message: 'Provide profile data to update',
     });
   }
 

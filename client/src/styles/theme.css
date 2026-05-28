@@ -2,7 +2,7 @@
 
 :root {
   --font-size: 16px;
-  --background: #ffffff;
+  --background: rgba(255, 255, 255, 0.79);
   --foreground: oklch(0.145 0 0);
   --card: #ffffff;
   --card-foreground: oklch(0.145 0 0);
@@ -18,7 +18,7 @@
   --accent-foreground: #030213;
   --destructive: #d4183d;
   --destructive-foreground: #ffffff;
-  --border: rgba(0, 0, 0, 0.1);
+  --border: #003366;
   --input: transparent;
   --input-background: #f3f3f5;
   --switch-background: #cbced4;
@@ -179,3 +179,28 @@
     line-height: 1.5;
   }
 }
+
+/* Custom scrollbar styles */
+.scrollbar-navy {
+  scrollbar-width: thin;
+  scrollbar-color: #003366 #f0f4f9;
+}
+
+.scrollbar-navy::-webkit-scrollbar {
+  height: 6px;
+}
+
+.scrollbar-navy::-webkit-scrollbar-track {
+  background: #f0f4f9;
+  border-radius: 10px;
+}
+
+.scrollbar-navy::-webkit-scrollbar-thumb {
+  background: #003366;
+  border-radius: 10px;
+}
+
+.scrollbar-navy::-webkit-scrollbar-thumb:hover {
+  background: #001a33;
+}
+

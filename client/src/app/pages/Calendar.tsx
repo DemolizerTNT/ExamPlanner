@@ -165,8 +165,8 @@ export function Calendar() {
 
       <div className="flex gap-5">
         {/* Calendar grid */}
-        <div className="flex-1 bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden">
-          <div className="flex items-center justify-between px-5 py-4 border-b border-gray-100">
+        <div className="flex-1 bg-white rounded-2xl border-2 border-[#003366] shadow-sm overflow-hidden">
+          <div className="flex items-center justify-between px-5 py-4 border-b-2 border-[#003366]">
             <button onClick={() => navigate('prev')} className="w-8 h-8 rounded-lg hover:bg-gray-100 flex items-center justify-center text-gray-600">
               <ChevronLeft size={16} />
             </button>
@@ -181,7 +181,7 @@ export function Calendar() {
             </button>
           </div>
 
-          <div className="grid grid-cols-7 border-b border-gray-100">
+          <div className="grid grid-cols-7 border-b-2 border-[#003366]">
             {['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'].map(d => (
               <div key={d} className="py-2 text-center">
                 <span style={{ fontSize: '0.72rem', fontWeight: 600 }} className="text-gray-400 uppercase">{d}</span>
@@ -206,7 +206,7 @@ export function Calendar() {
               exit={{ opacity: 0, width: 0 }}
               className="flex-shrink-0 overflow-hidden"
             >
-              <div className="w-80 bg-white rounded-2xl border border-gray-100 shadow-sm p-5">
+              <div className="w-80 bg-white rounded-2xl border-2 border-[#003366] shadow-sm p-5">
                 <div className="flex items-center justify-between mb-4">
                   <div>
                     <p style={{ fontSize: '1rem', fontWeight: 700 }} className="text-[#003366]">

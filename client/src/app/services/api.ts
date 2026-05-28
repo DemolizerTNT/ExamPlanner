@@ -1,5 +1,5 @@
 import axios, { type AxiosError, type AxiosInstance } from 'axios';
-import type { Faculty, Direction, KnowledgePoint, Specialization, Subject } from '../types/catalog';
+import type { Faculty, Direction, KnowledgePoint, Specialization, Subject, UserProgress, ProgressStatus } from '../types/catalog';
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:3000/api';
 
@@ -33,6 +33,10 @@ interface UserProfile {
   firstName: string;
   lastName: string;
   avatar: string | null;
+  facultyId: string;
+  directionId: string | null;
+  specializationId: string | null;
+  semester: number;
   createdAt: string | null;
   updatedAt: string | null;
 }
@@ -40,6 +44,28 @@ interface UserProfile {
 interface ProfileResponse {
   message: string;
   profile: UserProfile;
+}
+
+interface ProgressResponse {
+  message: string;
+  progress: Array<{
+    userId: string;
+    pointId: string;
+    status: ProgressStatus;
+    completionDate: string | null;
+    updatedAt: string | null;
+  }>;
+}
+
+interface SingleProgressResponse {
+  message: string;
+  progress: {
+    userId: string;
+    pointId: string;
+    status: ProgressStatus;
+    completionDate: string | null;
+    updatedAt: string | null;
+  };
 }
 
 interface ApiError {
@@ -286,6 +312,21 @@ class ApiClient {
     return response.data;
   }
 
+  async updateStudyProfile(
+    facultyId: string,
+    directionId: string,
+    specializationId: string | undefined,
+    semester: number
+  ): Promise<ProfileResponse> {
+    const response = await this.client.patch<ProfileResponse>('/profile/me', {
+      facultyId,
+      directionId,
+      specializationId: specializationId ?? null,
+      semester,
+    });
+    return response.data;
+  }
+
   async uploadAvatar(base64Data: string, mimeType: string): Promise<ProfileResponse> {
     const response = await this.client.post<ProfileResponse>('/profile/avatar', {
       base64Data,
@@ -361,6 +402,33 @@ class ApiClient {
       description: knowledgePoint.description,
       estimated_minutes: knowledgePoint.estimatedMinutes,
     }));
+  }
+
+  async getProgress(): Promise<Record<string, UserProgress>> {
+    const response = await this.client.get<ProgressResponse>('/progress');
+
+    return response.data.progress.reduce<Record<string, UserProgress>>((acc, item) => {
+      acc[item.pointId] = {
+        user_id: item.userId,
+        point_id: item.pointId,
+        status: item.status,
+        completion_date: item.completionDate ?? undefined,
+      };
+      return acc;
+    }, {});
+  }
+
+  async updateProgress(pointId: string, status: ProgressStatus): Promise<UserProgress> {
+    const response = await this.client.put<SingleProgressResponse>(`/progress/${encodeURIComponent(pointId)}`, {
+      status,
+    });
+
+    return {
+      user_id: response.data.progress.userId,
+      point_id: response.data.progress.pointId,
+      status: response.data.progress.status,
+      completion_date: response.data.progress.completionDate ?? undefined,
+    };
   }
 
   // Utility: sprawdzenie czy użytkownik jest zalogowany

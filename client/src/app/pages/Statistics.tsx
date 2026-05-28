@@ -1,5 +1,5 @@
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, PieChart, Pie, Cell, Legend } from 'recharts';
-import { Clock, TrendingUp, CheckCircle2, SkipForward, Target } from 'lucide-react';
+import { Clock, TrendingUp, CheckCircle2, SkipForward, Target, Trophy, ThumbsUp, AlertCircle } from 'lucide-react';
 import { useApp } from '../context/AppContext';
 import { ProgressRing } from '../components/ProgressRing';
 
@@ -24,7 +24,7 @@ function CustomTooltip({ active, payload, label }: ChartTooltipProps) {
   }
 
   return (
-    <div className="bg-white border border-gray-100 rounded-xl shadow-lg px-4 py-3">
+    <div className="bg-white border-2 border-[#003366] rounded-xl shadow-lg px-4 py-3">
       <p style={{ fontSize: '0.8rem', fontWeight: 700 }} className="text-gray-700 mb-1">{label}</p>
       {payload.map((entry) => (
         <p key={entry.name} style={{ fontSize: '0.78rem' }} className="text-gray-600">
@@ -60,7 +60,7 @@ export function Statistics() {
       totalHours: Math.round(totalMinutes / 60 * 10) / 10,
       retention: points.length > 0 ? Math.round((completed.length / points.length) * 100) : 0,
     };
-  });
+  }).sort((a, b) => b.totalHours - a.totalHours);
 
   // Totals
   const totalCompleted = subjectData.reduce((s, d) => s + d.completed, 0);
@@ -97,7 +97,7 @@ export function Statistics() {
           { label: 'Deferred', value: totalSkipped, icon: SkipForward, color: '#D97706', bg: '#FFFBEB' },
           { label: 'Semester progress', value: `${semesterProgress}%`, icon: TrendingUp, color: '#7c3aed', bg: '#F5F3FF' },
         ].map(kpi => (
-          <div key={kpi.label} className="bg-white rounded-2xl p-5 border border-gray-100 shadow-sm">
+          <div key={kpi.label} className="bg-white rounded-2xl p-5 border-2 border-[#003366] shadow-sm">
             <div className="flex items-center justify-between mb-3">
               <div className="w-9 h-9 rounded-xl flex items-center justify-center" style={{ backgroundColor: kpi.bg }}>
                 <kpi.icon size={18} style={{ color: kpi.color }} />
@@ -124,15 +124,18 @@ export function Statistics() {
             Completed vs. Deferred<br />
             ({totalCompleted} / {totalAttempted || 1} points)
           </p>
-          <div className={`mt-3 px-3 py-1.5 rounded-full ${retentionScore >= 80 ? 'bg-green-500/20' : retentionScore >= 60 ? 'bg-yellow-500/20' : 'bg-red-500/20'}`}>
+          <div className={`mt-3 px-3 py-1.5 rounded-full flex items-center justify-center gap-2 ${retentionScore >= 80 ? 'bg-green-500/20' : retentionScore >= 60 ? 'bg-yellow-500/20' : 'bg-red-500/20'}`}>
+            {retentionScore >= 80 && <Trophy size={16} className="text-green-400" />}
+            {retentionScore >= 60 && retentionScore < 80 && <ThumbsUp size={16} className="text-yellow-400" />}
+            {retentionScore < 60 && <AlertCircle size={16} className="text-red-400" />}
             <p style={{ fontSize: '0.75rem', fontWeight: 600 }} className={retentionScore >= 80 ? 'text-green-300' : retentionScore >= 60 ? 'text-yellow-300' : 'text-red-300'}>
-              {retentionScore >= 80 ? '🏆 Excellent!' : retentionScore >= 60 ? '👍 Good' : '⚡ Improve retention'}
+              {retentionScore >= 80 ? 'Excellent!' : retentionScore >= 60 ? 'Good' : 'Improve retention'}
             </p>
           </div>
         </div>
 
         {/* Pie chart */}
-        <div className="bg-white rounded-2xl p-5 border border-gray-100 shadow-sm">
+        <div className="bg-white rounded-2xl p-5 border-2 border-[#003366] shadow-sm">
           <h3 style={{ fontSize: '0.9rem', fontWeight: 700 }} className="text-[#003366] mb-3">Knowledge Point Status</h3>
           <ResponsiveContainer width="100%" height={180}>
             <PieChart>
@@ -158,7 +161,7 @@ export function Statistics() {
         </div>
 
         {/* Totals */}
-        <div className="bg-white rounded-2xl p-5 border border-gray-100 shadow-sm">
+        <div className="bg-white rounded-2xl p-5 border-2 border-[#003366] shadow-sm">
           <h3 style={{ fontSize: '0.9rem', fontWeight: 700 }} className="text-[#003366] mb-4">Total Study Time</h3>
           <div className="space-y-3">
             <div>
@@ -179,7 +182,7 @@ export function Statistics() {
                 <div className="h-full bg-gray-300 rounded-full" style={{ width: '100%' }} />
               </div>
             </div>
-            <div className="pt-2 border-t border-gray-100">
+            <div className="pt-2 border-t-2 border-[#003366]">
               <div className="flex items-center justify-between">
                 <span style={{ fontSize: '0.78rem' }} className="text-gray-500">Remaining</span>
                 <span style={{ fontSize: '0.9rem', fontWeight: 800 }} className="text-[#003366]">
@@ -198,27 +201,33 @@ export function Statistics() {
       </div>
 
       {/* Bar chart: Hours per subject */}
-      <div className="bg-white rounded-2xl p-5 border border-gray-100 shadow-sm mb-6">
+      <div className="bg-white rounded-2xl p-5 border-2 border-[#003366] shadow-sm mb-6">
         <h3 style={{ fontSize: '0.9rem', fontWeight: 700 }} className="text-[#003366] mb-4">Study Hours per Subject</h3>
-        <ResponsiveContainer width="100%" height={220}>
-          <BarChart data={subjectData} margin={{ top: 5, right: 10, left: -20, bottom: 5 }}>
-            <CartesianGrid strokeDasharray="3 3" stroke="#f3f4f6" />
-            <XAxis dataKey="name" tick={{ fontSize: 11, fill: '#6b7280' }} />
-            <YAxis tick={{ fontSize: 11, fill: '#6b7280' }} />
-            <Tooltip content={<CustomTooltip />} />
-            <Bar dataKey="completedHours" name="Completed (h)" fill={NAVY} radius={[4, 4, 0, 0]}>
-              {subjectData.map((entry, index) => (
-                <Cell key={index} fill={entry.color} />
-              ))}
-            </Bar>
-            <Bar dataKey="totalHours" name="Planned (h)" fill="#e5e7eb" radius={[4, 4, 0, 0]} />
-          </BarChart>
-        </ResponsiveContainer>
+        <div className="overflow-x-auto -mx-5 px-5 scrollbar-navy">
+          <ResponsiveContainer width={Math.max(800, subjectData.length * 150)} height={220}>
+            <BarChart data={subjectData} margin={{ top: 20, right: 10, left: -20, bottom: 5 }}>
+              <CartesianGrid strokeDasharray="3 3" stroke="#f3f4f6" />
+              <XAxis dataKey="name" tick={{ fontSize: 11, fill: '#6b7280' }} />
+              <YAxis tick={{ fontSize: 11, fill: '#6b7280' }} />
+              <Tooltip content={<CustomTooltip />} />
+              <Bar dataKey="completedHours" name="Completed (h)" fill={NAVY} radius={[4, 4, 0, 0]}>
+                {subjectData.map((entry, index) => (
+                  <Cell key={index} fill={entry.color} />
+                ))}
+              </Bar>
+              <Bar dataKey="totalHours" name="Planned (h)" radius={[4, 4, 0, 0]}>
+                {subjectData.map((entry, index) => (
+                  <Cell key={index} fill={entry.color} fillOpacity={0.3} />
+                ))}
+              </Bar>
+            </BarChart>
+          </ResponsiveContainer>
+        </div>
       </div>
 
       {/* Per-subject detail */}
-      <div className="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden">
-        <div className="px-5 py-4 border-b border-gray-100">
+      <div className="bg-white rounded-2xl border-2 border-[#003366] shadow-sm overflow-hidden">
+        <div className="px-5 py-4 border-b-2 border-[#003366]">
           <h3 style={{ fontSize: '0.9rem', fontWeight: 700 }} className="text-[#003366]">Per-Subject Breakdown</h3>
         </div>
         <div className="divide-y divide-gray-50">

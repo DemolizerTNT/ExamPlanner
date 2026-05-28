@@ -6,6 +6,7 @@ const directionRoutes = require('./routes/direction.routes');
 const facultyRoutes = require('./routes/faculty.routes');
 const knowledgePointRoutes = require('./routes/knowledgePoint.routes');
 const profileRoutes = require('./routes/profile.routes');
+const progressRoutes = require('./routes/progress.routes');
 const specializationRoutes = require('./routes/specialization.routes');
 const subjectRoutes = require('./routes/subject.routes');
 const errorHandler = require('./middleware/errorHandler');
@@ -31,6 +32,7 @@ app.use('/api/knowledge-points', knowledgePointRoutes);
 app.use('/api/specializations', specializationRoutes);
 app.use('/api/subjects', subjectRoutes);
 app.use('/api/profile', profileRoutes);
+app.use('/api/progress', progressRoutes);
 // Central error handler should be attached last.
 app.use(errorHandler);
 
