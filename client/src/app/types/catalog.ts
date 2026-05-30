@@ -45,3 +45,53 @@ export interface UserProgress {
   status: ProgressStatus;
   completion_date?: string;
 }
+
+export type CalendarEventType = 'exam' | 'study' | 'assignment' | 'reminder' | 'consultation' | 'personal';
+export type CalendarEventPriority = 'low' | 'medium' | 'high';
+
+export interface UserCalendarEvent {
+  id: string;
+  user_id: string;
+  title: string;
+  description: string;
+  date: string;
+  start_time: string;
+  end_time: string;
+  type: CalendarEventType;
+  priority: CalendarEventPriority;
+  location: string;
+  color: string;
+  is_completed: boolean;
+  created_at?: string | null;
+  updated_at?: string | null;
+}
+
+export interface CalendarEventPayload {
+  title: string;
+  description?: string;
+  date: string;
+  startTime?: string;
+  endTime?: string;
+  type: CalendarEventType;
+  priority: CalendarEventPriority;
+  location?: string;
+  color: string;
+  isCompleted?: boolean;
+}
+
+
+export interface UserNote {
+  id: string;
+  user_id: string;
+  subject_id?: string | null;
+  content: string;
+  is_pinned: boolean;
+  created_at?: string | null;
+  updated_at?: string | null;
+}
+
+export interface NotePayload {
+  content: string;
+  subjectId?: string | null;
+  isPinned?: boolean;
+}
