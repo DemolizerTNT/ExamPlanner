@@ -836,8 +836,10 @@ export function Calendar() {
               initial={{ y: 24, scale: 0.98, opacity: 0 }}
               animate={{ y: 0, scale: 1, opacity: 1 }}
               exit={{ y: 24, scale: 0.98, opacity: 0 }}
-              className="max-h-[92vh] w-full max-w-2xl overflow-y-auto rounded-[32px] bg-white p-6 shadow-2xl sm:p-7"
+              className="flex max-h-[92vh] w-full max-w-2xl flex-col overflow-hidden rounded-[32px] bg-white shadow-2xl"
             >
+              {/* Inner scroll: scrollbar stays inside the white card (rounded clip on outer). */}
+              <div className="min-h-0 flex-1 overflow-y-auto overscroll-y-contain px-6 pt-6 pb-6 scrollbar-gutter-stable sm:px-7 sm:pt-7 sm:pb-7">
               <div className="mb-6 flex items-start justify-between gap-4">
                 <div>
                   <h2 className="text-[#003366]" style={{ fontSize: '1.3rem', fontWeight: 850 }}>
@@ -925,6 +927,7 @@ export function Calendar() {
                     {editingEvent ? 'Save changes' : 'Create event'}
                   </button>
                 </div>
+              </div>
               </div>
             </motion.div>
           </motion.div>
