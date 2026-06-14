@@ -225,11 +225,25 @@ interface CatalogKnowledgePointsResponse {
   }>;
 }
 
+interface SubjectExamDateUpdate {
+  subjectId: string;
+  examDate: string | null;
+}
+
+interface UpdateExamDatesResponse {
+  message: string;
+  subjects: CatalogSubjectsResponse['subjects'];
+}
+
 interface SubjectFilters {
   facultyId?: string;
   directionId?: string;
   specializationId?: string;
   semester?: number;
+}
+
+interface UpdateExamDatesPayload extends SubjectFilters {
+  updates: SubjectExamDateUpdate[];
 }
 
 class ApiClient {
@@ -480,6 +494,22 @@ class ApiClient {
     const response = await this.client.get<CatalogSubjectsResponse>('/subjects', {
       params: filters,
     });
+
+    return response.data.subjects.map((subject) => ({
+      id: subject.id,
+      faculty_id: subject.facultyId,
+      direction_id: subject.directionId ?? undefined,
+      specialization_id: subject.specializationId ?? undefined,
+      semester: subject.semester,
+      name: subject.name,
+      has_exam: subject.hasExam,
+      exam_date: subject.examDate ?? undefined,
+      color: subject.color,
+    }));
+  }
+
+  async updateSubjectExamDates(payload: UpdateExamDatesPayload): Promise<Subject[]> {
+    const response = await this.client.patch<UpdateExamDatesResponse>('/subjects/exam-dates', payload);
 
     return response.data.subjects.map((subject) => ({
       id: subject.id,

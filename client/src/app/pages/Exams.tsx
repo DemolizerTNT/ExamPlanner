@@ -1,7 +1,16 @@
-import { useState } from 'react';
-import { ChevronDown, ChevronUp, Clock, CheckCircle2, Circle, SkipForward, Award, BookOpen, Calendar, Star } from 'lucide-react';
+import { useMemo, useState } from 'react';
+import { ChevronDown, ChevronUp, Clock, CheckCircle2, Circle, SkipForward, Award, BookOpen, Calendar, Star, Loader2, Pencil, Save } from 'lucide-react';
 import { useApp } from '../context/AppContext';
 import { motion, AnimatePresence } from 'motion/react';
+import { apiClient } from '../services/api';
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+} from '../components/ui/dialog';
 
 const TODAY = new Date();
 
@@ -22,9 +31,59 @@ function weekBadgeColor(week: number, currentWeek: number): { bg: string; border
 }
 
 export function Exams() {
-  const { user, subjects, knowledgePointsBySubject, getPointStatus, markPoint, getSubjectProgress, pointWeekMap, currentWeek, faculties } = useApp();
+  const { user, isLoggedIn, subjects, knowledgePointsBySubject, getPointStatus, markPoint, getSubjectProgress, pointWeekMap, currentWeek, faculties, refreshSubjects } = useApp();
   const [expanded, setExpanded] = useState<string | null>(subjects[0]?.id || null);
+  const [showExamDateEditor, setShowExamDateEditor] = useState(false);
+  const [examDateDrafts, setExamDateDrafts] = useState<Record<string, string>>({});
+  const [examDatesSaving, setExamDatesSaving] = useState(false);
+  const [examDatesError, setExamDatesError] = useState<string | null>(null);
   const faculty = faculties.find(f => f.id === user?.faculty_id);
+
+  const examSubjects = useMemo(
+    () => subjects.filter((subject) => subject.has_exam),
+    [subjects]
+  );
+
+  const openExamDateEditor = () => {
+    const drafts = examSubjects.reduce<Record<string, string>>((acc, subject) => {
+      acc[subject.id] = subject.exam_date || '';
+      return acc;
+    }, {});
+
+    setExamDateDrafts(drafts);
+    setExamDatesError(null);
+    setShowExamDateEditor(true);
+  };
+
+  const saveExamDates = async () => {
+    if (!user?.faculty_id || !user.semester) {
+      return;
+    }
+
+    setExamDatesSaving(true);
+    setExamDatesError(null);
+
+    try {
+      await apiClient.updateSubjectExamDates({
+        facultyId: user.faculty_id,
+        directionId: user.direction_id,
+        specializationId: user.specialization_id,
+        semester: user.semester,
+        updates: examSubjects.map((subject) => ({
+          subjectId: subject.id,
+          examDate: examDateDrafts[subject.id]?.trim() || null,
+        })),
+      });
+
+      await refreshSubjects();
+      setShowExamDateEditor(false);
+    } catch (error) {
+      console.error('Failed to update exam dates:', error);
+      setExamDatesError('Could not save exam dates. Please try again.');
+    } finally {
+      setExamDatesSaving(false);
+    }
+  };
 
   const toggle = (id: string) => setExpanded(prev => prev === id ? null : id);
 
@@ -73,18 +132,110 @@ export function Exams() {
       {/* Summary row */}
       <div className="grid grid-cols-3 gap-4 mb-6">
         {[
-          { label: 'Subjects', value: subjects.length, color: '#003366' },
-          { label: 'With exam', value: subjects.filter(s => s.has_exam).length, color: '#ef4444' },
-          { label: 'Total points', value: subjects.reduce((s, sub) => s + (knowledgePointsBySubject[sub.id]?.length || 0), 0), color: '#059669' },
+          { label: 'Subjects', value: subjects.length, color: '#003366', clickable: false },
+          { label: 'With exam', value: examSubjects.length, color: '#ef4444', clickable: isLoggedIn },
+          { label: 'Total points', value: subjects.reduce((s, sub) => s + (knowledgePointsBySubject[sub.id]?.length || 0), 0), color: '#059669', clickable: false },
         ].map(stat => (
-          <div key={stat.label} className="bg-white rounded-2xl p-4 border-2 border-[#003366] shadow-sm text-center">
+          <div
+            key={stat.label}
+            onClick={stat.clickable ? openExamDateEditor : undefined}
+            onKeyDown={stat.clickable ? (event) => {
+              if (event.key === 'Enter' || event.key === ' ') {
+                event.preventDefault();
+                openExamDateEditor();
+              }
+            } : undefined}
+            role={stat.clickable ? 'button' : undefined}
+            tabIndex={stat.clickable ? 0 : undefined}
+            className={`bg-white rounded-2xl p-4 border-2 border-[#003366] shadow-sm text-center ${
+              stat.clickable ? 'cursor-pointer hover:bg-red-50/60 hover:shadow-md transition-all' : ''
+            }`}
+          >
             <p style={{ fontSize: '1.75rem', fontWeight: 800, color: stat.color }}>
               {stat.value}
             </p>
             <p style={{ fontSize: '0.75rem' }} className="text-gray-400 mt-0.5">{stat.label}</p>
+            {stat.clickable && (
+              <p style={{ fontSize: '0.68rem' }} className="text-red-500 mt-2 flex items-center justify-center gap-1">
+                <Pencil size={11} /> Edit exam dates
+              </p>
+            )}
           </div>
         ))}
       </div>
+
+      <Dialog open={showExamDateEditor} onOpenChange={setShowExamDateEditor}>
+        <DialogContent className="sm:max-w-2xl max-h-[85vh] overflow-hidden flex flex-col bg-white">
+          <DialogHeader>
+            <DialogTitle className="text-[#003366]">Edit exam dates</DialogTitle>
+            <DialogDescription>
+              Set exam dates.
+            </DialogDescription>
+          </DialogHeader>
+
+          {examDatesError && (
+            <div className="rounded-xl bg-red-50 border border-red-100 px-3 py-2 text-red-600" style={{ fontSize: '0.78rem' }}>
+              {examDatesError}
+            </div>
+          )}
+
+          <div className="overflow-y-auto pr-1 space-y-3">
+            {examSubjects.length === 0 ? (
+              <p style={{ fontSize: '0.85rem' }} className="text-gray-500 text-center py-6">
+                No exam subjects in this semester.
+              </p>
+            ) : (
+              examSubjects.map((subject) => (
+                <div key={subject.id} className="flex items-center gap-3 rounded-xl border border-gray-200 bg-gray-50/70 p-3">
+                  <div className="w-2 h-10 rounded-full flex-shrink-0" style={{ backgroundColor: subject.color }} />
+                  <div className="flex-1 min-w-0">
+                    <p style={{ fontSize: '0.82rem', fontWeight: 600 }} className="text-gray-800 truncate">
+                      {subject.name}
+                    </p>
+                    <p style={{ fontSize: '0.7rem' }} className="text-gray-400">
+                      {subject.exam_date ? `Current: ${new Date(subject.exam_date).toLocaleDateString('en-US', { day: 'numeric', month: 'short', year: 'numeric' })}` : 'No date set yet'}
+                    </p>
+                  </div>
+                  <input
+                    type="date"
+                    value={examDateDrafts[subject.id] || ''}
+                    onChange={(event) => {
+                      setExamDateDrafts((prev) => ({
+                        ...prev,
+                        [subject.id]: event.target.value,
+                      }));
+                    }}
+                    className="border border-gray-200 rounded-xl px-3 py-2 bg-white text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#003366]/20"
+                    style={{ fontSize: '0.78rem' }}
+                  />
+                </div>
+              ))
+            )}
+          </div>
+
+          <DialogFooter>
+            <button
+              type="button"
+              onClick={() => setShowExamDateEditor(false)}
+              className="px-4 py-2 rounded-xl bg-gray-100 text-gray-600 hover:bg-gray-200 transition-colors"
+              style={{ fontSize: '0.8rem', fontWeight: 700 }}
+              disabled={examDatesSaving}
+            >
+              Cancel
+            </button>
+            <button
+              type="button"
+              onClick={saveExamDates}
+              disabled={examDatesSaving || examSubjects.length === 0}
+              className="px-4 py-2 rounded-xl bg-[#003366] text-white hover:bg-[#004488] disabled:bg-gray-300 disabled:cursor-not-allowed transition-colors flex items-center gap-2"
+              style={{ fontSize: '0.8rem', fontWeight: 700 }}
+            >
+              {examDatesSaving ? <Loader2 size={15} className="animate-spin" /> : <Save size={15} />}
+              Save dates
+            </button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
 
       {/* Subject cards */}
       <div className="space-y-4">

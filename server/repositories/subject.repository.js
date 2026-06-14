@@ -38,8 +38,29 @@ const listSubjects = async ({ facultyId, directionId, specializationId, semester
   return { data, error };
 };
 
+const getSubjectById = async (subjectId) => {
+  const { data, error } = await getSubjectQuery()
+    .select('id, faculty_id, direction_id, specialization_id, semester, name, has_exam, exam_date, color')
+    .eq('id', subjectId)
+    .maybeSingle();
+
+  return { data, error };
+};
+
+const updateSubjectExamDate = async (subjectId, examDate) => {
+  const { data, error } = await getSubjectQuery()
+    .update({ exam_date: examDate })
+    .eq('id', subjectId)
+    .select('id, faculty_id, direction_id, specialization_id, semester, name, has_exam, exam_date, color')
+    .single();
+
+  return { data, error };
+};
+
 module.exports = {
   listSubjects,
+  getSubjectById,
+  updateSubjectExamDate,
   subjectSchema,
   subjectTable,
 };
