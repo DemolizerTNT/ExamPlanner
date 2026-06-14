@@ -34,9 +34,15 @@ const upsertUserProgress = async ({ userId, pointId, status, completionDate }) =
   return { data, error };
 };
 
+const deleteAllProgressForUser = async (userId) => {
+  const { error } = await getProgressQuery().delete().eq('user_id', userId);
+  return { error };
+};
+
 module.exports = {
   listProgressByUserId,
   upsertUserProgress,
+  deleteAllProgressForUser,
   progressSchema,
   progressTable,
 };

@@ -37,6 +37,7 @@ interface AppContextType {
   register: (firstName: string, lastName: string, email: string, password: string) => Promise<{ ok: boolean; message?: string }>;
   logout: () => Promise<void>;
   refreshProfile: () => Promise<void>;
+  resetStudyChoices: () => Promise<void>;
   completeOnboarding: (facultyId: string, directionId: string, specializationId: string | undefined, semester: number) => Promise<void>;
   markPoint: (pointId: string, status: ProgressStatus) => void;
   getPointStatus: (pointId: string) => ProgressStatus;
@@ -139,10 +140,10 @@ const buildUserFromProfile = (baseUser: AppUser, profile: UserProfile): AppUser 
     firstName,
     lastName,
     avatarUrl: profile.avatar ?? baseUser.avatarUrl ?? null,
-    faculty_id: profile.facultyId || baseUser.faculty_id,
-    direction_id: profile.directionId || undefined,
-    specialization_id: profile.specializationId || undefined,
-    semester: profile.semester || baseUser.semester,
+    faculty_id: typeof profile.facultyId === 'string' ? profile.facultyId : baseUser.faculty_id,
+    direction_id: profile.directionId ?? undefined,
+    specialization_id: profile.specializationId ?? undefined,
+    semester: typeof profile.semester === 'number' ? profile.semester : baseUser.semester,
   };
 };
 
@@ -330,6 +331,27 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
     } catch (error) {
       console.error('Failed to refresh profile:', error);
     }
+  }, [user]);
+
+  const resetStudyChoices = useCallback(async () => {
+    if (!apiClient.isAuthenticated()) {
+      return;
+    }
+
+    const { profile } = await apiClient.resetStudyChoices();
+    const nextUser = buildUserFromProfile(user || FALLBACK_USER, profile);
+
+    setUser(nextUser);
+    setIsOnboarded(false);
+    localStorage.setItem(STORAGE_KEYS.USER, JSON.stringify(nextUser));
+    localStorage.removeItem(STORAGE_KEYS.ONBOARDED);
+
+    setProgress({});
+    localStorage.removeItem(STORAGE_KEYS.PROGRESS);
+    setDirectionsByFaculty({});
+    setSpecializationsByDirection({});
+    setCatalogSubjects([]);
+    setKnowledgePoints([]);
   }, [user]);
 
   useEffect(() => {
@@ -688,6 +710,7 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
       register,
       logout,
       refreshProfile,
+      resetStudyChoices,
       completeOnboarding,
       markPoint,
       getPointStatus,

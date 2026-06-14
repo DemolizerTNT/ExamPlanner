@@ -327,6 +327,12 @@ class ApiClient {
     return response.data;
   }
 
+  /** Clears faculty, direction, specialization, semester and all point progress; keeps account, name, avatar. */
+  async resetStudyChoices(): Promise<ProfileResponse> {
+    const response = await this.client.post<ProfileResponse>('/profile/me/reset-study-choices');
+    return response.data;
+  }
+
   async uploadAvatar(base64Data: string, mimeType: string): Promise<ProfileResponse> {
     const response = await this.client.post<ProfileResponse>('/profile/avatar', {
       base64Data,
