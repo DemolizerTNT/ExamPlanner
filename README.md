@@ -65,7 +65,7 @@ The client runs with Vite and typically serves on `http://localhost:5173`. The b
 - Start the frontend (from `client/`): `npm run dev`.
 
 ## API Overview
-The backend exposes RESTful routes for authentication and resources such as `profiles`, `progress`, `subjects`, `directions`, `faculties`, `specializations`, and `knowledgePoints`. See the `server/routes/` directory for concrete endpoints and usage.
+The backend exposes RESTful routes for authentication and resources such as `profiles`, `progress`, `subjects`, `directions`, `faculties`, `specializations`, and `knowledgePoints`. `POST /api/profile/me/reset-study-choices` clears the signed-in user's study selections and all saved progress while keeping name and avatar. See the `server/routes/` directory for concrete endpoints and usage.
 
 ## Contributing
 - Fork the repository and create a branch for your feature or fix.

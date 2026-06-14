@@ -17,15 +17,42 @@ export function StudyPlan() {
 
   const handleComplete = (pointId: string) => {
     setCompletedAnims(prev => new Set(prev).add(pointId));
-    setTimeout(() => markPoint(pointId, 'completed'), 400);
+    setTimeout(() => {
+      markPoint(pointId, 'completed');
+      // Clear so the card is visible if it reappears in another bucket (same tick as progress update).
+      setCompletedAnims((prev) => {
+        const next = new Set(prev);
+        next.delete(pointId);
+        return next;
+      });
+    }, 400);
   };
 
   const handleSkip = (pointId: string) => {
     setSkippedAnims(prev => new Set(prev).add(pointId));
-    setTimeout(() => markPoint(pointId, 'skipped'), 500);
+    setTimeout(() => {
+      markPoint(pointId, 'skipped');
+      // Must clear after markPoint: skipped items stay in "Deferred" with the same id — otherwise isSkipping
+      // stays true and motion keeps opacity at 0 until the page remounts.
+      setSkippedAnims((prev) => {
+        const next = new Set(prev);
+        next.delete(pointId);
+        return next;
+      });
+    }, 500);
   };
 
   const handleUndo = (pointId: string) => {
+    setSkippedAnims((prev) => {
+      const next = new Set(prev);
+      next.delete(pointId);
+      return next;
+    });
+    setCompletedAnims((prev) => {
+      const next = new Set(prev);
+      next.delete(pointId);
+      return next;
+    });
     markPoint(pointId, 'pending');
   };
 
@@ -42,8 +69,9 @@ export function StudyPlan() {
 
   const PointCard = ({ point, bucket }: { point: KnowledgePoint; bucket: 'current' | 'next' | 'completed' | 'skipped' }) => {
     const subj = subjects.find(s => s.id === point.subject_id);
-    const isSkipping = skippedAnims.has(point.id);
-    const isCompleting = completedAnims.has(point.id);
+    // Only animate exit while still on "This week"; same point re-renders under Deferred with bucket skipped.
+    const isSkipping = bucket === 'current' && skippedAnims.has(point.id);
+    const isCompleting = bucket === 'current' && completedAnims.has(point.id);
 
     return (
       <AnimatePresence>

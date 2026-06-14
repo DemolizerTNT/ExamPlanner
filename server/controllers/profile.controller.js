@@ -2,9 +2,15 @@ const { supabaseAuthClient, supabaseDbClient } = require('../configs/supabaseCli
 const {
   getUserProfileById,
   upsertUserProfile,
+  updateUserProfileById,
   profileSchema,
   profileTable,
 } = require('../repositories/profile.repository');
+const {
+  deleteAllProgressForUser,
+  progressSchema,
+  progressTable,
+} = require('../repositories/progress.repository');
 
 const avatarBucket = process.env.PROFILE_AVATAR_BUCKET || 'avatars';
 const avatarSignedUrlTtl = Number(process.env.PROFILE_AVATAR_SIGNED_URL_TTL || 3600);
@@ -314,10 +320,52 @@ const uploadMyAvatar = async (req, res, next) => {
   }
 };
 
+// Clears faculty / direction / specialization / semester and all learning progress (keeps auth, name, avatar).
+const resetMyStudyChoices = async (req, res, next) => {
+  try {
+    const user = await resolveAuthenticatedUser(req, res);
+
+    if (!user) {
+      return;
+    }
+
+    const { error: progressError } = await deleteAllProgressForUser(user.id);
+
+    if (progressError) {
+      return res.status(500).json({
+        message: `Failed to clear progress from ${progressSchema}.${progressTable}`,
+      });
+    }
+
+    const now = new Date().toISOString();
+    const { data: profileData, error: profileError } = await updateUserProfileById(user.id, {
+      faculty_id: null,
+      direction_id: null,
+      specialization_id: null,
+      semester: 0,
+      updated_at: now,
+    });
+
+    if (profileError) {
+      return res.status(500).json({
+        message: `Failed to reset study profile in ${profileSchema}.${profileTable}`,
+      });
+    }
+
+    return res.status(200).json({
+      message: 'Study choices and progress were reset.',
+      profile: await normalizeProfileResponse(profileData, user),
+    });
+  } catch (err) {
+    return next(err);
+  }
+};
+
 module.exports = {
   getMyProfile,
   updateMyProfile,
   uploadMyAvatar,
+  resetMyStudyChoices,
 };
 
 

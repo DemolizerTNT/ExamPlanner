@@ -4,6 +4,15 @@ import { Camera, Loader2, Upload, UserRound } from 'lucide-react';
 import { useApp } from '../context/AppContext';
 import { apiClient } from '../services/api';
 import { Avatar, AvatarFallback, AvatarImage } from './ui/avatar';
+import {
+  AlertDialog,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+} from './ui/alert-dialog';
 import { Button } from './ui/button';
 import {
   Dialog,
@@ -45,14 +54,16 @@ interface ProfileEditDialogProps {
 }
 
 export function ProfileEditDialog({ variant = 'avatar' }: ProfileEditDialogProps) {
-  const { user, refreshProfile } = useApp();
+  const { user, refreshProfile, resetStudyChoices } = useApp();
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [open, setOpen] = useState(false);
+  const [confirmResetOpen, setConfirmResetOpen] = useState(false);
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);
   const [isSaving, setIsSaving] = useState(false);
+  const [isResettingStudy, setIsResettingStudy] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const fieldId = useId();
   const firstNameId = `${fieldId}-first-name`;
@@ -159,6 +170,28 @@ export function ProfileEditDialog({ variant = 'avatar' }: ProfileEditDialogProps
       setError(serverMessage || uploadError?.message || 'Could not save your profile.');
     } finally {
       setIsSaving(false);
+    }
+  };
+
+  const handleConfirmResetStudy = async () => {
+    setIsResettingStudy(true);
+    setError(null);
+    try {
+      await resetStudyChoices();
+      setConfirmResetOpen(false);
+      setOpen(false);
+    } catch (resetErr: unknown) {
+      const serverMessage =
+        typeof resetErr === 'object' && resetErr !== null && 'response' in resetErr
+          ? (resetErr as { response?: { data?: { message?: string } } }).response?.data?.message
+          : undefined;
+      const message =
+        serverMessage ||
+        (resetErr instanceof Error ? resetErr.message : 'Could not reset your study choices.');
+      setError(message);
+      setConfirmResetOpen(false);
+    } finally {
+      setIsResettingStudy(false);
     }
   };
 
@@ -286,18 +319,54 @@ export function ProfileEditDialog({ variant = 'avatar' }: ProfileEditDialogProps
               </div>
             )}
 
-            <DialogFooter>
-              <Button type="button" variant="outline" onClick={() => setOpen(false)} disabled={isSaving}>
-                Cancel
+            <DialogFooter className="flex-col gap-3 sm:flex-row sm:items-center sm:justify-between sm:gap-4">
+              <Button
+                type="button"
+                variant="link"
+                className="h-auto justify-start px-0 text-sm text-red-600 hover:text-red-700"
+                disabled={isSaving || isResettingStudy}
+                onClick={() => setConfirmResetOpen(true)}
+              >
+                Reset choices
               </Button>
-              <Button type="submit" disabled={isSaving}>
-                {isSaving ? <Loader2 size={16} className="animate-spin" /> : <Upload size={16} />}
-                Save changes
-              </Button>
+              <div className="flex w-full flex-col-reverse gap-2 sm:w-auto sm:flex-row sm:justify-end">
+                <Button type="button" variant="outline" onClick={() => setOpen(false)} disabled={isSaving}>
+                  Cancel
+                </Button>
+                <Button type="submit" disabled={isSaving}>
+                  {isSaving ? <Loader2 size={16} className="animate-spin" /> : <Upload size={16} />}
+                  Save changes
+                </Button>
+              </div>
             </DialogFooter>
           </form>
         </DialogContent>
       </Dialog>
+
+      <AlertDialog open={confirmResetOpen} onOpenChange={setConfirmResetOpen}>
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle>Reset study choices?</AlertDialogTitle>
+            <AlertDialogDescription>
+              This removes your faculty, program, specialization, semester selection and all learning progress for
+              those subjects. Your account, name, password and profile photo stay the same. You will choose your
+              studies again like after registration.
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel disabled={isResettingStudy}>Cancel</AlertDialogCancel>
+            <Button
+              type="button"
+              variant="destructive"
+              disabled={isResettingStudy}
+              onClick={() => void handleConfirmResetStudy()}
+            >
+              {isResettingStudy ? <Loader2 size={16} className="animate-spin" /> : null}
+              Reset choices
+            </Button>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
     </>
   );
 }
