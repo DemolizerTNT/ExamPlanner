@@ -33,6 +33,7 @@ interface AppContextType {
   subjects: Subject[];
   knowledgePointsBySubject: Record<string, KnowledgePoint[]>;
   progress: Record<string, UserProgress>;
+  refreshSubjects: () => Promise<void>;
   login: (email: string, password: string) => Promise<boolean>;
   register: (firstName: string, lastName: string, email: string, password: string) => Promise<{ ok: boolean; message?: string }>;
   logout: () => Promise<void>;
@@ -332,6 +333,33 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
       console.error('Failed to refresh profile:', error);
     }
   }, [user]);
+
+  const refreshSubjects = useCallback(async () => {
+    if (!isOnboarded || !currentUser.faculty_id || currentUser.semester <= 0) {
+      setCatalogSubjects([]);
+      return;
+    }
+
+    try {
+      const remoteSubjects = await apiClient.getSubjects({
+        facultyId: currentUser.faculty_id,
+        directionId: currentUser.direction_id,
+        specializationId: currentUser.specialization_id,
+        semester: currentUser.semester,
+      });
+
+      setCatalogSubjects(remoteSubjects);
+    } catch (error) {
+      console.error('Failed to refresh subjects:', error);
+      throw error;
+    }
+  }, [
+    isOnboarded,
+    currentUser.faculty_id,
+    currentUser.direction_id,
+    currentUser.specialization_id,
+    currentUser.semester,
+  ]);
 
   const resetStudyChoices = useCallback(async () => {
     if (!apiClient.isAuthenticated()) {
@@ -706,6 +734,7 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
       subjects,
       knowledgePointsBySubject,
       progress,
+      refreshSubjects,
       login,
       register,
       logout,
