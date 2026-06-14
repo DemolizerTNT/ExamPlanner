@@ -1,5 +1,8 @@
 import axios, { type AxiosError, type AxiosInstance } from 'axios';
-import type { Faculty, Direction, KnowledgePoint, Specialization, Subject, UserProgress, ProgressStatus } from '../types/catalog';
+import type {
+  Faculty, Direction, KnowledgePoint, Specialization, Subject, UserProgress, ProgressStatus,
+  UserCalendarEvent, CalendarEventPayload, CalendarEventType, CalendarEventPriority, UserNote, NotePayload
+} from '../types/catalog';
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:3000/api';
 
@@ -67,6 +70,101 @@ interface SingleProgressResponse {
     updatedAt: string | null;
   };
 }
+
+
+interface CalendarEventsResponse {
+  message: string;
+  events: Array<{
+    id: string;
+    userId: string;
+    title: string;
+    description: string;
+    date: string;
+    startTime: string;
+    endTime: string;
+    type: CalendarEventType;
+    priority: CalendarEventPriority;
+    location: string;
+    color: string;
+    isCompleted: boolean;
+    createdAt: string | null;
+    updatedAt: string | null;
+  }>;
+}
+
+interface SingleCalendarEventResponse {
+  message: string;
+  event: {
+    id: string;
+    userId: string;
+    title: string;
+    description: string;
+    date: string;
+    startTime: string;
+    endTime: string;
+    type: CalendarEventType;
+    priority: CalendarEventPriority;
+    location: string;
+    color: string;
+    isCompleted: boolean;
+    createdAt: string | null;
+    updatedAt: string | null;
+  };
+}
+
+
+interface NotesResponse {
+  message: string;
+  notes: Array<{
+    id: string;
+    userId: string;
+    subjectId: string | null;
+    content: string;
+    isPinned: boolean;
+    createdAt: string | null;
+    updatedAt: string | null;
+  }>;
+}
+
+interface SingleNoteResponse {
+  message: string;
+  note: {
+    id: string;
+    userId: string;
+    subjectId: string | null;
+    content: string;
+    isPinned: boolean;
+    createdAt: string | null;
+    updatedAt: string | null;
+  };
+}
+
+const mapNote = (note: SingleNoteResponse['note']): UserNote => ({
+  id: note.id,
+  user_id: note.userId,
+  subject_id: note.subjectId,
+  content: note.content,
+  is_pinned: note.isPinned,
+  created_at: note.createdAt,
+  updated_at: note.updatedAt,
+});
+
+const mapCalendarEvent = (event: SingleCalendarEventResponse['event']): UserCalendarEvent => ({
+  id: event.id,
+  user_id: event.userId,
+  title: event.title,
+  description: event.description,
+  date: event.date,
+  start_time: event.startTime,
+  end_time: event.endTime,
+  type: event.type,
+  priority: event.priority,
+  location: event.location,
+  color: event.color,
+  is_completed: event.isCompleted,
+  created_at: event.createdAt,
+  updated_at: event.updatedAt,
+});
 
 interface ApiError {
   message: string;
@@ -435,6 +533,49 @@ class ApiClient {
       status: response.data.progress.status,
       completion_date: response.data.progress.completionDate ?? undefined,
     };
+  }
+
+
+  async getCalendarEvents(): Promise<UserCalendarEvent[]> {
+    const response = await this.client.get<CalendarEventsResponse>('/calendar-events');
+    return response.data.events.map(mapCalendarEvent);
+  }
+
+  async createCalendarEvent(payload: CalendarEventPayload): Promise<UserCalendarEvent> {
+    const response = await this.client.post<SingleCalendarEventResponse>('/calendar-events', payload);
+    return mapCalendarEvent(response.data.event);
+  }
+
+  async updateCalendarEvent(eventId: string, payload: Partial<CalendarEventPayload>): Promise<UserCalendarEvent> {
+    const response = await this.client.patch<SingleCalendarEventResponse>(`/calendar-events/${encodeURIComponent(eventId)}`, payload);
+    return mapCalendarEvent(response.data.event);
+  }
+
+  async deleteCalendarEvent(eventId: string): Promise<void> {
+    await this.client.delete(`/calendar-events/${encodeURIComponent(eventId)}`);
+  }
+
+
+  async getNotes(limit = 20): Promise<UserNote[]> {
+    const response = await this.client.get<NotesResponse>('/notes', {
+      params: { limit },
+    });
+
+    return response.data.notes.map(mapNote);
+  }
+
+  async createNote(payload: NotePayload): Promise<UserNote> {
+    const response = await this.client.post<SingleNoteResponse>('/notes', payload);
+    return mapNote(response.data.note);
+  }
+
+  async updateNote(noteId: string, payload: Partial<NotePayload>): Promise<UserNote> {
+    const response = await this.client.patch<SingleNoteResponse>(`/notes/${encodeURIComponent(noteId)}`, payload);
+    return mapNote(response.data.note);
+  }
+
+  async deleteNote(noteId: string): Promise<void> {
+    await this.client.delete(`/notes/${encodeURIComponent(noteId)}`);
   }
 
   // Utility: sprawdzenie czy użytkownik jest zalogowany
